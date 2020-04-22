@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "lit=false": { "model": "gemspark:block/colored_lamp_orange_off" },
+        "lit=true": { "model": "gemspark:block/colored_lamp_orange_on" }
+    }
+}

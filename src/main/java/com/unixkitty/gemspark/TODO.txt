@@ -1,0 +1,12 @@
+Done 1. Add gems themselves
+Done 2. Add gem blocks
+Done 3. Add gem lanterns
+Done 4. Add gem ores
+Done 5. Gem tools
+Done 6. Gem armor
+Done 7. Pedestal
+Done 8. Colored lamps
+9. Dark colored pedestal (alternative to bright current one made with quartz)
+10. Config file
+11. Generate ores
+12. Recipes and OreDictionary
