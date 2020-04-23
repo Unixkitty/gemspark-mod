@@ -115,9 +115,7 @@ public class BlockPedestal extends ContainerBlock
                     }
                     else
                     {
-                        Direction direction = Direction.getFacingDirections(player)[0].getOpposite();
-
-                        switch (direction)
+                        switch (player.getHorizontalFacing().getOpposite())
                         {
                             case NORTH:
                                 tileEntity.itemFacingDirection = 180;

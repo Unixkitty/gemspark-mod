@@ -6,6 +6,7 @@ import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.util.ActionResultType;
 import net.minecraftforge.fml.RegistryObject;
 
 public final class GemHelper
@@ -24,8 +25,21 @@ public final class GemHelper
 
     public static RegistryObject<Item> registerSwordItem(Gems gem)
     {
+        //TODO remove debug
         return ModItems.ITEMS.register(gem + "_sword", () ->
                 new SwordItem(gem, 3, -2.4F, itemProperties(gem))
+                {
+                    @Override
+                    public ActionResultType onItemUse(ItemUseContext context)
+                    {
+                        if (!context.getWorld().isRemote)
+                        {
+                            Gemspark.log().debug("sword debug: " + context.getWorld().getBlockState(context.getPos()));
+                        }
+
+                        return ActionResultType.SUCCESS;
+                    }
+                }
         );
     }
 
