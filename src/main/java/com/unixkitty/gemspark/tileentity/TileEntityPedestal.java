@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
@@ -124,9 +125,19 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
         SUpdateTileEntityPacket packet = this.getUpdatePacket();
         BlockPos pos = this.getPos();
 
-        lastChangeTime = world.getGameTime();
+        World world = this.getWorld();
 
-        if (packet != null && this.getWorld() instanceof ServerWorld)
+        //Can happen on first join
+        if (world == null)
+        {
+            this.lastChangeTime = 0;
+        }
+        else
+        {
+            this.lastChangeTime = world.getGameTime();
+        }
+
+        if (packet != null && world instanceof ServerWorld)
         {
             ((ServerChunkProvider) this.getWorld().getChunkProvider()).chunkManager.getTrackingPlayers(new ChunkPos(pos), false).forEach(e -> e.connection.sendPacket(packet));
         }

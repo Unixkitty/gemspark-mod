@@ -3,7 +3,6 @@ package com.unixkitty.gemspark;
 import com.unixkitty.gemspark.init.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +19,7 @@ public class Gemspark
     public Gemspark()
     {
         //TODO for config
-        final ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        //final ModLoadingContext modLoadingContext = ModLoadingContext.get();
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         MinecraftForge.EVENT_BUS.register(ModRegistry.class);

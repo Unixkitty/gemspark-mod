@@ -9,7 +9,4 @@ public class ModGuiHandler
     public static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
 
     public static final int PLAYER_HOTBAR_SLOT_COUNT = 9;
-
-    /* GUI IDS */
-    public static final int PEDESTAL = 0;
 }

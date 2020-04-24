@@ -3,13 +3,25 @@ package com.unixkitty.gemspark.util;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
 
-public final class GemHelper
+import javax.annotation.Nullable;
+import java.util.List;
+
+public final class HelperUtil
 {
     public static RegistryObject<Item> registerGemItem(Gems gem)
     {
@@ -25,22 +37,8 @@ public final class GemHelper
 
     public static RegistryObject<Item> registerSwordItem(Gems gem)
     {
-        //TODO remove debug
         return ModItems.ITEMS.register(gem + "_sword", () ->
-                new SwordItem(gem, 3, -2.4F, itemProperties(gem))
-                {
-                    @Override
-                    public ActionResultType onItemUse(ItemUseContext context)
-                    {
-                        if (!context.getWorld().isRemote)
-                        {
-                            Gemspark.log().debug("sword debug: " + context.getWorld().getBlockState(context.getPos()));
-                        }
-
-                        return ActionResultType.SUCCESS;
-                    }
-                }
-        );
+                new SwordItem(gem, 3, -2.4F, itemProperties(gem)));
     }
 
     public static RegistryObject<Item> registerShovelItem(Gems gem)
@@ -69,6 +67,48 @@ public final class GemHelper
                     }
                 }
         );
+    }
+
+    public static RegistryObject<Item> registerDebugItem()
+    {
+        return ModItems.ITEMS.register("nbt_stick", () -> new Item(new Item.Properties().group(ModItemGroups.PRIMARY).rarity(Rarity.EPIC).maxStackSize(1))
+        {
+            @Override
+            public ActionResultType onItemUse(ItemUseContext context)
+            {
+                if (!context.getWorld().isRemote && context.getPlayer() instanceof ServerPlayerEntity && context.getPlayer().canUseCommandBlock())
+                {
+                    context.getPlayer().sendMessage(new StringTextComponent("Block: " + context.getWorld().getBlockState(context.getPos())));
+
+                    TileEntity tileEntity = context.getWorld().getTileEntity(context.getPos());
+
+                    if (tileEntity != null)
+                    {
+                        CompoundNBT compound = new CompoundNBT();
+
+                        tileEntity.write(compound);
+
+                        context.getPlayer().sendMessage(new TranslationTextComponent("commands.data.block.query", tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), compound.toFormattedComponent()));
+                    }
+                }
+
+                return ActionResultType.SUCCESS;
+            }
+
+            @Override
+            public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
+            {
+                super.addInformation(stack, worldIn, tooltip, flagIn);
+
+                tooltip.add((new TranslationTextComponent("text.nbt_stick.info").applyTextStyle(TextFormatting.DARK_GRAY)));
+            }
+
+            @Override
+            public boolean hasEffect(ItemStack stack)
+            {
+                return true;
+            }
+        });
     }
 
     private static String armorSlotString(EquipmentSlotType slot)

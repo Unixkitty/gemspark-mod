@@ -15,8 +15,7 @@ import java.util.Locale;
 
 public enum Gems implements IItemTier, IArmorMaterial
 {
-    //TODO comment out
-    EMERALD(null,
+    /*EMERALD(null,
             new ToolProperties(0, 0, 0, 0, 0),
             new ArmorProperties(0, 0, 0, 0, 0, 0),
             null
@@ -25,7 +24,7 @@ public enum Gems implements IItemTier, IArmorMaterial
             new ToolProperties(ItemTier.DIAMOND.getHarvestLevel(), ItemTier.DIAMOND.getMaxUses(), ItemTier.DIAMOND.getEfficiency(), ItemTier.DIAMOND.getAttackDamage(), ItemTier.DIAMOND.getEnchantability()),
             new ArmorProperties(33, 2.0f, 3, 6, 8, 3),
             null
-    ),
+    ),*/
     TANZANITE(Rarity.COMMON,
             new ToolProperties(2, 755, 7.5f, 2.75f, 32),
             new ArmorProperties(18, 1.0f, 2, 5, 7, 2),

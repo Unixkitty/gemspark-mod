@@ -27,6 +27,8 @@ public class TileEntityPedestalRender extends TileEntityRenderer<TileEntityPedes
     @Override
     public void render(@Nonnull TileEntityPedestal pedestal, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light, int overlay)
     {
+        if (pedestal.getWorld() == null) return;
+
         if (!pedestal.getItemHandler().getStackInSlot(0).isEmpty())
         {
             ItemStack storedStack = pedestal.getItemHandler().getStackInSlot(0);
@@ -53,7 +55,6 @@ public class TileEntityPedestalRender extends TileEntityRenderer<TileEntityPedes
             else
             {
                 matrix.translate(0.5f, 1.125f, 0.5f);
-                //if (partialTicks > 0.9) Gemspark.log().debug("Facing render: " + pedestal.itemFacingDirection);
                 matrix.rotate(Vector3f.YP.rotationDegrees(pedestal.itemFacingDirection));
             }
 

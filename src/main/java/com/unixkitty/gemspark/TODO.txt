@@ -6,7 +6,7 @@ Done 5. Gem tools
 Done 6. Gem armor
 Done 7. Pedestal
 Done 8. Colored lamps
-9. Dark colored pedestal (alternative to bright current one made with quartz)
-10. Config file
-11. Generate ores
+Postponed 9. Dark colored pedestal (alternative to bright current one made with quartz)
+10. Generate ores
+11. Config file
 12. Recipes and OreDictionary

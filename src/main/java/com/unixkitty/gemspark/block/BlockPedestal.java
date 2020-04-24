@@ -15,12 +15,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -34,10 +35,18 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class BlockPedestal extends ContainerBlock
 {
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 15, 16, 15);
+    //private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 15, 16, 15);
+    private static final VoxelShape SHAPE = Stream.of(
+            Block.makeCuboidShape(2, 0, 2, 14, 1, 14),
+            Block.makeCuboidShape(3, 1, 3, 13, 14, 13),
+            Block.makeCuboidShape(2, 14, 2, 14, 15, 14),
+            Block.makeCuboidShape(1, 15, 1, 15, 16, 15)
+    )
+            .reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
     public BlockPedestal(Properties properties)
     {
@@ -51,12 +60,6 @@ public class BlockPedestal extends ContainerBlock
     @Nonnull
     @Override
     public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context)
-    {
-        return SHAPE;
-    }
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
         return SHAPE;
     }
@@ -90,22 +93,34 @@ public class BlockPedestal extends ContainerBlock
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult p_225533_6_)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
     {
         if (!world.isRemote)
         {
             if (this.getContainer(state, world, pos) != null && player instanceof ServerPlayerEntity)
             {
                 //TODO test on dedicated server because capability needs to get verified
-                TileEntityPedestal tileEntity = (TileEntityPedestal) world.getTileEntity(pos);
+                TileEntity tile = world.getTileEntity(pos);
+
+                if (!(tile instanceof TileEntityPedestal)) return ActionResultType.FAIL;
+
+                TileEntityPedestal tileEntity = (TileEntityPedestal) tile;
+
                 IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
                 ItemStack heldItem = player.getHeldItem(hand);
 
-                if (!player.isCrouching())
+                if (!player.isShiftKeyDown())
                 {
                     if (heldItem.isEmpty())
                     {
-                        player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
+                        if (itemHandler.getStackInSlot(0).isEmpty())
+                        {
+                            return ActionResultType.FAIL;
+                        }
+                        else
+                        {
+                            player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
+                        }
                     }
                     else if (heldItem.getItem() == Items.STICK)
                     {
@@ -133,7 +148,7 @@ public class BlockPedestal extends ContainerBlock
 
                         if (player.isCreative())
                         {
-                            itemHandler.insertItem(0, heldItem, false);
+                            itemHandler.insertItem(0, heldItem.copy(), false);
                         }
                         else
                         {

@@ -66,6 +66,9 @@
   "block.gemspark.sapphire_ore": "Sapphire Ore",
   "block.gemspark.ruby_ore": "Ruby Ore",
 
+  "item.gemspark.nbt_stick": "NBT stick",
+  "text.nbt_stick.info": "Right click on tile entities to get NBT printed to chat",
+
   "block.gemspark.tanzanite_block": "Tanzanite Block",
   "block.gemspark.topaz_block": "Topaz Block",
   "block.gemspark.sapphire_block": "Sapphire Block",

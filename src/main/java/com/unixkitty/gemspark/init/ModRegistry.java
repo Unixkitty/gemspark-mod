@@ -2,7 +2,6 @@ package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
-import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -13,6 +12,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = Gemspark.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class ModRegistry
 {
@@ -26,9 +26,4 @@ public final class ModRegistry
         );
     }
 
-    @SubscribeEvent
-    public static void onRegisterBlocks(final RegistryEvent.Register<Block> event)
-    {
-
-    }
 }
