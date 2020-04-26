@@ -7,6 +7,9 @@ Done 6. Gem armor
 Done 7. Pedestal
 Done 8. Colored lamps
 Postponed 9. Dark colored pedestal (alternative to bright current one made with quartz)
-10. Generate ores
-11. Config file
-12. Recipes and OreDictionary
+10. Json data generation
+Done    a. Loot
+    b. Recipes
+Done    c. Tags (OreDictionary)
+Done 11. Config file
+12. Generate ores

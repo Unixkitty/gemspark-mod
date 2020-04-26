@@ -7,12 +7,14 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
+
 public final class ModTileEntityTypes
 {
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, Gemspark.MODID);
 
     public static final RegistryObject<TileEntityType<TileEntityPedestal>> PEDESTAL = TILE_ENTITY_TYPES.register("quartz_pedestal", () ->
-            TileEntityType.Builder.create(TileEntityPedestal::new, ModBlocks.quartz_pedestal.get())
+            TileEntityType.Builder.create(TileEntityPedestal::new, Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get())
                     .build(null)
     );
 }

@@ -1,7 +1,9 @@
 {
   "variants": {
     "": [
-      { "model": "gemspark:block/topaz_lantern" }
+      {
+        "model": "gemspark:block/topaz_lantern"
+      }
     ]
   }
 }

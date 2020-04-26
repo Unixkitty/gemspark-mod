@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ores/tanzanite",
+    "#forge:ores/topaz",
+    "#forge:ores/sapphire",
+    "#forge:ores/pink_sapphire",
+    "#forge:ores/ruby"
+  ]
+}

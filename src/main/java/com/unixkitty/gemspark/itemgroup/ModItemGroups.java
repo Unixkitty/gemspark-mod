@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 public class ModItemGroups
 {
-    public static final ItemGroup PRIMARY = new GemsparkTab(Gemspark.MODID, () -> new ItemStack(ModItems.pink_sapphire.get()));
+    public static final ItemGroup PRIMARY = new GemsparkTab(Gemspark.MODID, () -> new ItemStack(ModItems.PINK_SAPPHIRE.get()));
 
     public static class GemsparkTab extends ItemGroup
     {

@@ -1,7 +1,9 @@
 {
   "variants": {
     "": [
-      { "model": "gemspark:block/ruby_lantern" }
+      {
+        "model": "gemspark:block/ruby_lantern"
+      }
     ]
   }
 }

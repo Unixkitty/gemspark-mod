@@ -1,54 +1,44 @@
 package com.unixkitty.gemspark.util;
 
-import com.unixkitty.gemspark.init.ModItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.RegistryObject;
 
 import java.util.Locale;
 
-public enum Gems implements IItemTier, IArmorMaterial
+public enum Gem implements IItemTier, IArmorMaterial
 {
-    /*EMERALD(null,
+    EMERALD(null,
             new ToolProperties(0, 0, 0, 0, 0),
-            new ArmorProperties(0, 0, 0, 0, 0, 0),
-            null
+            new ArmorProperties(0, 0, 0, 0, 0, 0)
     ),
     DIAMOND(null,
             new ToolProperties(ItemTier.DIAMOND.getHarvestLevel(), ItemTier.DIAMOND.getMaxUses(), ItemTier.DIAMOND.getEfficiency(), ItemTier.DIAMOND.getAttackDamage(), ItemTier.DIAMOND.getEnchantability()),
-            new ArmorProperties(33, 2.0f, 3, 6, 8, 3),
-            null
-    ),*/
+            new ArmorProperties(33, 2.0f, 3, 6, 8, 3)
+    ),
     TANZANITE(Rarity.COMMON,
-            new ToolProperties(2, 755, 7.5f, 2.75f, 32),
-            new ArmorProperties(18, 1.0f, 2, 5, 7, 2),
-            ModItems.tanzanite
+            new ToolProperties(ItemTier.IRON.getHarvestLevel(), 755, 7.5f, 2.75f, 32),
+            new ArmorProperties(18, 1.0f, 2, 5, 7, 2)
     ),
     TOPAZ(Rarity.COMMON,
-            new ToolProperties(2, 905, 9f, 3.5f, 24),
-            new ArmorProperties(24, 1.0f, 2, 5, 7, 2),
-            ModItems.topaz
+            new ToolProperties(ItemTier.IRON.getHarvestLevel(), 905, 9f, 3.5f, 24),
+            new ArmorProperties(24, 1.0f, 2, 5, 7, 2)
     ),
     SAPPHIRE(Rarity.UNCOMMON,
-            new ToolProperties(3, 1070, 9.75f, 3.875f, 23),
-            new ArmorProperties(27, 1.0f, 2, 5, 7, 2),
-            ModItems.sapphire
+            new ToolProperties(ItemTier.IRON.getHarvestLevel(), 1070, 9.75f, 3.875f, 23),
+            new ArmorProperties(27, 1.0f, 2, 5, 7, 2)
     ),
     PINK_SAPPHIRE(Rarity.RARE,
-            new ToolProperties(3, 1233, 12.0f, 4.0f, 50),
-            new ArmorProperties(28, 1.0f, 2, 5, 7, 2),
-            ModItems.pink_sapphire
+            new ToolProperties(ItemTier.DIAMOND.getHarvestLevel(), 1233, 12.0f, 4.0f, 50),
+            new ArmorProperties(28, 1.0f, 2, 5, 7, 2)
     ),
     RUBY(Rarity.RARE,
-            new ToolProperties(3, 1233, 10.5f, 4.25f, 22),
-            new ArmorProperties(29, 1.0f, 2, 5, 7, 2),
-            ModItems.ruby
+            new ToolProperties(ItemTier.DIAMOND.getHarvestLevel(), 1233, 10.5f, 4.25f, 22),
+            new ArmorProperties(29, 1.0f, 2, 5, 7, 2)
     );
 
     private final Rarity rarity;
@@ -56,17 +46,24 @@ public enum Gems implements IItemTier, IArmorMaterial
     private final ToolProperties tool;
     private final ArmorProperties armor;
 
-    private final LazyValue<Ingredient> repairMaterial;
+    private Item gem = null;
 
-    Gems(Rarity rarity, ToolProperties toolProperties, ArmorProperties armorProperties, RegistryObject<Item> repairItem)
+    Gem(Rarity rarity, ToolProperties toolProperties, ArmorProperties armorProperties)
     {
         this.rarity = rarity;
 
         this.tool = toolProperties;
         this.armor = armorProperties;
+    }
 
-        //TODO Doesn't work?
-        this.repairMaterial = new LazyValue<>(() -> Ingredient.fromItems(repairItem.get()));
+    public void setItem(Item item)
+    {
+        this.gem = item;
+    }
+
+    public Item getItem()
+    {
+        return this == EMERALD ? Items.EMERALD : (this == DIAMOND ? Items.DIAMOND : this.gem);
     }
 
     private static class ToolProperties
@@ -166,7 +163,8 @@ public enum Gems implements IItemTier, IArmorMaterial
     @Override
     public Ingredient getRepairMaterial()
     {
-        return repairMaterial.getValue();
+        //TODO this should be a forge "tag", aka the old OreDictionary
+        return Ingredient.fromItems(gem);
     }
 
     @OnlyIn(Dist.CLIENT)

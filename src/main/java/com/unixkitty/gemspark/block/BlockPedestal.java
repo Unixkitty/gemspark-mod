@@ -35,6 +35,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class BlockPedestal extends ContainerBlock
@@ -173,7 +174,7 @@ public class BlockPedestal extends ContainerBlock
     {
         if (state.getBlock() != newState.getBlock())
         {
-            ItemStack itemStack = ((TileEntityPedestal) worldIn.getTileEntity(pos)).getItemHandler().getStackInSlot(0);
+            ItemStack itemStack = ((TileEntityPedestal) Objects.requireNonNull(worldIn.getTileEntity(pos))).getItemHandler().getStackInSlot(0);
             if (!itemStack.isEmpty())
             {
                 InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack);

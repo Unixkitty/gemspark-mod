@@ -1,7 +1,9 @@
 {
   "variants": {
     "": [
-      { "model": "gemspark:block/ruby_block" }
+      {
+        "model": "gemspark:block/ruby_block"
+      }
     ]
   }
 }

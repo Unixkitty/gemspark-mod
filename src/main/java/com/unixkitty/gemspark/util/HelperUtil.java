@@ -3,14 +3,16 @@ package com.unixkitty.gemspark.util;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
+import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -21,41 +23,41 @@ import net.minecraftforge.fml.RegistryObject;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static net.minecraftforge.common.ToolType.*;
+
 public final class HelperUtil
 {
-    public static RegistryObject<Item> registerGemItem(Gems gem)
+    public static RegistryObject<Item> registerGemItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem.toString(), () -> new Item(itemProperties(gem)));
     }
 
-    public static RegistryObject<Item> registerAxeItem(Gems gem)
+    public static RegistryObject<Item> registerAxeItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_axe", () ->
-                new AxeItem(gem, 5.0f, -3.1F, itemProperties(gem))
-        );
+        return ModItems.ITEMS.register(gem + "_" + AXE.getName(), () -> new AxeItem(gem, 5.0f, -3.1F, itemProperties(gem)));
     }
 
-    public static RegistryObject<Item> registerSwordItem(Gems gem)
+    public static RegistryObject<Item> registerSwordItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem + "_sword", () ->
                 new SwordItem(gem, 3, -2.4F, itemProperties(gem)));
     }
 
-    public static RegistryObject<Item> registerShovelItem(Gems gem)
+    public static RegistryObject<Item> registerShovelItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_shovel", () ->
+        return ModItems.ITEMS.register(gem + "_" + SHOVEL.getName(), () ->
                 new ShovelItem(gem, 1.5f, -3.0F, itemProperties(gem))
         );
     }
 
-    public static RegistryObject<Item> registerPickaxeItem(Gems gem)
+    public static RegistryObject<Item> registerPickaxeItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_pickaxe", () ->
+        return ModItems.ITEMS.register(gem + "_" + PICKAXE.getName(), () ->
                 new PickaxeItem(gem, 1, -2.8F, itemProperties(gem))
         );
     }
 
-    public static RegistryObject<Item> registerArmorItem(Gems gem, EquipmentSlotType slot)
+    public static RegistryObject<Item> registerArmorItem(Gem gem, EquipmentSlotType slot)
     {
         return ModItems.ITEMS.register(gem + "_" + armorSlotString(slot), () ->
                 new ArmorItem(gem, slot, itemProperties(gem))
@@ -95,6 +97,18 @@ public final class HelperUtil
                 return ActionResultType.SUCCESS;
             }
 
+            //Non-block rightClick
+            @Override
+            public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+            {
+                if (!worldIn.isRemote)
+                {
+                    Gemspark.log().debug("NBT stick says hi!");
+                }
+
+                return ActionResult.resultPass(playerIn.getHeldItem(handIn));
+            }
+
             @Override
             public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
             {
@@ -109,6 +123,26 @@ public final class HelperUtil
                 return true;
             }
         });
+    }
+
+    /* Registration methods end */
+
+    public static boolean isResource(@Nullable ResourceLocation resourceLocation, String resource, boolean exact)
+    {
+        return resourceLocation != null && (exact ? resourceLocation.getPath().matches(resource) : resourceLocation.getPath().startsWith(resource));
+    }
+
+    public static IItemProvider gemItemOrAlternative(Block block)
+    {
+        for (Gem gem : Gem.values())
+        {
+            if (isResource(block.getRegistryName(), gem.toString(), false))
+            {
+                return gem.getItem();
+            }
+        }
+
+        return block;
     }
 
     private static String armorSlotString(EquipmentSlotType slot)
@@ -128,7 +162,7 @@ public final class HelperUtil
         }
     }
 
-    private static Item.Properties itemProperties(Gems gem)
+    private static Item.Properties itemProperties(Gem gem)
     {
         return new Item.Properties().rarity(gem.getRarity()).group(ModItemGroups.PRIMARY);
     }

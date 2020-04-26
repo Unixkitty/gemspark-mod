@@ -32,7 +32,7 @@ public class ContainerPedestal extends Container
     public ContainerPedestal(final int windowId, final PlayerInventory playerInventory, final TileEntityPedestal tileEntity)
     {
         super(ModContainerTypes.PEDESTAL.get(), windowId);
-        this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
+        this.canInteractWithCallable = IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos());
 
         final int PEDESTAL_SLOT_X = 80;
         final int PEDESTAL_SLOT_Y = 35;
@@ -131,6 +131,6 @@ public class ContainerPedestal extends Container
     @Override
     public boolean canInteractWith(@Nonnull final PlayerEntity player)
     {
-        return isWithinUsableDistance(canInteractWithCallable, player, ModBlocks.quartz_pedestal.get());
+        return isWithinUsableDistance(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get());
     }
 }

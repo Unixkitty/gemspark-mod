@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "gemspark:block/colored_lamp_green_off"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "gemspark:block/colored_lamp_green_off"
+  }
 }

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:gems/tanzanite",
+    "#forge:gems/topaz",
+    "#forge:gems/sapphire",
+    "#forge:gems/pink_sapphire",
+    "#forge:gems/ruby"
+  ]
+}

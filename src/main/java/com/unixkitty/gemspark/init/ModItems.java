@@ -1,14 +1,13 @@
 package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
+import com.unixkitty.gemspark.util.Gem;
 import com.unixkitty.gemspark.util.HelperUtil;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import static com.unixkitty.gemspark.util.Gems.*;
 
 @SuppressWarnings("unused")
 public final class ModItems
@@ -17,57 +16,57 @@ public final class ModItems
 
     public static final RegistryObject<Item> nbt_stick = HelperUtil.registerDebugItem();
 
-    public static final RegistryObject<Item> tanzanite = HelperUtil.registerGemItem(TANZANITE);
-    public static final RegistryObject<Item> topaz = HelperUtil.registerGemItem(TOPAZ);
-    public static final RegistryObject<Item> sapphire = HelperUtil.registerGemItem(SAPPHIRE);
-    public static final RegistryObject<Item> pink_sapphire = HelperUtil.registerGemItem(PINK_SAPPHIRE);
-    public static final RegistryObject<Item> ruby = HelperUtil.registerGemItem(RUBY);
+    public static final RegistryObject<Item> TANZANITE = HelperUtil.registerGemItem(Gem.TANZANITE);
+    public static final RegistryObject<Item> TOPAZ = HelperUtil.registerGemItem(Gem.TOPAZ);
+    public static final RegistryObject<Item> SAPPHIRE = HelperUtil.registerGemItem(Gem.SAPPHIRE);
+    public static final RegistryObject<Item> PINK_SAPPHIRE = HelperUtil.registerGemItem(Gem.PINK_SAPPHIRE);
+    public static final RegistryObject<Item> RUBY = HelperUtil.registerGemItem(Gem.RUBY);
 
-    public static final RegistryObject<Item> tanzanite_axe = HelperUtil.registerAxeItem(TANZANITE);
-    public static final RegistryObject<Item> topaz_axe = HelperUtil.registerAxeItem(TOPAZ);
-    public static final RegistryObject<Item> sapphire_axe = HelperUtil.registerAxeItem(SAPPHIRE);
-    public static final RegistryObject<Item> pink_sapphire_axe = HelperUtil.registerAxeItem(PINK_SAPPHIRE);
-    public static final RegistryObject<Item> ruby_axe = HelperUtil.registerAxeItem(RUBY);
+    public static final RegistryObject<Item> TANZANITE_AXE = HelperUtil.registerAxeItem(Gem.TANZANITE);
+    public static final RegistryObject<Item> TOPAZ_AXE = HelperUtil.registerAxeItem(Gem.TOPAZ);
+    public static final RegistryObject<Item> SAPPHIRE_AXE = HelperUtil.registerAxeItem(Gem.SAPPHIRE);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_AXE = HelperUtil.registerAxeItem(Gem.PINK_SAPPHIRE);
+    public static final RegistryObject<Item> RUBY_AXE = HelperUtil.registerAxeItem(Gem.RUBY);
 
-    public static final RegistryObject<Item> tanzanite_sword = HelperUtil.registerSwordItem(TANZANITE);
-    public static final RegistryObject<Item> topaz_sword = HelperUtil.registerSwordItem(TOPAZ);
-    public static final RegistryObject<Item> sapphire_sword = HelperUtil.registerSwordItem(SAPPHIRE);
-    public static final RegistryObject<Item> pink_sapphire_sword = HelperUtil.registerSwordItem(PINK_SAPPHIRE);
-    public static final RegistryObject<Item> ruby_sword = HelperUtil.registerSwordItem(RUBY);
+    public static final RegistryObject<Item> TANZANITE_SWORD = HelperUtil.registerSwordItem(Gem.TANZANITE);
+    public static final RegistryObject<Item> TOPAZ_SWORD = HelperUtil.registerSwordItem(Gem.TOPAZ);
+    public static final RegistryObject<Item> SAPPHIRE_SWORD = HelperUtil.registerSwordItem(Gem.SAPPHIRE);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_SWORD = HelperUtil.registerSwordItem(Gem.PINK_SAPPHIRE);
+    public static final RegistryObject<Item> RUBY_SWORD = HelperUtil.registerSwordItem(Gem.RUBY);
 
-    public static final RegistryObject<Item> tanzanite_shovel = HelperUtil.registerShovelItem(TANZANITE);
-    public static final RegistryObject<Item> topaz_shovel = HelperUtil.registerShovelItem(TOPAZ);
-    public static final RegistryObject<Item> sapphire_shovel = HelperUtil.registerShovelItem(SAPPHIRE);
-    public static final RegistryObject<Item> pink_sapphire_shovel = HelperUtil.registerShovelItem(PINK_SAPPHIRE);
-    public static final RegistryObject<Item> ruby_shovel = HelperUtil.registerShovelItem(RUBY);
+    public static final RegistryObject<Item> TANZANITE_SHOVEL = HelperUtil.registerShovelItem(Gem.TANZANITE);
+    public static final RegistryObject<Item> TOPAZ_SHOVEL = HelperUtil.registerShovelItem(Gem.TOPAZ);
+    public static final RegistryObject<Item> SAPPHIRE_SHOVEL = HelperUtil.registerShovelItem(Gem.SAPPHIRE);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_SHOVEL = HelperUtil.registerShovelItem(Gem.PINK_SAPPHIRE);
+    public static final RegistryObject<Item> RUBY_SHOVEL = HelperUtil.registerShovelItem(Gem.RUBY);
 
-    public static final RegistryObject<Item> tanzanite_pickaxe = HelperUtil.registerPickaxeItem(TANZANITE);
-    public static final RegistryObject<Item> topaz_pickaxe = HelperUtil.registerPickaxeItem(TOPAZ);
-    public static final RegistryObject<Item> sapphire_pickaxe = HelperUtil.registerPickaxeItem(SAPPHIRE);
-    public static final RegistryObject<Item> pink_sapphire_pickaxe = HelperUtil.registerPickaxeItem(PINK_SAPPHIRE);
-    public static final RegistryObject<Item> ruby_pickaxe = HelperUtil.registerPickaxeItem(RUBY);
+    public static final RegistryObject<Item> TANZANITE_PICKAXE = HelperUtil.registerPickaxeItem(Gem.TANZANITE);
+    public static final RegistryObject<Item> TOPAZ_PICKAXE = HelperUtil.registerPickaxeItem(Gem.TOPAZ);
+    public static final RegistryObject<Item> SAPPHIRE_PICKAXE = HelperUtil.registerPickaxeItem(Gem.SAPPHIRE);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_PICKAXE = HelperUtil.registerPickaxeItem(Gem.PINK_SAPPHIRE);
+    public static final RegistryObject<Item> RUBY_PICKAXE = HelperUtil.registerPickaxeItem(Gem.RUBY);
 
-    public static final RegistryObject<Item> tanzanite_helmet = HelperUtil.registerArmorItem(TANZANITE, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> topaz_helmet = HelperUtil.registerArmorItem(TOPAZ, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> sapphire_helmet = HelperUtil.registerArmorItem(SAPPHIRE, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> pink_sapphire_helmet = HelperUtil.registerArmorItem(PINK_SAPPHIRE, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> ruby_helmet = HelperUtil.registerArmorItem(RUBY, EquipmentSlotType.HEAD);
+    public static final RegistryObject<Item> TANZANITE_HELMET = HelperUtil.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.HEAD);
+    public static final RegistryObject<Item> TOPAZ_HELMET = HelperUtil.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.HEAD);
+    public static final RegistryObject<Item> SAPPHIRE_HELMET = HelperUtil.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.HEAD);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_HELMET = HelperUtil.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.HEAD);
+    public static final RegistryObject<Item> RUBY_HELMET = HelperUtil.registerArmorItem(Gem.RUBY, EquipmentSlotType.HEAD);
 
-    public static final RegistryObject<Item> tanzanite_chestplate = HelperUtil.registerArmorItem(TANZANITE, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> topaz_chestplate = HelperUtil.registerArmorItem(TOPAZ, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> sapphire_chestplate = HelperUtil.registerArmorItem(SAPPHIRE, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> pink_sapphire_chestplate = HelperUtil.registerArmorItem(PINK_SAPPHIRE, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> ruby_chestplate = HelperUtil.registerArmorItem(RUBY, EquipmentSlotType.CHEST);
+    public static final RegistryObject<Item> TANZANITE_CHESTPLATE = HelperUtil.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.CHEST);
+    public static final RegistryObject<Item> TOPAZ_CHESTPLATE = HelperUtil.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.CHEST);
+    public static final RegistryObject<Item> SAPPHIRE_CHESTPLATE = HelperUtil.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.CHEST);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_CHESTPLATE = HelperUtil.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.CHEST);
+    public static final RegistryObject<Item> RUBY_CHESTPLATE = HelperUtil.registerArmorItem(Gem.RUBY, EquipmentSlotType.CHEST);
 
-    public static final RegistryObject<Item> tanzanite_leggings = HelperUtil.registerArmorItem(TANZANITE, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> topaz_leggings = HelperUtil.registerArmorItem(TOPAZ, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> sapphire_leggings = HelperUtil.registerArmorItem(SAPPHIRE, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> pink_sapphire_leggings = HelperUtil.registerArmorItem(PINK_SAPPHIRE, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> ruby_leggings = HelperUtil.registerArmorItem(RUBY, EquipmentSlotType.LEGS);
+    public static final RegistryObject<Item> TANZANITE_LEGGINGS = HelperUtil.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.LEGS);
+    public static final RegistryObject<Item> TOPAZ_LEGGINGS = HelperUtil.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.LEGS);
+    public static final RegistryObject<Item> SAPPHIRE_LEGGINGS = HelperUtil.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.LEGS);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_LEGGINGS = HelperUtil.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.LEGS);
+    public static final RegistryObject<Item> RUBY_LEGGINGS = HelperUtil.registerArmorItem(Gem.RUBY, EquipmentSlotType.LEGS);
 
-    public static final RegistryObject<Item> tanzanite_boots = HelperUtil.registerArmorItem(TANZANITE, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> topaz_boots = HelperUtil.registerArmorItem(TOPAZ, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> sapphire_boots = HelperUtil.registerArmorItem(SAPPHIRE, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> pink_sapphire_boots = HelperUtil.registerArmorItem(PINK_SAPPHIRE, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> ruby_boots = HelperUtil.registerArmorItem(RUBY, EquipmentSlotType.FEET);
+    public static final RegistryObject<Item> TANZANITE_BOOTS = HelperUtil.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.FEET);
+    public static final RegistryObject<Item> TOPAZ_BOOTS = HelperUtil.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.FEET);
+    public static final RegistryObject<Item> SAPPHIRE_BOOTS = HelperUtil.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.FEET);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_BOOTS = HelperUtil.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.FEET);
+    public static final RegistryObject<Item> RUBY_BOOTS = HelperUtil.registerArmorItem(Gem.RUBY, EquipmentSlotType.FEET);
 }

@@ -26,6 +26,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class TileEntityPedestal extends TileEntityMod implements INamedContainerProvider
 {
@@ -61,7 +62,7 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
     @Override
     public ITextComponent getDisplayName()
     {
-        return new TranslationTextComponent(ModBlocks.quartz_pedestal.get().getTranslationKey());
+        return new TranslationTextComponent(Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get().getTranslationKey());
     }
 
     @Nullable

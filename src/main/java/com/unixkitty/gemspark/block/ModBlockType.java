@@ -1,5 +1,6 @@
 package com.unixkitty.gemspark.block;
 
+import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -10,7 +11,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.fml.RegistryObject;
 
-public enum EnumType
+public enum ModBlockType
 {
     BLOCK,
     LANTERN,
@@ -39,9 +40,9 @@ public enum EnumType
             case PEDESTAL:
                 return ModBlocks.BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.from(Blocks.QUARTZ_BLOCK).notSolid()));
             case REDSTONE_LAMP:
-                return ModBlocks.BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.from(Blocks.REDSTONE_LAMP)));
+                return !Config.registerColoredLamps.get() ? null : ModBlocks.BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.from(Blocks.REDSTONE_LAMP)));
             case INVERTED_REDSTONE_LAMP:
-                return ModBlocks.BLOCKS.register(name, InvertedRedstoneLampBlock::new);
+                return !Config.registerColoredLamps.get() ? null : ModBlocks.BLOCKS.register(name, InvertedRedstoneLampBlock::new);
             default:
                 return null;
         }

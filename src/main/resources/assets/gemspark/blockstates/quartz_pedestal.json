@@ -1,7 +1,9 @@
 {
   "variants": {
     "": [
-      { "model": "gemspark:block/quartz_pedestal" }
+      {
+        "model": "gemspark:block/quartz_pedestal"
+      }
     ]
   }
 }
