@@ -1,7 +1,7 @@
 package com.unixkitty.gemspark.datagen;
 
-import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.util.Gem;
+import com.unixkitty.gemspark.util.HelperUtil;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
@@ -38,7 +38,7 @@ public class ModTags
 
         private static Tag<Item> tag(String name)
         {
-            return new ItemTags.Wrapper(new ResourceLocation(Gemspark.MODID, name));
+            return new ItemTags.Wrapper(HelperUtil.prefixResource(name));
         }
 
         private static Tag<Item> forgeTag(String type, String name)
@@ -63,7 +63,7 @@ public class ModTags
 
         private static Tag<Block> tag(String name)
         {
-            return new BlockTags.Wrapper(new ResourceLocation(Gemspark.MODID, name));
+            return new BlockTags.Wrapper(HelperUtil.prefixResource(name));
         }
 
         private static Tag<Block> forgeTag(String type, String name)

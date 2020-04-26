@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:gems/pink_sapphire"
+    }
+  },
+  "result": {
+    "item": "gemspark:pink_sapphire_block"
+  }
+}

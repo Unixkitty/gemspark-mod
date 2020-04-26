@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gemspark:topaz_ore"
+  },
+  "result": "gemspark:topaz",
+  "experience": 1.0,
+  "cookingtime": 200
+}

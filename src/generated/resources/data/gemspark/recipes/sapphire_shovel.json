@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "T",
+    "T"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:gems/sapphire"
+    },
+    "T": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "gemspark:sapphire_shovel"
+  }
+}

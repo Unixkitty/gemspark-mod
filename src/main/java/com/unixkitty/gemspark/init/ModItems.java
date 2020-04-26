@@ -46,6 +46,12 @@ public final class ModItems
     public static final RegistryObject<Item> PINK_SAPPHIRE_PICKAXE = HelperUtil.registerPickaxeItem(Gem.PINK_SAPPHIRE);
     public static final RegistryObject<Item> RUBY_PICKAXE = HelperUtil.registerPickaxeItem(Gem.RUBY);
 
+    public static final RegistryObject<Item> TANZANITE_HOE = HelperUtil.registerHoeItem(Gem.TANZANITE);
+    public static final RegistryObject<Item> TOPAZ_HOE = HelperUtil.registerHoeItem(Gem.TOPAZ);
+    public static final RegistryObject<Item> SAPPHIRE_HOE = HelperUtil.registerHoeItem(Gem.SAPPHIRE);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_HOE = HelperUtil.registerHoeItem(Gem.PINK_SAPPHIRE);
+    public static final RegistryObject<Item> RUBY_HOE = HelperUtil.registerHoeItem(Gem.RUBY);
+
     public static final RegistryObject<Item> TANZANITE_HELMET = HelperUtil.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.HEAD);
     public static final RegistryObject<Item> TOPAZ_HELMET = HelperUtil.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.HEAD);
     public static final RegistryObject<Item> SAPPHIRE_HELMET = HelperUtil.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.HEAD);

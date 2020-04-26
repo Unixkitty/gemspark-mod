@@ -66,6 +66,6 @@ public class BlockTagProvider extends BlockTagsProvider
     @Override
     public String getName()
     {
-        return Gemspark.MODNAME + " " + super.getName();
+        return Gemspark.MODNAME + " " + this.getClass().getSimpleName();
     }
 }

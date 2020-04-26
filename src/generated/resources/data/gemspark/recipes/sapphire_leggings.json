@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "S S",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:gems/sapphire"
+    }
+  },
+  "result": {
+    "item": "gemspark:sapphire_leggings"
+  }
+}

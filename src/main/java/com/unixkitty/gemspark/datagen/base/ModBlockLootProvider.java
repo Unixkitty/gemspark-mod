@@ -22,7 +22,6 @@ import net.minecraft.world.storage.loot.functions.ExplosionDecay;
 import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -128,13 +127,6 @@ public abstract class ModBlockLootProvider implements IDataProvider
         LootPool.Builder pool = LootPool.builder().name("main").rolls(ConstantRange.of(1)).addEntry(entry).acceptCondition(SurvivesExplosion.builder());
 
         return LootTable.builder().addLootPool(pool);
-    }
-
-    @Nonnull
-    @Override
-    public String getName()
-    {
-        return Gemspark.MODNAME + " block loot tables";
     }
 }
 

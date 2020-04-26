@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gemspark:topaz_block"
+    }
+  ],
+  "result": {
+    "item": "gemspark:topaz",
+    "count": 9
+  }
+}

@@ -1,8 +1,8 @@
 package com.unixkitty.gemspark.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.container.ContainerPedestal;
+import com.unixkitty.gemspark.util.HelperUtil;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class PedestalScreen extends ContainerScreen<ContainerPedestal>
 {
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Gemspark.MODID, "textures/gui/container/pedestal.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE = HelperUtil.prefixResource("textures/gui/container/pedestal.png");
 
     public PedestalScreen(final ContainerPedestal container, final PlayerInventory inventory, final ITextComponent title)
     {

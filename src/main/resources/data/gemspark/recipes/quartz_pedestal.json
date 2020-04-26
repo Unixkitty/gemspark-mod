@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s",
+    "p"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:quartz_slab"
+    },
+    "p": {
+      "item": "minecraft:quartz_pillar"
+    }
+  },
+  "result": {
+    "item": "gemspark:quartz_pedestal"
+  }
+}

@@ -7,9 +7,11 @@ Done 6. Gem armor
 Done 7. Pedestal
 Done 8. Colored lamps
 Postponed 9. Dark colored pedestal (alternative to bright current one made with quartz)
-10. Json data generation
+Done 10. Json data generation
 Done    a. Loot
-    b. Recipes
+Done    b. Recipes
 Done    c. Tags (OreDictionary)
 Done 11. Config file
 12. Generate ores
+13. Give pink sapphire equipment fire effects
+14. Use dynamic math to calculate gem tier numbers

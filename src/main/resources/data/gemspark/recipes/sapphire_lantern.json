@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gdg",
+    "dGd",
+    "gdg"
+  ],
+  "key": {
+    "g": {
+      "tag": "forge:gems/sapphire"
+    },
+    "d": {
+      "tag": "forge:dusts/glowstone"
+    },
+    "G": {
+      "tag": "forge:glass/colorless"
+    }
+  },
+  "result": {
+    "item": "gemspark:sapphire_lantern",
+    "count": 2
+  }
+}

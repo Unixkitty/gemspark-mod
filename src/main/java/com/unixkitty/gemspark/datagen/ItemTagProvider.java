@@ -66,6 +66,6 @@ public class ItemTagProvider extends ItemTagsProvider
     @Override
     public String getName()
     {
-        return Gemspark.MODNAME + " " + super.getName();
+        return Gemspark.MODNAME + " " + this.getClass().getSimpleName();
     }
 }

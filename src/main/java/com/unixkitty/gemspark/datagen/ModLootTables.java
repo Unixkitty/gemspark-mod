@@ -43,4 +43,10 @@ public class ModLootTables extends ModBlockLootProvider
             }
         }
     }
+
+    @Override
+    public String getName()
+    {
+        return Gemspark.MODNAME + " " + this.getClass().getSimpleName();
+    }
 }

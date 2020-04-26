@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PgP",
+    "PgP",
+    "PRP"
+  ],
+  "key": {
+    "g": {
+      "tag": "forge:dusts/glowstone"
+    },
+    "P": {
+      "tag": "forge:glass_panes/cyan"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "result": {
+    "item": "gemspark:colored_lamp_cyan"
+  }
+}

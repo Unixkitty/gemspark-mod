@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gemspark:smelting/pink_sapphire_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_pink_sapphire_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gemspark:pink_sapphire_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gemspark:smelting/pink_sapphire_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pink_sapphire_ore",
+      "has_the_recipe"
+    ]
+  ]
+}
