@@ -12,6 +12,6 @@ Done    a. Loot
 Done    b. Recipes
 Done    c. Tags (OreDictionary)
 Done 11. Config file
-12. Generate ores
+Done 12. Generate ores
 13. Give pink sapphire equipment fire effects
 14. Use dynamic math to calculate gem tier numbers

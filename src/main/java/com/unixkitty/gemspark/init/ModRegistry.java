@@ -1,15 +1,19 @@
 package com.unixkitty.gemspark.init;
 
+import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import com.unixkitty.gemspark.util.Gem;
 import com.unixkitty.gemspark.util.HelperUtil;
+import com.unixkitty.gemspark.worldgen.OreGeneration;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.Objects;
@@ -39,5 +43,14 @@ public final class ModRegistry
         ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block ->
                 registry.register(new BlockItem(block, new Item.Properties().group(ModItemGroups.PRIMARY)).setRegistryName(Objects.requireNonNull(block.getRegistryName())))
         );
+    }
+
+    @SubscribeEvent
+    public static void onCommonSetup(final FMLCommonSetupEvent event)
+    {
+        if (Config.generateOres.get())
+        {
+            DeferredWorkQueue.runLater(OreGeneration::init);
+        }
     }
 }

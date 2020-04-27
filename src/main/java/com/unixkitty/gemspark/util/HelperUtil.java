@@ -4,6 +4,8 @@ import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +16,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -24,6 +27,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraftforge.common.ToolType.*;
@@ -109,14 +113,78 @@ public final class HelperUtil
 
             //Non-block rightClick
             @Override
-            public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+            public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
             {
-                if (!worldIn.isRemote)
+                if (!world.isRemote && player.isCreative())
                 {
                     Gemspark.log().debug("NBT stick says hi!");
+
+                    final List<String> stripList = new ArrayList<>();
+
+                    stripList.add("minecraft:dirt");
+                    stripList.add("minecraft:grass");
+                    stripList.add("minecraft:tall_grass");
+                    stripList.add("minecraft:grass_block");
+                    stripList.add("minecraft:stone");
+                    stripList.add("minecraft:diorite");
+                    stripList.add("minecraft:granite");
+                    stripList.add("minecraft:andesite");
+                    stripList.add("minecraft:gravel");
+                    stripList.add("minecraft:sand");
+                    stripList.add("minecraft:sandstone");
+                    stripList.add("minecraft:oak_log");
+                    stripList.add("minecraft:dark_oak_log");
+                    stripList.add("minecraft:spruce_log");
+                    stripList.add("minecraft:birch_log");
+                    stripList.add("minecraft:jungle_log");
+                    stripList.add("minecraft:acacia_log");
+                    stripList.add("minecraft:oak_leaves");
+                    stripList.add("minecraft:dark_oak_leaves");
+                    stripList.add("minecraft:spruce_leaves");
+                    stripList.add("minecraft:birch_leaves");
+                    stripList.add("minecraft:jungle_leaves");
+                    stripList.add("minecraft:acacia_leaves");
+                    stripList.add("minecraft:water");
+                    stripList.add("minecraft:flowing_water");
+                    stripList.add("minecraft:lava");
+                    stripList.add("minecraft:flowing_lava");
+                    stripList.add("minecraft:netherrack");
+                    stripList.add("minecraft:end_stone");
+
+                    int chunkRadius = 3;
+
+                    double chunkClearSizeX = ((16 * chunkRadius) / 2);
+                    double chunkClearSizeZ = ((16 * chunkRadius) / 2);
+
+                    if (player.isCreative())
+                    {
+                        player.sendMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."));
+                        for (int x = (int) (player.getPosition().getX() - chunkClearSizeX); (double) x <= player.getPosition().getX() + chunkClearSizeX; x++)
+                        {
+                            for (int y = 0; (double) y <= player.getPosition().getY() + 16; ++y)
+                            {
+                                for (int z = (int) (player.getPosition().getZ() - chunkClearSizeZ); (double) z <= player.getPosition().getZ() + chunkClearSizeZ; z++)
+                                {
+                                    BlockPos targetBlockPos = new BlockPos(x, y, z);
+                                    BlockState targetBlockState = world.getBlockState(targetBlockPos);
+                                    Block targetBlock = targetBlockState.getBlock();
+
+                                    if (!targetBlock.equals(Blocks.AIR) && !targetBlock.equals(Blocks.BEDROCK) && stripList.contains(targetBlock.getRegistryName().toString()))
+                                    {
+                                        world.setBlockState(targetBlockPos, Blocks.AIR.getDefaultState(), 3);
+                                    }
+                                }
+                            }
+                        }
+                        player.sendMessage(new StringTextComponent("World Stripping Successfully Done!"));
+                    }
+                    else
+                    {
+                        player.sendMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"));
+                    }
                 }
 
-                return ActionResult.resultPass(playerIn.getHeldItem(handIn));
+                return ActionResult.resultPass(player.getHeldItem(hand));
             }
 
             @Override
@@ -125,6 +193,10 @@ public final class HelperUtil
                 super.addInformation(stack, worldIn, tooltip, flagIn);
 
                 tooltip.add((new TranslationTextComponent("text.nbt_stick.info").applyTextStyle(TextFormatting.DARK_GRAY)));
+                if (flagIn == ITooltipFlag.TooltipFlags.ADVANCED)
+                {
+                    tooltip.add((new StringTextComponent("Right click on air will strip 3x3 chunks around you of filler blocks")).applyTextStyle(TextFormatting.GRAY));
+                }
             }
 
             @Override
