@@ -3,6 +3,7 @@ package com.unixkitty.gemspark.tileentity;
 import com.unixkitty.gemspark.container.ContainerPedestal;
 import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModTileEntityTypes;
+import com.unixkitty.gemspork.lib.tileentity.TileEntityMod;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

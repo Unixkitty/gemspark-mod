@@ -2,13 +2,9 @@ package com.unixkitty.gemspark.worldgen;
 
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.init.ModBlocks;
-import net.minecraft.block.Block;
+import com.unixkitty.gemspork.lib.HelperUtil;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class OreGeneration
@@ -33,7 +29,7 @@ public class OreGeneration
             {
                 fillerBlockType = OreFeatureConfig.FillerBlockType.NETHERRACK;
 
-                addOre(biome, fillerBlockType,
+                HelperUtil.addOreToBiome(biome, fillerBlockType,
                         ModBlocks.PINK_SAPPHIRE_ORE.get(),
                         Config.generatePinkSapphireOre.get(),
                         Config.pinkSapphireVeinSize.get(),
@@ -46,7 +42,7 @@ public class OreGeneration
             {
                 fillerBlockType = OreFeatureConfig.FillerBlockType.NATURAL_STONE;
 
-                addOre(biome, fillerBlockType,
+                HelperUtil.addOreToBiome(biome, fillerBlockType,
                         ModBlocks.TANZANITE_ORE.get(),
                         Config.generateTanzaniteOre.get(),
                         Config.tanzaniteVeinSize.get(),
@@ -54,7 +50,7 @@ public class OreGeneration
                         Config.tanzaniteMinHeight.get(),
                         Config.tanzaniteMaxHeight.get()
                 );
-                addOre(biome, fillerBlockType,
+                HelperUtil.addOreToBiome(biome, fillerBlockType,
                         ModBlocks.TOPAZ_ORE.get(),
                         Config.generateTopazOre.get(),
                         Config.topazVeinSize.get(),
@@ -62,7 +58,7 @@ public class OreGeneration
                         Config.topazMinHeight.get(),
                         Config.topazMaxHeight.get()
                 );
-                addOre(biome, fillerBlockType,
+                HelperUtil.addOreToBiome(biome, fillerBlockType,
                         ModBlocks.SAPPHIRE_ORE.get(),
                         Config.generateSapphireOre.get(),
                         Config.sapphireVeinSize.get(),
@@ -70,7 +66,7 @@ public class OreGeneration
                         Config.sapphireMinHeight.get(),
                         Config.sapphireMaxHeight.get()
                 );
-                addOre(biome, fillerBlockType,
+                HelperUtil.addOreToBiome(biome, fillerBlockType,
                         ModBlocks.RUBY_ORE.get(),
                         Config.generateRubyOre.get(),
                         Config.rubyVeinSize.get(),
@@ -82,16 +78,4 @@ public class OreGeneration
         }
     }
 
-    private static void addOre(Biome biome, OreFeatureConfig.FillerBlockType replaceBlock, Block ore, boolean enabled, int veinSize, int timesPerChunk, int minHeight, int maxHeight)
-    {
-        if (!enabled) return;
-
-        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(
-                replaceBlock,
-                ore.getDefaultState(),
-                veinSize
-                ))
-                .withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(timesPerChunk, minHeight, 0, maxHeight)))
-        );
-    }
 }

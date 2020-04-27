@@ -1,8 +1,8 @@
 package com.unixkitty.gemspark.datagen;
 
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.datagen.recipe.CraftingTableRecipeProvider;
-import com.unixkitty.gemspark.datagen.recipe.SmeltingRecipeProvider;
+import com.unixkitty.gemspark.datagen.recipe.CraftingTableRecipes;
+import com.unixkitty.gemspark.datagen.recipe.SmeltingRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,8 +21,8 @@ public final class DataGenerators
         {
             generator.addProvider(new BlockTagProvider(generator));
             generator.addProvider(new ItemTagProvider(generator));
-            generator.addProvider(new CraftingTableRecipeProvider(generator));
-            generator.addProvider(new SmeltingRecipeProvider(generator));
+            generator.addProvider(new CraftingTableRecipes(generator));
+            generator.addProvider(new SmeltingRecipes(generator));
             generator.addProvider(new ModLootTables(generator));
         }
     }

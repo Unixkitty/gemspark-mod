@@ -4,7 +4,7 @@ import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import com.unixkitty.gemspark.util.Gem;
-import com.unixkitty.gemspark.util.HelperUtil;
+import com.unixkitty.gemspork.lib.HelperUtil;
 import com.unixkitty.gemspark.worldgen.OreGeneration;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;

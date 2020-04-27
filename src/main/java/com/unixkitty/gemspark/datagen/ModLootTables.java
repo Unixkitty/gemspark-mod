@@ -2,19 +2,19 @@ package com.unixkitty.gemspark.datagen;
 
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.datagen.base.ModBlockLootProvider;
-import com.unixkitty.gemspark.util.HelperUtil;
+import com.unixkitty.gemspork.lib.datagen.loot.BlockLootProvider;
+import com.unixkitty.gemspark.util.GemItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
-public class ModLootTables extends ModBlockLootProvider
+public class ModLootTables extends BlockLootProvider
 {
     public ModLootTables(DataGenerator generator)
     {
-        super(generator);
+        super(Gemspark.MODID, generator);
     }
 
     /*
@@ -32,13 +32,13 @@ public class ModLootTables extends ModBlockLootProvider
             if (block.getRegistryName().getPath().matches(".*_lantern"))
             {
                 registerLoot(block, block1 ->
-                        genSilkTouchableWithFortune(block1, HelperUtil.gemItemOrAlternative(block1), false, Config.GEMDROPSFROMLANTERNS)
+                        genSilkTouchableWithFortune(block1, GemItems.gemItemOrAlternative(block1), false, Config.GEMDROPSFROMLANTERNS)
                 );
             }
             if (block.getRegistryName().getPath().matches(".*_ore"))
             {
                 registerLoot(block, block1 ->
-                        genSilkTouchableWithFortune(block1, HelperUtil.gemItemOrAlternative(block1), true, Config.GEMDROPSFROMORE)
+                        genSilkTouchableWithFortune(block1, GemItems.gemItemOrAlternative(block1), true, Config.GEMDROPSFROMORE)
                 );
             }
         }
