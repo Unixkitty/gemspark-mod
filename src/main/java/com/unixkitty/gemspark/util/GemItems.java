@@ -14,6 +14,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -43,7 +45,7 @@ public class GemItems
 
     public static RegistryObject<Item> registerAxeItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_" + AXE.getName(), () -> new AxeItem(gem, 5.0f, -3.1F, itemProperties(gem)));
+        return ModItems.ITEMS.register(gem + "_" + AXE.getName(), () -> new AxeItem(gem, 5.0f, -3.0F, itemProperties(gem)));
     }
 
     public static RegistryObject<Item> registerSwordItem(Gem gem)
@@ -82,6 +84,33 @@ public class GemItems
                     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
                     {
                         return String.format("%s:textures/models/armor/%s_layer_%d%s.png", Gemspark.MODID, gem, (slot == EquipmentSlotType.LEGS ? 2 : 1), type == null ? "" : String.format("_%s", type));
+                    }
+
+                    @Override
+                    public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
+                    {
+                        if (!world.isRemote && player.ticksExisted % 90 == 0 && this.getArmorMaterial() == Gem.PINK_SAPPHIRE)
+                        {
+                            boolean shouldApplyEffect = false;
+
+                            for (ItemStack armorStack : player.getArmorInventoryList())
+                            {
+                                if ((armorStack.getItem() instanceof ArmorItem && ((ArmorItem) armorStack.getItem()).getArmorMaterial() == Gem.PINK_SAPPHIRE))
+                                {
+                                    shouldApplyEffect = true;
+                                }
+                                else
+                                {
+                                    shouldApplyEffect = false;
+                                    break;
+                                }
+                            }
+
+                            if (shouldApplyEffect)
+                            {
+                                player.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 100, 0, false, false));
+                            }
+                        }
                     }
                 }
         );
@@ -224,6 +253,26 @@ public class GemItems
         String lampString = (inverted ? "colored_inverted_lamp_" : "colored_lamp_") + color.toString();
 
         return ForgeRegistries.BLOCKS.getValue(HelperUtil.prefixResource(Gemspark.MODID, lampString));
+    }
+
+    //These aren't good in enum
+    protected static final int GEM_TIERS = 5;
+
+    protected static int gemStrength(int tierIndex, int tiersTotal, int floor, int ceil)
+    {
+        /*final float floor_anchor = floor + (floor + (ceil - floor) * 0.25f);
+
+        return (int)floor_anchor + (ceil - (int)floor_anchor) * (tierIndex / tiersTotal);*/
+        final float floor_anchor = (floor + (ceil - floor) * 0.4f);
+
+        return (int) (floor_anchor + (ceil - floor_anchor) * ((float) tierIndex / tiersTotal));
+    }
+
+    protected static float gemStrength(int tierIndex, int tiersTotal, float floor, float ceil)
+    {
+        final float floor_anchor = (floor + (ceil - floor) * 0.4f);
+
+        return floor_anchor + (ceil - floor_anchor) * ((float) tierIndex / tiersTotal);
     }
 
     private static Item.Properties itemProperties(Gem gem)

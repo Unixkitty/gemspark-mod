@@ -2,8 +2,8 @@ package com.unixkitty.gemspark.datagen;
 
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspork.lib.datagen.loot.BlockLootProvider;
 import com.unixkitty.gemspark.util.GemItems;
+import com.unixkitty.gemspork.lib.datagen.loot.BlockLootProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.registries.ForgeRegistries;

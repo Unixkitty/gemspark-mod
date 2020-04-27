@@ -78,7 +78,7 @@ public class Config
             {
                 commonConfig.comment("Tanzanite ore").push("tanzanite");
                 generateTanzaniteOre = commonConfig.define("generateTanzaniteOre", true);
-                tanzaniteVeinSize  = commonConfig.defineInRange("tanzaniteVeinSize", 15, 1, OREGEN_THRESHOLD);
+                tanzaniteVeinSize = commonConfig.defineInRange("tanzaniteVeinSize", 15, 1, OREGEN_THRESHOLD);
                 tanzaniteVeinsPerChunk = commonConfig.defineInRange("tanzaniteVeinsPerChunk", 1, 1, OREGEN_THRESHOLD);
                 tanzaniteMinHeight = commonConfig.defineInRange("tanzaniteMinHeight", 1, 1, WORLD_HEIGHT - 2);
                 tanzaniteMaxHeight = commonConfig.defineInRange("tanzaniteMaxHeight", 28, 1, WORLD_HEIGHT - 1);
@@ -86,7 +86,7 @@ public class Config
 
                 commonConfig.comment("Topaz ore").push("topaz");
                 generateTopazOre = commonConfig.define("generateTopazOre", true);
-                topazVeinSize  = commonConfig.defineInRange("topazVeinSize", 13, 1, OREGEN_THRESHOLD);
+                topazVeinSize = commonConfig.defineInRange("topazVeinSize", 13, 1, OREGEN_THRESHOLD);
                 topazVeinsPerChunk = commonConfig.defineInRange("topazVeinsPerChunk", 1, 1, OREGEN_THRESHOLD);
                 topazMinHeight = commonConfig.defineInRange("topazMinHeight", 1, 1, WORLD_HEIGHT - 2);
                 topazMaxHeight = commonConfig.defineInRange("topazMaxHeight", 25, 1, WORLD_HEIGHT - 1);
@@ -94,7 +94,7 @@ public class Config
 
                 commonConfig.comment("Sapphire ore").push("sapphire");
                 generateSapphireOre = commonConfig.define("generateSapphireOre", true);
-                sapphireVeinSize  = commonConfig.defineInRange("sapphireVeinSize", 11, 1, OREGEN_THRESHOLD);
+                sapphireVeinSize = commonConfig.defineInRange("sapphireVeinSize", 11, 1, OREGEN_THRESHOLD);
                 sapphireVeinsPerChunk = commonConfig.defineInRange("sapphireVeinsPerChunk", 1, 1, OREGEN_THRESHOLD);
                 sapphireMinHeight = commonConfig.defineInRange("sapphireMinHeight", 1, 1, WORLD_HEIGHT - 2);
                 sapphireMaxHeight = commonConfig.defineInRange("sapphireMaxHeight", 22, 1, WORLD_HEIGHT - 1);
@@ -102,7 +102,7 @@ public class Config
 
                 commonConfig.comment("Pink Sapphire ore (Generates in the Nether)").push("pink_sapphire");
                 generatePinkSapphireOre = commonConfig.define("generatePinkSapphireOre", true);
-                pinkSapphireVeinSize  = commonConfig.defineInRange("pinkSapphireVeinSize", 7, 1, OREGEN_THRESHOLD);
+                pinkSapphireVeinSize = commonConfig.defineInRange("pinkSapphireVeinSize", 7, 1, OREGEN_THRESHOLD);
                 pinkSapphireVeinsPerChunk = commonConfig.defineInRange("pinkSapphireVeinsPerChunk", 5, 1, OREGEN_THRESHOLD);
                 pinkSapphireMinHeight = commonConfig.defineInRange("pinkSapphireMinHeight", WORLD_HEIGHT_NETHER - (WORLD_HEIGHT_NETHER - 5), 1, WORLD_HEIGHT_NETHER - 2);
                 pinkSapphireMaxHeight = commonConfig.defineInRange("pinkSapphireMaxHeight", WORLD_HEIGHT_NETHER - 5, 1, WORLD_HEIGHT_NETHER - 1);
@@ -110,7 +110,7 @@ public class Config
 
                 commonConfig.comment("Ruby ore").push("ruby");
                 generateRubyOre = commonConfig.define("generateRubyOre", true);
-                rubyVeinSize  = commonConfig.defineInRange("rubyVeinSize", 8, 1, OREGEN_THRESHOLD);
+                rubyVeinSize = commonConfig.defineInRange("rubyVeinSize", 8, 1, OREGEN_THRESHOLD);
                 rubyVeinsPerChunk = commonConfig.defineInRange("rubyVeinsPerChunk", 1, 1, OREGEN_THRESHOLD);
                 rubyMinHeight = commonConfig.defineInRange("rubyMinHeight", 1, 1, WORLD_HEIGHT - 2);
                 rubyMaxHeight = commonConfig.defineInRange("rubyMaxHeight", 16, 1, WORLD_HEIGHT - 1);
