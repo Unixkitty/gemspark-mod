@@ -2,9 +2,9 @@ package com.unixkitty.gemspark.datagen.recipe;
 
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.datagen.ModTags;
 import com.unixkitty.gemspark.init.ModBlocks;
-import com.unixkitty.gemspark.util.GemItems;
+import com.unixkitty.gemspark.item.Gem;
+import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspork.lib.HelperUtil;
 import com.unixkitty.gemspork.lib.datagen.recipe.CraftingTableRecipeProvider;
 import net.minecraft.block.Blocks;
@@ -32,29 +32,29 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
     {
-        registerSimpleArmorSet(consumer, ModTags.Items.TANZANITE);
-        registerSimpleArmorSet(consumer, ModTags.Items.TOPAZ);
-        registerSimpleArmorSet(consumer, ModTags.Items.SAPPHIRE);
-        registerSimpleArmorSet(consumer, ModTags.Items.PINK_SAPPHIRE);
-        registerSimpleArmorSet(consumer, ModTags.Items.RUBY);
+        registerSimpleArmorSet(consumer, Gem.TANZANITE.getItemTag());
+        registerSimpleArmorSet(consumer, Gem.TOPAZ.getItemTag());
+        registerSimpleArmorSet(consumer, Gem.SAPPHIRE.getItemTag());
+        registerSimpleArmorSet(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerSimpleArmorSet(consumer, Gem.RUBY.getItemTag());
 
-        registerToolSetRecipes(consumer, ModTags.Items.TANZANITE);
-        registerToolSetRecipes(consumer, ModTags.Items.TOPAZ);
-        registerToolSetRecipes(consumer, ModTags.Items.SAPPHIRE);
-        registerToolSetRecipes(consumer, ModTags.Items.PINK_SAPPHIRE);
-        registerToolSetRecipes(consumer, ModTags.Items.RUBY);
+        registerToolSetRecipes(consumer, Gem.TANZANITE.getItemTag());
+        registerToolSetRecipes(consumer, Gem.TOPAZ.getItemTag());
+        registerToolSetRecipes(consumer, Gem.SAPPHIRE.getItemTag());
+        registerToolSetRecipes(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerToolSetRecipes(consumer, Gem.RUBY.getItemTag());
 
-        registerCompression(consumer, ModTags.Items.TANZANITE);
-        registerCompression(consumer, ModTags.Items.TOPAZ);
-        registerCompression(consumer, ModTags.Items.SAPPHIRE);
-        registerCompression(consumer, ModTags.Items.PINK_SAPPHIRE);
-        registerCompression(consumer, ModTags.Items.RUBY);
+        registerCompression(consumer, Gem.TANZANITE.getItemTag());
+        registerCompression(consumer, Gem.TOPAZ.getItemTag());
+        registerCompression(consumer, Gem.SAPPHIRE.getItemTag());
+        registerCompression(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerCompression(consumer, Gem.RUBY.getItemTag());
 
-        registerLantern(consumer, ModTags.Items.TANZANITE);
-        registerLantern(consumer, ModTags.Items.TOPAZ);
-        registerLantern(consumer, ModTags.Items.SAPPHIRE);
-        registerLantern(consumer, ModTags.Items.PINK_SAPPHIRE);
-        registerLantern(consumer, ModTags.Items.RUBY);
+        registerLantern(consumer, Gem.TANZANITE.getItemTag());
+        registerLantern(consumer, Gem.TOPAZ.getItemTag());
+        registerLantern(consumer, Gem.SAPPHIRE.getItemTag());
+        registerLantern(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerLantern(consumer, Gem.RUBY.getItemTag());
         registerLantern(consumer, Tags.Items.GEMS_EMERALD);
         registerLantern(consumer, Tags.Items.GEMS_DIAMOND);
 

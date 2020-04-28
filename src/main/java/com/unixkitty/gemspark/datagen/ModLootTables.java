@@ -2,7 +2,7 @@ package com.unixkitty.gemspark.datagen;
 
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.util.GemItems;
+import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspork.lib.datagen.loot.BlockLootProvider;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -12,17 +12,13 @@ import java.util.Objects;
 
 public class ModLootTables extends BlockLootProvider
 {
-    public ModLootTables(DataGenerator generator)
-    {
-        super(Gemspark.MODID, generator);
-    }
-
     /*
         Standard block drops (1 of itself) will get registered automatically if no override will be added
      */
-    @Override
-    protected void addTables()
+    public ModLootTables(DataGenerator generator)
     {
+        super(Gemspark.MODID, generator);
+
         for (Block block : ForgeRegistries.BLOCKS)
         {
             if (!Gemspark.MODID.equals(Objects.requireNonNull(block.getRegistryName()).getNamespace()))

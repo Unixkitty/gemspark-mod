@@ -3,7 +3,7 @@ package com.unixkitty.gemspark.datagen.recipe;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModItems;
-import com.unixkitty.gemspark.util.Gem;
+import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspork.lib.datagen.recipe.SmeltingRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;

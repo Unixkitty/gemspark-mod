@@ -1,8 +1,8 @@
 package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.util.Gem;
-import com.unixkitty.gemspark.util.GemItems;
+import com.unixkitty.gemspark.item.Gem;
+import com.unixkitty.gemspark.item.GemItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;

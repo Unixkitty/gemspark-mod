@@ -1,4 +1,4 @@
-package com.unixkitty.gemspark.util;
+package com.unixkitty.gemspark.item;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
@@ -38,6 +38,15 @@ import static net.minecraftforge.common.ToolType.*;
 
 public class GemItems
 {
+    public static final int TIERS = 5;
+    public static final float TIER_FLOOR_BUMP = 0.4f;
+
+    public static final ItemTier TOOL_FLOOR_TIER = ItemTier.IRON;
+    public static final ItemTier TOOL_CEIL_TIER = ItemTier.DIAMOND;
+
+    public static final ArmorMaterial ARMOR_FLOOR_TIER = ArmorMaterial.IRON;
+    public static final ArmorMaterial ARMOR_CEIL_TIER = ArmorMaterial.DIAMOND;
+
     public static RegistryObject<Item> registerGemItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem.toString(), () -> new Item(itemProperties(gem)));
@@ -45,40 +54,40 @@ public class GemItems
 
     public static RegistryObject<Item> registerAxeItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_" + AXE.getName(), () -> new AxeItem(gem, 5.0f, -3.0F, itemProperties(gem)));
+        return ModItems.ITEMS.register(gem + "_" + AXE.getName(), () -> new AxeItem(gem.getToolProperties(), 5.0f, -3.0F, itemProperties(gem)));
     }
 
     public static RegistryObject<Item> registerSwordItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem + "_sword", () ->
-                new SwordItem(gem, 3, -2.4F, itemProperties(gem)));
+                new SwordItem(gem.getToolProperties(), 3, -2.4F, itemProperties(gem)));
     }
 
     public static RegistryObject<Item> registerShovelItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem + "_" + SHOVEL.getName(), () ->
-                new ShovelItem(gem, 1.5f, -3.0F, itemProperties(gem))
+                new ShovelItem(gem.getToolProperties(), 1.5f, -3.0F, itemProperties(gem))
         );
     }
 
     public static RegistryObject<Item> registerPickaxeItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem + "_" + PICKAXE.getName(), () ->
-                new PickaxeItem(gem, 1, -2.8F, itemProperties(gem))
+                new PickaxeItem(gem.getToolProperties(), 1, -2.8F, itemProperties(gem))
         );
     }
 
     public static RegistryObject<Item> registerHoeItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem + "_hoe", () ->
-                new HoeItem(gem, 0.0f, itemProperties(gem))
+                new HoeItem(gem.getToolProperties(), 0.0f, itemProperties(gem))
         );
     }
 
     public static RegistryObject<Item> registerArmorItem(Gem gem, EquipmentSlotType slot)
     {
         return ModItems.ITEMS.register(HelperUtil.armorMaterialString(gem.toString(), slot), () ->
-                new ArmorItem(gem, slot, itemProperties(gem))
+                new ArmorItem(gem.getArmorProperties(), slot, itemProperties(gem))
                 {
                     @Override
                     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
@@ -89,13 +98,13 @@ public class GemItems
                     @Override
                     public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
                     {
-                        if (!world.isRemote && player.ticksExisted % 90 == 0 && this.getArmorMaterial() == Gem.PINK_SAPPHIRE)
+                        if (!world.isRemote && player.ticksExisted % 90 == 0 && this.getArmorMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties())
                         {
                             boolean shouldApplyEffect = false;
 
                             for (ItemStack armorStack : player.getArmorInventoryList())
                             {
-                                if ((armorStack.getItem() instanceof ArmorItem && ((ArmorItem) armorStack.getItem()).getArmorMaterial() == Gem.PINK_SAPPHIRE))
+                                if ((armorStack.getItem() instanceof ArmorItem && ((ArmorItem) armorStack.getItem()).getArmorMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties()))
                                 {
                                     shouldApplyEffect = true;
                                 }
@@ -241,7 +250,15 @@ public class GemItems
         {
             if (HelperUtil.isResource(block.getRegistryName(), gem.toString(), false))
             {
-                return gem.getItem();
+                switch (gem)
+                {
+                    case DIAMOND:
+                        return Items.DIAMOND;
+                    case EMERALD:
+                        return Items.EMERALD;
+                    default:
+                        return HelperUtil.itemFromTag(Gemspark.MODID, gem.getItemTag());
+                }
             }
         }
 
@@ -253,26 +270,6 @@ public class GemItems
         String lampString = (inverted ? "colored_inverted_lamp_" : "colored_lamp_") + color.toString();
 
         return ForgeRegistries.BLOCKS.getValue(HelperUtil.prefixResource(Gemspark.MODID, lampString));
-    }
-
-    //These aren't good in enum
-    protected static final int GEM_TIERS = 5;
-
-    protected static int gemStrength(int tierIndex, int tiersTotal, int floor, int ceil)
-    {
-        /*final float floor_anchor = floor + (floor + (ceil - floor) * 0.25f);
-
-        return (int)floor_anchor + (ceil - (int)floor_anchor) * (tierIndex / tiersTotal);*/
-        final float floor_anchor = (floor + (ceil - floor) * 0.4f);
-
-        return (int) (floor_anchor + (ceil - floor_anchor) * ((float) tierIndex / tiersTotal));
-    }
-
-    protected static float gemStrength(int tierIndex, int tiersTotal, float floor, float ceil)
-    {
-        final float floor_anchor = (floor + (ceil - floor) * 0.4f);
-
-        return floor_anchor + (ceil - floor_anchor) * ((float) tierIndex / tiersTotal);
     }
 
     private static Item.Properties itemProperties(Gem gem)

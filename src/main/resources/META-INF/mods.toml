@@ -14,7 +14,7 @@ issueTrackerURL="https://github.com/Unixkitty/gemspark-mod" #optional
 # The modid of the mod
 modId="gemspark" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="1.0.0.0" #mandatory
+version="1.1.0.0" #mandatory
  # A display name for the mod
 displayName="Gemspark" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
@@ -34,7 +34,7 @@ description='''
 [[dependencies.gemspark]]
     modId="gemspork"
     mandatory=true
-    versionRange="[1.0.0.0]"
+    versionRange="[1.2.0]"
     ordering="NONE"
     side="BOTH"
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.

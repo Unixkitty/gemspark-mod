@@ -1,14 +1,10 @@
 package com.unixkitty.gemspark.datagen;
 
-import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.util.Gem;
-import com.unixkitty.gemspork.lib.HelperUtil;
+import com.unixkitty.gemspark.item.Gem;
+import com.unixkitty.gemspork.item.TagHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 public class ModTags
@@ -19,62 +15,32 @@ public class ModTags
 
     public static class Items
     {
-        public static final Tag<Item> TANZANITE = forgeTag(GEMS_PREFIX, Gem.TANZANITE.toString());
-        public static final Tag<Item> TOPAZ = forgeTag(GEMS_PREFIX, Gem.TOPAZ.toString());
-        public static final Tag<Item> SAPPHIRE = forgeTag(GEMS_PREFIX, Gem.SAPPHIRE.toString());
-        public static final Tag<Item> PINK_SAPPHIRE = forgeTag(GEMS_PREFIX, Gem.PINK_SAPPHIRE.toString());
-        public static final Tag<Item> RUBY = forgeTag(GEMS_PREFIX, Gem.RUBY.toString());
+        public static final Tag<Item> TANZANITE_BLOCK = TagHelper.forgeItemTag(STORAGE_BLOCKS_PREFIX, Gem.TANZANITE.toString());
+        public static final Tag<Item> TOPAZ_BLOCK = TagHelper.forgeItemTag(STORAGE_BLOCKS_PREFIX, Gem.TOPAZ.toString());
+        public static final Tag<Item> SAPPHIRE_BLOCK = TagHelper.forgeItemTag(STORAGE_BLOCKS_PREFIX, Gem.SAPPHIRE.toString());
+        public static final Tag<Item> PINK_SAPPHIRE_BLOCK = TagHelper.forgeItemTag(STORAGE_BLOCKS_PREFIX, Gem.PINK_SAPPHIRE.toString());
+        public static final Tag<Item> RUBY_BLOCK = TagHelper.forgeItemTag(STORAGE_BLOCKS_PREFIX, Gem.RUBY.toString());
 
-        public static final Tag<Item> TANZANITE_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.TANZANITE.toString());
-        public static final Tag<Item> TOPAZ_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.TOPAZ.toString());
-        public static final Tag<Item> SAPPHIRE_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.SAPPHIRE.toString());
-        public static final Tag<Item> PINK_SAPPHIRE_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.PINK_SAPPHIRE.toString());
-        public static final Tag<Item> RUBY_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.RUBY.toString());
-
-        public static final Tag<Item> TANZANITE_ORE = forgeTag(ORES_PREFIX, Gem.TANZANITE.toString());
-        public static final Tag<Item> TOPAZ_ORE = forgeTag(ORES_PREFIX, Gem.TOPAZ.toString());
-        public static final Tag<Item> SAPPHIRE_ORE = forgeTag(ORES_PREFIX, Gem.SAPPHIRE.toString());
-        public static final Tag<Item> PINK_SAPPHIRE_ORE = forgeTag(ORES_PREFIX, Gem.PINK_SAPPHIRE.toString());
-        public static final Tag<Item> RUBY_ORE = forgeTag(ORES_PREFIX, Gem.RUBY.toString());
-
-        private static Tag<Item> tag(String name)
-        {
-            return new ItemTags.Wrapper(HelperUtil.prefixResource(Gemspark.MODID, name));
-        }
-
-        private static Tag<Item> forgeTag(String type, String name)
-        {
-            return new ItemTags.Wrapper(forgeResource(type, name));
-        }
+        public static final Tag<Item> TANZANITE_ORE = TagHelper.forgeItemTag(ORES_PREFIX, Gem.TANZANITE.toString());
+        public static final Tag<Item> TOPAZ_ORE = TagHelper.forgeItemTag(ORES_PREFIX, Gem.TOPAZ.toString());
+        public static final Tag<Item> SAPPHIRE_ORE = TagHelper.forgeItemTag(ORES_PREFIX, Gem.SAPPHIRE.toString());
+        public static final Tag<Item> PINK_SAPPHIRE_ORE = TagHelper.forgeItemTag(ORES_PREFIX, Gem.PINK_SAPPHIRE.toString());
+        public static final Tag<Item> RUBY_ORE = TagHelper.forgeItemTag(ORES_PREFIX, Gem.RUBY.toString());
     }
 
     public static class Blocks
     {
-        public static final Tag<Block> TANZANITE_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.TANZANITE.toString());
-        public static final Tag<Block> TOPAZ_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.TOPAZ.toString());
-        public static final Tag<Block> SAPPHIRE_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.SAPPHIRE.toString());
-        public static final Tag<Block> PINK_SAPPHIRE_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.PINK_SAPPHIRE.toString());
-        public static final Tag<Block> RUBY_BLOCK = forgeTag(STORAGE_BLOCKS_PREFIX, Gem.RUBY.toString());
+        public static final Tag<Block> TANZANITE_BLOCK = TagHelper.forgeBlockTag(STORAGE_BLOCKS_PREFIX, Gem.TANZANITE.toString());
+        public static final Tag<Block> TOPAZ_BLOCK = TagHelper.forgeBlockTag(STORAGE_BLOCKS_PREFIX, Gem.TOPAZ.toString());
+        public static final Tag<Block> SAPPHIRE_BLOCK = TagHelper.forgeBlockTag(STORAGE_BLOCKS_PREFIX, Gem.SAPPHIRE.toString());
+        public static final Tag<Block> PINK_SAPPHIRE_BLOCK = TagHelper.forgeBlockTag(STORAGE_BLOCKS_PREFIX, Gem.PINK_SAPPHIRE.toString());
+        public static final Tag<Block> RUBY_BLOCK = TagHelper.forgeBlockTag(STORAGE_BLOCKS_PREFIX, Gem.RUBY.toString());
 
-        public static final Tag<Block> TANZANITE_ORE = forgeTag(ORES_PREFIX, Gem.TANZANITE.toString());
-        public static final Tag<Block> TOPAZ_ORE = forgeTag(ORES_PREFIX, Gem.TOPAZ.toString());
-        public static final Tag<Block> SAPPHIRE_ORE = forgeTag(ORES_PREFIX, Gem.SAPPHIRE.toString());
-        public static final Tag<Block> PINK_SAPPHIRE_ORE = forgeTag(ORES_PREFIX, Gem.PINK_SAPPHIRE.toString());
-        public static final Tag<Block> RUBY_ORE = forgeTag(ORES_PREFIX, Gem.RUBY.toString());
-
-        private static Tag<Block> tag(String name)
-        {
-            return new BlockTags.Wrapper(HelperUtil.prefixResource(Gemspark.MODID, name));
-        }
-
-        private static Tag<Block> forgeTag(String type, String name)
-        {
-            return new BlockTags.Wrapper(forgeResource(type, name));
-        }
+        public static final Tag<Block> TANZANITE_ORE = TagHelper.forgeBlockTag(ORES_PREFIX, Gem.TANZANITE.toString());
+        public static final Tag<Block> TOPAZ_ORE = TagHelper.forgeBlockTag(ORES_PREFIX, Gem.TOPAZ.toString());
+        public static final Tag<Block> SAPPHIRE_ORE = TagHelper.forgeBlockTag(ORES_PREFIX, Gem.SAPPHIRE.toString());
+        public static final Tag<Block> PINK_SAPPHIRE_ORE = TagHelper.forgeBlockTag(ORES_PREFIX, Gem.PINK_SAPPHIRE.toString());
+        public static final Tag<Block> RUBY_ORE = TagHelper.forgeBlockTag(ORES_PREFIX, Gem.RUBY.toString());
     }
 
-    private static ResourceLocation forgeResource(String type, String name)
-    {
-        return new ResourceLocation("forge", type + "/" + name);
-    }
 }

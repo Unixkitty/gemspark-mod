@@ -2,6 +2,7 @@ package com.unixkitty.gemspark.datagen;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
+import com.unixkitty.gemspark.item.Gem;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.tags.Tag;
@@ -44,17 +45,17 @@ public class ItemTagProvider extends ItemTagsProvider
 
         /* Block tags copying end */
         getBuilder(Tags.Items.GEMS).add(
-                ModTags.Items.TANZANITE,
-                ModTags.Items.TOPAZ,
-                ModTags.Items.SAPPHIRE,
-                ModTags.Items.PINK_SAPPHIRE,
-                ModTags.Items.RUBY
+                Gem.TANZANITE.getItemTag(),
+                Gem.TOPAZ.getItemTag(),
+                Gem.SAPPHIRE.getItemTag(),
+                Gem.PINK_SAPPHIRE.getItemTag(),
+                Gem.RUBY.getItemTag()
         );
-        getBuilder(ModTags.Items.TANZANITE).add(ModItems.TANZANITE.get());
-        getBuilder(ModTags.Items.TOPAZ).add(ModItems.TOPAZ.get());
-        getBuilder(ModTags.Items.SAPPHIRE).add(ModItems.SAPPHIRE.get());
-        getBuilder(ModTags.Items.PINK_SAPPHIRE).add(ModItems.PINK_SAPPHIRE.get());
-        getBuilder(ModTags.Items.RUBY).add(ModItems.RUBY.get());
+        getBuilder(Gem.TANZANITE.getItemTag()).add(ModItems.TANZANITE.get());
+        getBuilder(Gem.TOPAZ.getItemTag()).add(ModItems.TOPAZ.get());
+        getBuilder(Gem.SAPPHIRE.getItemTag()).add(ModItems.SAPPHIRE.get());
+        getBuilder(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
+        getBuilder(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
     }
 
     @Override
