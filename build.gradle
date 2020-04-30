@@ -125,7 +125,6 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${modMinecraftVersion}:${jei_version}")
 
-    //compile fileTree('libs') { include 'gemspork-*.jar' }
     compile project(":gemspork")
 }
 
@@ -142,6 +141,11 @@ jar {
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
+
+    exclude "**/*.exe"
+    exclude "**/*.sh"
+
+    exclude modGroup.replace('.', '/') + "/datagen"
 }
 
 // Example configuration to allow publishing using the maven-publish task

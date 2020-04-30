@@ -100,7 +100,6 @@ public class BlockPedestal extends ContainerBlock
         {
             if (this.getContainer(state, world, pos) != null && player instanceof ServerPlayerEntity)
             {
-                //TODO test on dedicated server because capability needs to get verified
                 TileEntity tile = world.getTileEntity(pos);
 
                 if (!(tile instanceof TileEntityPedestal)) return ActionResultType.FAIL;
