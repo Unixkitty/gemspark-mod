@@ -110,7 +110,7 @@ public class BlockPedestal extends ContainerBlock
                 IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
                 ItemStack heldItem = player.getHeldItem(hand);
 
-                if (!player.isShiftKeyDown())
+                if (!player.isSneaking())
                 {
                     if (heldItem.isEmpty())
                     {
