@@ -1,6 +1,5 @@
 package com.unixkitty.gemspark.item;
 
-import com.unixkitty.gemspark.datagen.ModTags;
 import com.unixkitty.gemspork.item.DynamicTieredArmorProperties;
 import com.unixkitty.gemspork.item.DynamicTieredToolProperties;
 import com.unixkitty.gemspork.item.TagHelper;
@@ -11,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.SoundEvents;
+import net.minecraftforge.common.Tags;
 
 import static com.unixkitty.gemspark.item.GemItems.*;
 
@@ -38,7 +38,7 @@ public enum Gem
         this.name = name;
         this.rarity = rarity;
 
-        this.itemTag = TagHelper.forgeItemTag(ModTags.GEMS_PREFIX, name);
+        this.itemTag = TagHelper.forgeItemTag(Tags.Items.GEMS.getId().getPath(), name);
 
         this.toolProperties = new DynamicTieredToolProperties(
                 tierIndex, TIERS,
