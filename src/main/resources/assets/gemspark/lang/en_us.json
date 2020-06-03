@@ -61,14 +61,18 @@
   "item.gemspark.pink_sapphire_boots": "Pink Sapphire Boots",
   "item.gemspark.ruby_boots": "Ruby Boots",
 
+  "item.gemspark.nbt_stick": "NBT stick",
+  "text.nbt_stick.info": "Right click on tile entities to get NBT printed to chat",
+
+  "item.gemspark.spectacles": "Mini Glasses",
+  "item.gemspark.glasses_technicolor": "Amazing Technicolor Glasses",
+  "item.gemspark.glasses_3d": "3D Glasses",
+
   "block.gemspark.tanzanite_ore": "Tanzanite Ore",
   "block.gemspark.topaz_ore": "Topaz Ore",
   "block.gemspark.sapphire_ore": "Sapphire Ore",
   "block.gemspark.pink_sapphire_ore": "Pink Sapphire Ore",
   "block.gemspark.ruby_ore": "Ruby Ore",
-
-  "item.gemspark.nbt_stick": "NBT stick",
-  "text.nbt_stick.info": "Right click on tile entities to get NBT printed to chat",
 
   "block.gemspark.tanzanite_block": "Tanzanite Block",
   "block.gemspark.topaz_block": "Topaz Block",

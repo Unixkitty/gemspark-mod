@@ -3,6 +3,7 @@ package com.unixkitty.gemspark.datagen.recipe;
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModBlocks;
+import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspork.lib.HelperUtil;
@@ -14,6 +15,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
@@ -104,6 +106,37 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .patternLine("s")
                 .patternLine("p")
                 .addCriterion("has_item", hasItem(Tags.Items.GEMS_QUARTZ))
+                .build(consumer);
+
+        //Spectacles
+        ShapedRecipeBuilder.shapedRecipe(ModItems.SPECTACLES.get())
+                .key('s', Gem.SAPPHIRE.getItemTag())
+                .key('P', Tags.Items.GLASS_PANES_COLORLESS)
+                .patternLine(" s ")
+                .patternLine("P P")
+                .addCriterion("has_item", hasItem(Gem.SAPPHIRE.getItemTag()))
+                .build(consumer);
+
+        //Technicolor glasses
+        ShapedRecipeBuilder.shapedRecipe(ModItems.GLASSES_TECHNICOLOR.get())
+                .key('r', Gem.RUBY.getItemTag())
+                .key('g', Tags.Items.GEMS_EMERALD)
+                .key('b', Gem.SAPPHIRE.getItemTag())
+                .key('R', Tags.Items.GLASS_PANES_CYAN)
+                .key('L', Tags.Items.GLASS_PANES_YELLOW)
+                .patternLine("rgb")
+                .patternLine("R L")
+                .addCriterion("has_item", hasItem(Tags.Items.GEMS_EMERALD))
+                .build(consumer);
+
+        //3D glasses
+        ShapedRecipeBuilder.shapedRecipe(ModItems.GLASSES_3D.get())
+                .key('p', Ingredient.fromItems(Items.PAPER))
+                .key('R', Tags.Items.GLASS_PANES_BLUE)
+                .key('L', Tags.Items.GLASS_PANES_RED)
+                .patternLine("ppp")
+                .patternLine("R L")
+                .addCriterion("has_item", hasItem(Tags.Items.GLASS_PANES_BLUE))
                 .build(consumer);
     }
 
