@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ii ",
+    "iF ",
+    "  i"
+  ],
+  "key": {
+    "i": {
+      "tag": "forge:ingots/iron"
+    },
+    "F": {
+      "item": "minecraft:jungle_fence"
+    }
+  },
+  "result": {
+    "item": "gemspark:lamp_post_cap_jungle"
+  }
+}

@@ -7,6 +7,7 @@ import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspork.lib.HelperUtil;
 import com.unixkitty.gemspork.lib.datagen.recipe.CraftingTableRecipeProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -62,6 +63,14 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
         registerColoredLamp(consumer, false);
         registerColoredLamp(consumer, true);
+
+        registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_OAK.get(), Blocks.OAK_FENCE);
+        registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_NETHER_BRICK.get(), Blocks.NETHER_BRICK_FENCE);
+        registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_SPRUCE.get(), Blocks.SPRUCE_FENCE);
+        registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_BIRCH.get(), Blocks.BIRCH_FENCE);
+        registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_JUNGLE.get(), Blocks.JUNGLE_FENCE);
+        registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_ACACIA.get(), Blocks.ACACIA_FENCE);
+        registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_DARK_OAK.get(), Blocks.DARK_OAK_FENCE);
     }
 
     private void registerColoredLamp(Consumer<IFinishedRecipe> consumer, boolean inverted)
@@ -88,22 +97,14 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
     private void registerUniqueRecipes(Consumer<IFinishedRecipe> consumer)
     {
-        //These should go into modern blocks mod
-        //RecipeManager.addShapedOreRecipe(new ItemStack(Blocks.CLAY, 4), "sds", "dbd", "sds", 'd', "dirt", 's', "sand", 'b', FluidUtil.getFilledBucket(new FluidStack(FluidRegistry.WATER, Fluid.BUCKET_VOLUME)));
-        //RecipeManager.addShapedOreRecipe(new ItemStack(Blocks.CLAY, 4), "dsd", "sbs", "dsd", 'd', "dirt", 's', "sand", 'b', Items.POTIONITEM);
-
         //Pedestal
-        IItemProvider output = ModBlocks.QUARTZ_PEDESTAL.get();
-
-        ShapedRecipeBuilder.shapedRecipe(output)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.QUARTZ_PEDESTAL.get())
                 .key('s', Blocks.QUARTZ_SLAB)
                 .key('p', Blocks.QUARTZ_PILLAR)
                 .patternLine("s")
                 .patternLine("p")
-                .addCriterion("has_item", hasItem(Tags.Items.STORAGE_BLOCKS_QUARTZ))
+                .addCriterion("has_item", hasItem(Tags.Items.GEMS_QUARTZ))
                 .build(consumer);
-
-
     }
 
     private void registerLantern(Consumer<IFinishedRecipe> consumer, Tag<Item> gemIngredient)
@@ -118,6 +119,18 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .patternLine("dGd")
                 .patternLine("gdg")
                 .addCriterion("has_item", hasItem(gemIngredient))
+                .build(consumer);
+    }
+
+    private void registerLampPostCap(Consumer<IFinishedRecipe> consumer, Block lampPostCap, Block fence)
+    {
+        ShapedRecipeBuilder.shapedRecipe(lampPostCap)
+                .key('i', Tags.Items.INGOTS_IRON)
+                .key('F', fence)
+                .patternLine("ii ")
+                .patternLine("iF ")
+                .patternLine("  i")
+                .addCriterion("has_item", hasItem(fence))
                 .build(consumer);
     }
 }

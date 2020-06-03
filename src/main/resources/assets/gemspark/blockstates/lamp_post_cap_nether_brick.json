@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "gemspark:block/lamp_post_cap_nether_brick" },
+    "facing=south": { "model": "gemspark:block/lamp_post_cap_nether_brick", "y": 180 },
+    "facing=west":  { "model": "gemspark:block/lamp_post_cap_nether_brick", "y": 270 },
+    "facing=east":  { "model": "gemspark:block/lamp_post_cap_nether_brick", "y": 90 }
+  }
+}

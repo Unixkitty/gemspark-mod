@@ -118,5 +118,13 @@
   "block.gemspark.colored_inverted_lamp_purple": "Inverted Purple Lamp",
   "block.gemspark.colored_inverted_lamp_red": "Inverted Red Lamp",
   "block.gemspark.colored_inverted_lamp_white": "Inverted White Lamp",
-  "block.gemspark.colored_inverted_lamp_yellow": "Inverted Yellow Lamp"
+  "block.gemspark.colored_inverted_lamp_yellow": "Inverted Yellow Lamp",
+
+  "block.gemspark.lamp_post_cap_oak": "Oak Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_nether_brick":"Nether Brick Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_spruce": "Spruce Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_birch":"Birch Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_jungle": "Jungle Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_acacia":"Acacia Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_dark_oak": "Dark Oak Lamp Post Cap"
 }
