@@ -57,7 +57,7 @@ public class GemItems
     public static RegistryObject<Item> registerHoeItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem + "_hoe", () ->
-                new HoeItem(gem.getToolProperties(), 0.0f, itemProperties(gem))
+                new HoeItem(gem.getToolProperties(), /*The heck is this parameter?*/-3, 0.0f, itemProperties(gem))
         );
     }
 

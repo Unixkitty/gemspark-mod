@@ -7,7 +7,6 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -84,13 +83,7 @@ public class BlockPedestal extends ContainerBlock
     {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslationTextComponent("text.pedestal.info").applyTextStyle(TextFormatting.DARK_GRAY)));
-    }
-
-    @Override
-    public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type)
-    {
-        return false;
+        tooltip.add((new TranslationTextComponent("text.pedestal.info").mergeStyle(TextFormatting.DARK_GRAY)));
     }
 
     @Override

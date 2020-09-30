@@ -17,10 +17,9 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -87,7 +86,7 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
             ShapedRecipeBuilder.shapedRecipe(output)
                     .key('g', Tags.Items.DUSTS_GLOWSTONE)
-                    .key('P', new ItemTags.Wrapper(new ResourceLocation("forge", "glass_panes/" + color.toString())))
+                    .key('P', ItemTags.makeWrapperTag("forge" + ":" + "glass_panes/" + color.toString()))
                     .key('R', dustOrTorchIngredient)
                     .patternLine("PgP")
                     .patternLine("PgP")
@@ -140,7 +139,7 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .build(consumer);
     }
 
-    private void registerLantern(Consumer<IFinishedRecipe> consumer, Tag<Item> gemIngredient)
+    private void registerLantern(Consumer<IFinishedRecipe> consumer, ITag.INamedTag<Item> gemIngredient)
     {
         IItemProvider output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "lantern");
 

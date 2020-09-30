@@ -5,7 +5,8 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.ITag;
+import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.Tags;
 
@@ -16,11 +17,11 @@ public enum GlassesArmorMaterial implements IArmorMaterial
     THREE_DEE(Tags.Items.GEMS_DIAMOND),
     ;
 
-    private final Ingredient repairItem;
+    private final LazyValue<Ingredient> repairItem;
 
-    GlassesArmorMaterial(Tag<Item> repairItem)
+    GlassesArmorMaterial(ITag<Item> repairItem)
     {
-        this.repairItem = Ingredient.fromTag(repairItem);
+        this.repairItem = new LazyValue<>(() -> Ingredient.fromTag(repairItem));
     }
 
     @Override
@@ -50,7 +51,7 @@ public enum GlassesArmorMaterial implements IArmorMaterial
     @Override
     public Ingredient getRepairMaterial()
     {
-        return this.repairItem;
+        return this.repairItem.getValue();
     }
 
     @Override
@@ -64,4 +65,12 @@ public enum GlassesArmorMaterial implements IArmorMaterial
     {
         return ArmorMaterial.LEATHER.getToughness();
     }
+
+    @Override
+    public float getKnockbackResistance()
+    {
+        return 0.0f;
+    }
+
+
 }

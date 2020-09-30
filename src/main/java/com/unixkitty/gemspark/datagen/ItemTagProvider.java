@@ -5,21 +5,20 @@ import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ItemTagProvider extends ItemTagsProvider
 {
     private Set<ResourceLocation> filter = null;
 
-    public ItemTagProvider(DataGenerator generatorIn)
+    public ItemTagProvider(DataGenerator generatorIn, BlockTagProvider blockTagProvider)
     {
-        super(generatorIn);
+        super(generatorIn, blockTagProvider);
     }
 
     @Override
@@ -27,7 +26,7 @@ public class ItemTagProvider extends ItemTagsProvider
     {
         super.registerTags();
 
-        filter = this.tagToBuilder.keySet().stream().map(Tag::getId).collect(Collectors.toSet());
+        filter = new HashSet<>(this.tagToBuilder.keySet());
 
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
         copy(ModTags.Blocks.TANZANITE_ORE, ModTags.Items.TANZANITE_ORE);
@@ -44,18 +43,18 @@ public class ItemTagProvider extends ItemTagsProvider
         copy(ModTags.Blocks.RUBY_BLOCK, ModTags.Items.RUBY_BLOCK);
 
         /* Block tags copying end */
-        getBuilder(Tags.Items.GEMS).add(
+        getOrCreateBuilder(Tags.Items.GEMS).addTags(
                 Gem.TANZANITE.getItemTag(),
                 Gem.TOPAZ.getItemTag(),
                 Gem.SAPPHIRE.getItemTag(),
                 Gem.PINK_SAPPHIRE.getItemTag(),
                 Gem.RUBY.getItemTag()
         );
-        getBuilder(Gem.TANZANITE.getItemTag()).add(ModItems.TANZANITE.get());
-        getBuilder(Gem.TOPAZ.getItemTag()).add(ModItems.TOPAZ.get());
-        getBuilder(Gem.SAPPHIRE.getItemTag()).add(ModItems.SAPPHIRE.get());
-        getBuilder(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
-        getBuilder(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
+        getOrCreateBuilder(Gem.TANZANITE.getItemTag()).add(ModItems.TANZANITE.get());
+        getOrCreateBuilder(Gem.TOPAZ.getItemTag()).add(ModItems.TOPAZ.get());
+        getOrCreateBuilder(Gem.SAPPHIRE.getItemTag()).add(ModItems.SAPPHIRE.get());
+        getOrCreateBuilder(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
+        getOrCreateBuilder(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
     }
 
     @Override

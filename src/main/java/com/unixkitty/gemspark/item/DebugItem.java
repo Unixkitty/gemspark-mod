@@ -40,7 +40,7 @@ public class DebugItem extends Item
     {
         if (!context.getWorld().isRemote && context.getPlayer() instanceof ServerPlayerEntity && context.getPlayer().canUseCommandBlock())
         {
-            context.getPlayer().sendMessage(new StringTextComponent("Block: " + context.getWorld().getBlockState(context.getPos())));
+            context.getPlayer().sendMessage(new StringTextComponent("Block: " + context.getWorld().getBlockState(context.getPos())), context.getPlayer().getUniqueID());
 
             TileEntity tileEntity = context.getWorld().getTileEntity(context.getPos());
 
@@ -50,7 +50,7 @@ public class DebugItem extends Item
 
                 tileEntity.write(compound);
 
-                context.getPlayer().sendMessage(new TranslationTextComponent("commands.data.block.query", tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), compound.toFormattedComponent()));
+                context.getPlayer().sendMessage(new TranslationTextComponent("commands.data.block.query", tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), compound.toFormattedComponent()), context.getPlayer().getUniqueID());
             }
         }
 
@@ -105,12 +105,12 @@ public class DebugItem extends Item
                 double chunkClearSizeX = ((16 * chunkRadius) / 2);
                 double chunkClearSizeZ = ((16 * chunkRadius) / 2);
 
-                player.sendMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "Stripping " + chunkClearSizeX + "x" + chunkClearSizeZ + " chunks..."));
-                for (int x = (int) (player.getPosition().getX() - chunkClearSizeX); (double) x <= player.getPosition().getX() + chunkClearSizeX; x++)
+                player.sendMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "Stripping " + chunkClearSizeX + "x" + chunkClearSizeZ + " chunks..."), player.getUniqueID());
+                for (int x = (int) (player.serverPosX - chunkClearSizeX); (double) x <= player.serverPosX + chunkClearSizeX; x++)
                 {
-                    for (int y = 0; (double) y <= player.getPosition().getY() + 16; ++y)
+                    for (int y = 0; (double) y <= player.serverPosY + 16; ++y)
                     {
-                        for (int z = (int) (player.getPosition().getZ() - chunkClearSizeZ); (double) z <= player.getPosition().getZ() + chunkClearSizeZ; z++)
+                        for (int z = (int) (player.serverPosZ - chunkClearSizeZ); (double) z <= player.serverPosZ + chunkClearSizeZ; z++)
                         {
                             BlockPos targetBlockPos = new BlockPos(x, y, z);
                             BlockState targetBlockState = world.getBlockState(targetBlockPos);
@@ -123,7 +123,7 @@ public class DebugItem extends Item
                         }
                     }
                 }
-                player.sendMessage(new StringTextComponent("World stripping complete"));
+                player.sendMessage(new StringTextComponent("World stripping complete"), player.getUniqueID());
             }
         }
 
@@ -135,10 +135,10 @@ public class DebugItem extends Item
     {
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslationTextComponent("text.nbt_stick.info").applyTextStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslationTextComponent("text.nbt_stick.info").mergeStyle(TextFormatting.DARK_GRAY)));
         if (flagIn == ITooltipFlag.TooltipFlags.ADVANCED)
         {
-            tooltip.add((new StringTextComponent("Right click on air in off-hand will strip 3x3 chunks around you of filler blocks to view generation features")).applyTextStyle(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Right click on air in off-hand will strip 3x3 chunks around you of filler blocks to view generation features")).mergeStyle(TextFormatting.GRAY));
         }
     }
 

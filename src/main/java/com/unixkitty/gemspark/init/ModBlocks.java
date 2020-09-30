@@ -9,8 +9,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RedstoneLampBlock;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,7 +21,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 @SuppressWarnings("unused")
 public final class ModBlocks
 {
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, Gemspark.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Gemspark.MODID);
 
     public static final RegistryObject<Block> TANZANITE_BLOCK = setup(ModBlockType.GEM_BLOCK, "tanzanite_block");
     public static final RegistryObject<Block> TOPAZ_BLOCK = setup(ModBlockType.GEM_BLOCK, "topaz_block");
@@ -103,7 +105,7 @@ public final class ModBlocks
                     }
                 });
             case PEDESTAL:
-                return BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.from(Blocks.QUARTZ_BLOCK).notSolid()));
+                return BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.from(Blocks.QUARTZ_BLOCK).notSolid().setAllowsSpawn(ModBlocks::neverAllowSpawn)));
             case REDSTONE_LAMP:
                 return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.from(Blocks.REDSTONE_LAMP)));
             case INVERTED_REDSTONE_LAMP:
@@ -115,7 +117,7 @@ public final class ModBlocks
 
     private static RegistryObject<Block> setup(String name, Block.Properties properties)
     {
-        return BLOCKS.register(name, () -> new BlockLampPostCap(properties));
+        return BLOCKS.register(name, () -> new BlockLampPostCap(properties.setAllowsSpawn(ModBlocks::neverAllowSpawn)));
     }
 
     private enum ModBlockType
@@ -127,5 +129,10 @@ public final class ModBlocks
         REDSTONE_LAMP,
         INVERTED_REDSTONE_LAMP,
         LAMP_POST
+    }
+
+    private static Boolean neverAllowSpawn(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity)
+    {
+        return false;
     }
 }

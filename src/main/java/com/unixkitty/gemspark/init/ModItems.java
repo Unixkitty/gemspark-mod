@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 
 public final class ModItems
 {
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Gemspark.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Gemspark.MODID);
 
     public static final RegistryObject<Item> nbt_stick = registerDebugItem();
 

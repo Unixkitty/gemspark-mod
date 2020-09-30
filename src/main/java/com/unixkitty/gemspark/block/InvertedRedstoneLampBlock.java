@@ -43,7 +43,8 @@ public class InvertedRedstoneLampBlock extends RedstoneLampBlock
             }
             else
             {
-                worldIn.setBlockState(pos, state.cycle(LIT));
+                //func_235896_a_ -> cycle
+                worldIn.setBlockState(pos, state.func_235896_a_(LIT));
             }
 
         }
@@ -65,7 +66,7 @@ public class InvertedRedstoneLampBlock extends RedstoneLampBlock
     {
         if (state.get(LIT) && worldIn.isBlockPowered(pos))
         {
-            worldIn.setBlockState(pos, state.cycle(LIT), 2);
+            worldIn.setBlockState(pos, state.func_235896_a_(LIT), 2);
         }
 
     }

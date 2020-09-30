@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -82,12 +81,6 @@ public class BlockLampPostCap extends HorizontalBlock
     public BlockRenderType getRenderType(BlockState state)
     {
         return BlockRenderType.MODEL;
-    }
-
-    @Override
-    public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type)
-    {
-        return false;
     }
 
     private VoxelShape getShapeFromFace(final BlockState state)

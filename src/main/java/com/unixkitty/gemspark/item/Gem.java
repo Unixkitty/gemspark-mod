@@ -8,7 +8,7 @@ import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.Tags;
 
@@ -28,7 +28,7 @@ public enum Gem
     private final String name;
     private final Rarity rarity;
 
-    private final Tag<Item> itemTag;
+    private final ITag.INamedTag<Item> itemTag;
 
     private final IItemTier toolProperties;
     private final IArmorMaterial armorProperties;
@@ -38,7 +38,7 @@ public enum Gem
         this.name = name;
         this.rarity = rarity;
 
-        this.itemTag = TagHelper.forgeItemTag(Tags.Items.GEMS.getId().getPath(), name);
+        this.itemTag = TagHelper.forgeItemTag(Tags.Items.GEMS.getName().getPath(), name);
 
         this.toolProperties = new DynamicTieredToolProperties(
                 tierIndex, TIERS,
@@ -70,7 +70,7 @@ public enum Gem
         return rarity;
     }
 
-    public Tag<Item> getItemTag()
+    public ITag.INamedTag<Item> getItemTag()
     {
         return this.itemTag;
     }
