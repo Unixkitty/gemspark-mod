@@ -1,12 +1,6 @@
 package com.unixkitty.gemspark.item;
 
-import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,19 +8,9 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.Rarity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DebugItem extends Item
 {
@@ -57,7 +41,7 @@ public class DebugItem extends Item
         return ActionResultType.SUCCESS;
     }
 
-    //Non-block rightClick
+    /*//Non-block rightClick
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
     {
@@ -106,11 +90,11 @@ public class DebugItem extends Item
                 double chunkClearSizeZ = ((16 * chunkRadius) / 2);
 
                 player.sendMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "Stripping " + chunkClearSizeX + "x" + chunkClearSizeZ + " chunks..."), player.getUniqueID());
-                for (int x = (int) (player.serverPosX - chunkClearSizeX); (double) x <= player.serverPosX + chunkClearSizeX; x++)
+                for (int x = (int) (player.getPosX() - chunkClearSizeX); (double) x <= player.getPosX() + chunkClearSizeX; x++)
                 {
-                    for (int y = 0; (double) y <= player.serverPosY + 16; ++y)
+                    for (int y = 0; (double) y <= player.getPosY() + 16; ++y)
                     {
-                        for (int z = (int) (player.serverPosZ - chunkClearSizeZ); (double) z <= player.serverPosZ + chunkClearSizeZ; z++)
+                        for (int z = (int) (player.getPosZ() - chunkClearSizeZ); (double) z <= player.serverPosZ + chunkClearSizeZ; z++)
                         {
                             BlockPos targetBlockPos = new BlockPos(x, y, z);
                             BlockState targetBlockState = world.getBlockState(targetBlockPos);
@@ -128,9 +112,9 @@ public class DebugItem extends Item
         }
 
         return ActionResult.resultPass(player.getHeldItem(hand));
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
     {
         super.addInformation(stack, worldIn, tooltip, flagIn);
@@ -140,7 +124,7 @@ public class DebugItem extends Item
         {
             tooltip.add((new StringTextComponent("Right click on air in off-hand will strip 3x3 chunks around you of filler blocks to view generation features")).mergeStyle(TextFormatting.GRAY));
         }
-    }
+    }*/
 
     @Override
     public boolean hasEffect(ItemStack stack)

@@ -1,7 +1,9 @@
 package com.unixkitty.gemspark;
 
 import com.unixkitty.gemspark.init.*;
+import com.unixkitty.gemspark.worldgen.OreGeneration;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -30,6 +32,8 @@ public class Gemspark
         ModItems.ITEMS.register(modEventBus);
         ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
+
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoading);
     }
 
     public static Logger log()
