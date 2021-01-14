@@ -86,6 +86,8 @@ public final class ModBlocks
     public static final RegistryObject<Block> LAMP_POST_CAP_JUNGLE = setup("lamp_post_cap_jungle", Block.Properties.from(Blocks.JUNGLE_FENCE));
     public static final RegistryObject<Block> LAMP_POST_CAP_ACACIA = setup("lamp_post_cap_acacia", Block.Properties.from(Blocks.ACACIA_FENCE));
     public static final RegistryObject<Block> LAMP_POST_CAP_DARK_OAK = setup("lamp_post_cap_dark_oak", Block.Properties.from(Blocks.DARK_OAK_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setup("lamp_post_cap_warped", Block.Properties.from(Blocks.WARPED_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setup("lamp_post_cap_crimson", Block.Properties.from(Blocks.CRIMSON_FENCE));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {

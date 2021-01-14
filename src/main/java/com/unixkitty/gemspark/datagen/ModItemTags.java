@@ -5,29 +5,19 @@ import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
-import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
-
-public class ItemTagProvider extends ItemTagsProvider
+public class ModItemTags extends ItemTagsProvider
 {
-    private Set<ResourceLocation> filter = null;
-
-    public ItemTagProvider(DataGenerator generatorIn, BlockTagProvider blockTagProvider)
+    public ModItemTags(DataGenerator generatorIn, ExistingFileHelper existingFileHelper, ModBlockTags blockTagProvider)
     {
-        super(generatorIn, blockTagProvider);
+        super(generatorIn, blockTagProvider, Gemspark.MODID, existingFileHelper);
     }
 
     @Override
     protected void registerTags()
     {
-        super.registerTags();
-
-        filter = new HashSet<>(this.tagToBuilder.keySet());
-
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
         copy(ModTags.Blocks.TANZANITE_ORE, ModTags.Items.TANZANITE_ORE);
         copy(ModTags.Blocks.TOPAZ_ORE, ModTags.Items.TOPAZ_ORE);
@@ -55,12 +45,6 @@ public class ItemTagProvider extends ItemTagsProvider
         getOrCreateBuilder(Gem.SAPPHIRE.getItemTag()).add(ModItems.SAPPHIRE.get());
         getOrCreateBuilder(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
         getOrCreateBuilder(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
-    }
-
-    @Override
-    protected Path makePath(ResourceLocation id)
-    {
-        return filter != null && filter.contains(id) ? null : super.makePath(id); //We don't want to save vanilla tags.
     }
 
     @Override

@@ -130,5 +130,7 @@
   "block.gemspark.lamp_post_cap_birch":"Birch Lamp Post Cap",
   "block.gemspark.lamp_post_cap_jungle": "Jungle Lamp Post Cap",
   "block.gemspark.lamp_post_cap_acacia":"Acacia Lamp Post Cap",
-  "block.gemspark.lamp_post_cap_dark_oak": "Dark Oak Lamp Post Cap"
+  "block.gemspark.lamp_post_cap_dark_oak": "Dark Oak Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_warped":"Warped Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_crimson": "Crimson Lamp Post Cap"
 }
