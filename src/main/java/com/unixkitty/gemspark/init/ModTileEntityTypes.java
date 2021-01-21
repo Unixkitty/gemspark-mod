@@ -14,7 +14,10 @@ public final class ModTileEntityTypes
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, Gemspark.MODID);
 
     public static final RegistryObject<TileEntityType<TileEntityPedestal>> PEDESTAL = TILE_ENTITY_TYPES.register("quartz_pedestal", () ->
-            TileEntityType.Builder.create(TileEntityPedestal::new, Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get())
+            TileEntityType.Builder.create(
+                    TileEntityPedestal::new,
+                    Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get(),
+                    Objects.requireNonNull(ModBlocks.BLACKSTONE_PEDESTAL).get())
                     .build(null)
     );
 }

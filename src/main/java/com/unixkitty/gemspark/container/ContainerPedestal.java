@@ -131,6 +131,7 @@ public class ContainerPedestal extends Container
     @Override
     public boolean canInteractWith(@Nonnull final PlayerEntity player)
     {
-        return isWithinUsableDistance(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get());
+        return isWithinUsableDistance(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get())
+                || isWithinUsableDistance(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.BLACKSTONE_PEDESTAL).get());
     }
 }

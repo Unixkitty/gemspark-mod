@@ -67,11 +67,13 @@ public class BlockLampPostCap extends HorizontalBlock
         return this.getShapeFromFace(state);
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(FACING);

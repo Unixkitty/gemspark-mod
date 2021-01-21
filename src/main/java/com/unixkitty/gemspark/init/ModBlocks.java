@@ -4,11 +4,9 @@ import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.BlockLampPostCap;
 import com.unixkitty.gemspark.block.BlockPedestal;
+import com.unixkitty.gemspark.block.BlockWoodGolem;
 import com.unixkitty.gemspark.block.InvertedRedstoneLampBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.RedstoneLampBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -44,6 +42,7 @@ public final class ModBlocks
     public static final RegistryObject<Block> RUBY_ORE = setup(ModBlockType.ORE, "ruby_ore");
 
     public static final RegistryObject<Block> QUARTZ_PEDESTAL = setup(ModBlockType.PEDESTAL, "quartz_pedestal");
+    public static final RegistryObject<Block> BLACKSTONE_PEDESTAL = setup(ModBlockType.PEDESTAL, "blackstone_pedestal");
 
     public static final RegistryObject<Block> COLORED_LAMP_WHITE = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_white");
     public static final RegistryObject<Block> COLORED_LAMP_ORANGE = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_orange");
@@ -79,15 +78,17 @@ public final class ModBlocks
     public static final RegistryObject<Block> COLORED_INVERTED_LAMP_RED = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_red");
     public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BLACK = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_black");
 
-    public static final RegistryObject<Block> LAMP_POST_CAP_OAK = setup("lamp_post_cap_oak", Block.Properties.from(Blocks.OAK_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_NETHER_BRICK = setup("lamp_post_cap_nether_brick", Block.Properties.from(Blocks.NETHER_BRICK_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_SPRUCE = setup("lamp_post_cap_spruce", Block.Properties.from(Blocks.SPRUCE_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_BIRCH = setup("lamp_post_cap_birch", Block.Properties.from(Blocks.BIRCH_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_JUNGLE = setup("lamp_post_cap_jungle", Block.Properties.from(Blocks.JUNGLE_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_ACACIA = setup("lamp_post_cap_acacia", Block.Properties.from(Blocks.ACACIA_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_DARK_OAK = setup("lamp_post_cap_dark_oak", Block.Properties.from(Blocks.DARK_OAK_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setup("lamp_post_cap_warped", Block.Properties.from(Blocks.WARPED_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setup("lamp_post_cap_crimson", Block.Properties.from(Blocks.CRIMSON_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_OAK = setupLampPost("lamp_post_cap_oak", Block.Properties.from(Blocks.OAK_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_NETHER_BRICK = setupLampPost("lamp_post_cap_nether_brick", Block.Properties.from(Blocks.NETHER_BRICK_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_SPRUCE = setupLampPost("lamp_post_cap_spruce", Block.Properties.from(Blocks.SPRUCE_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_BIRCH = setupLampPost("lamp_post_cap_birch", Block.Properties.from(Blocks.BIRCH_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_JUNGLE = setupLampPost("lamp_post_cap_jungle", Block.Properties.from(Blocks.JUNGLE_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_ACACIA = setupLampPost("lamp_post_cap_acacia", Block.Properties.from(Blocks.ACACIA_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_DARK_OAK = setupLampPost("lamp_post_cap_dark_oak", Block.Properties.from(Blocks.DARK_OAK_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setupLampPost("lamp_post_cap_warped", Block.Properties.from(Blocks.WARPED_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setupLampPost("lamp_post_cap_crimson", Block.Properties.from(Blocks.CRIMSON_FENCE));
+
+    public static final RegistryObject<Block> WOOD_GOLEM_RELIC = BLOCKS.register("wood_golem_relic", () -> new BlockWoodGolem(AbstractBlock.Properties.from(Blocks.SPRUCE_PLANKS).setAllowsSpawn(ModBlocks::neverAllowSpawn)));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
@@ -117,7 +118,7 @@ public final class ModBlocks
         }
     }
 
-    private static RegistryObject<Block> setup(String name, Block.Properties properties)
+    private static RegistryObject<Block> setupLampPost(String name, Block.Properties properties)
     {
         return BLOCKS.register(name, () -> new BlockLampPostCap(properties.setAllowsSpawn(ModBlocks::neverAllowSpawn)));
     }

@@ -1,7 +1,6 @@
 package com.unixkitty.gemspark.tileentity;
 
 import com.unixkitty.gemspark.container.ContainerPedestal;
-import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModTileEntityTypes;
 import com.unixkitty.gemspork.lib.tileentity.TileEntityMod;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +26,6 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class TileEntityPedestal extends TileEntityMod implements INamedContainerProvider
 {
@@ -63,7 +61,7 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
     @Override
     public ITextComponent getDisplayName()
     {
-        return new TranslationTextComponent(Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get().getTranslationKey());
+        return new TranslationTextComponent("text.pedestal.title");
     }
 
     @Nullable

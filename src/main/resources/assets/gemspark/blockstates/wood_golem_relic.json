@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north,pose=standing": { "model": "gemspark:block/woodgolem_pose_standing" },
+    "facing=south,pose=standing": { "model": "gemspark:block/woodgolem_pose_standing", "y": 180 },
+    "facing=west,pose=standing":  { "model": "gemspark:block/woodgolem_pose_standing", "y": 270 },
+    "facing=east,pose=standing":  { "model": "gemspark:block/woodgolem_pose_standing", "y": 90 },
+    "facing=north,pose=slumped": { "model": "gemspark:block/woodgolem_pose_slumped" },
+    "facing=south,pose=slumped": { "model": "gemspark:block/woodgolem_pose_slumped", "y": 180 },
+    "facing=west,pose=slumped":  { "model": "gemspark:block/woodgolem_pose_slumped", "y": 270 },
+    "facing=east,pose=slumped":  { "model": "gemspark:block/woodgolem_pose_slumped", "y": 90 },
+    "facing=north,pose=sitting_slumped": { "model": "gemspark:block/woodgolem_pose_sitting_slumped" },
+    "facing=south,pose=sitting_slumped": { "model": "gemspark:block/woodgolem_pose_sitting_slumped", "y": 180 },
+    "facing=west,pose=sitting_slumped":  { "model": "gemspark:block/woodgolem_pose_sitting_slumped", "y": 270 },
+    "facing=east,pose=sitting_slumped":  { "model": "gemspark:block/woodgolem_pose_sitting_slumped", "y": 90 }
+  }
+}

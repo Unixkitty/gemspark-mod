@@ -84,6 +84,7 @@ public class BlockPedestal extends ContainerBlock
         super.addInformation(stack, worldIn, tooltip, flagIn);
 
         tooltip.add((new TranslationTextComponent("text.pedestal.info").mergeStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslationTextComponent("text.pedestal.info2").mergeStyle(TextFormatting.DARK_GRAY)));
     }
 
     @Override
@@ -108,7 +109,7 @@ public class BlockPedestal extends ContainerBlock
                     {
                         if (itemHandler.getStackInSlot(0).isEmpty())
                         {
-                            return ActionResultType.FAIL;
+                            NetworkHooks.openGui((ServerPlayerEntity) player, tileEntity, pos);
                         }
                         else
                         {

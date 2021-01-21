@@ -88,8 +88,11 @@
   "block.gemspark.pink_sapphire_lantern": "Pink Sapphire Lantern",
   "block.gemspark.ruby_lantern": "Ruby Lantern",
 
-  "block.gemspark.quartz_pedestal": "Display Pedestal",
+  "block.gemspark.quartz_pedestal": "Quartz Pedestal",
+  "block.gemspark.blackstone_pedestal": "Blackstone Pedestal",
   "text.pedestal.info": "Put your favourite items on display!",
+  "text.pedestal.info2": "Right click with a stick to make items rotate",
+  "text.pedestal.title": "Display Pedestal",
 
   "block.gemspark.colored_lamp_black": "Black Lamp",
   "block.gemspark.colored_lamp_blue": "Blue Lamp",
@@ -132,5 +135,7 @@
   "block.gemspark.lamp_post_cap_acacia":"Acacia Lamp Post Cap",
   "block.gemspark.lamp_post_cap_dark_oak": "Dark Oak Lamp Post Cap",
   "block.gemspark.lamp_post_cap_warped":"Warped Lamp Post Cap",
-  "block.gemspark.lamp_post_cap_crimson": "Crimson Lamp Post Cap"
+  "block.gemspark.lamp_post_cap_crimson": "Crimson Lamp Post Cap",
+
+  "block.gemspark.wood_golem_relic": "Inactive Wooden Golem"
 }

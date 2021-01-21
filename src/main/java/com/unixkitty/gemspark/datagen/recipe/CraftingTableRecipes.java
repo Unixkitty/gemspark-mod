@@ -100,13 +100,32 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
     private void registerUniqueRecipes(Consumer<IFinishedRecipe> consumer)
     {
-        //Pedestal
+        //Wood Golem
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.WOOD_GOLEM_RELIC.get())
+                .key('s', Items.STICK)
+                .key('p', Blocks.SPRUCE_PLANKS)
+                .patternLine(" p ")
+                .patternLine("sps")
+                .patternLine("s s")
+                .addCriterion("has_item", hasItem(Items.STICK))
+                .build(consumer);
+
+        //Quartz Pedestal
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.QUARTZ_PEDESTAL.get())
                 .key('s', Blocks.QUARTZ_SLAB)
                 .key('p', Blocks.QUARTZ_PILLAR)
                 .patternLine("s")
                 .patternLine("p")
                 .addCriterion("has_item", hasItem(Tags.Items.GEMS_QUARTZ))
+                .build(consumer);
+
+        //Blackstone Pedestal
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.BLACKSTONE_PEDESTAL.get())
+                .key('s', Blocks.BLACKSTONE_SLAB)
+                .key('p', Blocks.POLISHED_BLACKSTONE)
+                .patternLine("s")
+                .patternLine("p")
+                .addCriterion("has_item", hasItem(Items.BLACKSTONE))
                 .build(consumer);
 
         //Spectacles

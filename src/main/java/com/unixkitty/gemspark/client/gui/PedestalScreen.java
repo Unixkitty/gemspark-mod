@@ -41,7 +41,7 @@ public class PedestalScreen extends ContainerScreen<ContainerPedestal>
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY)
     {
-        String s = I18n.format(ModBlocks.QUARTZ_PEDESTAL.get().getTranslationKey());
+        String s = I18n.format("text.pedestal.title");
         this.font.drawString(matrixStack, s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 0x404040);
         this.font.drawString(matrixStack, I18n.format("container.inventory"), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
     }
