@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "www",
+    "bcb"
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:white_wool"
+    },
+    "c": {
+      "item": "gemspark:cosmetic_clay"
+    },
+    "b": {
+      "item": "minecraft:black_wool"
+    }
+  },
+  "result": {
+    "item": "gemspark:headphones"
+  }
+}

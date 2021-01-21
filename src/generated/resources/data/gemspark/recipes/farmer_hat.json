@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "www",
+    "wcw",
+    "www"
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:wheat"
+    },
+    "c": {
+      "item": "gemspark:cosmetic_clay"
+    }
+  },
+  "result": {
+    "item": "gemspark:farmer_hat"
+  }
+}

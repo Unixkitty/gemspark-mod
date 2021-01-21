@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "tag": "forge:dyes/red"
+    },
+    {
+      "tag": "forge:dyes/green"
+    },
+    {
+      "tag": "forge:dyes/blue"
+    },
+    {
+      "tag": "forge:gems/tanzanite"
+    }
+  ],
+  "result": {
+    "item": "gemspark:cosmetic_clay",
+    "count": 4
+  }
+}

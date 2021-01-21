@@ -67,6 +67,21 @@
   "item.gemspark.spectacles": "Mini Glasses",
   "item.gemspark.glasses_technicolor": "Amazing Technicolor Glasses",
   "item.gemspark.glasses_3d": "3D Glasses",
+  "item.gemspark.glasses_red": "Red Glasses",
+
+  "text.gemspark.cosmetic.info": "Purely cosmetic",
+
+  "item.gemspark.cosmetic_clay": "Cosmetic Clay",
+
+  "item.gemspark.witch_hat": "Witch Hat",
+  "item.gemspark.bunnyband": "Fake Bunny Ears",
+  "item.gemspark.false_halo": "False Halo",
+  "item.gemspark.farmer_hat": "Straw Hat",
+  "item.gemspark.headphones": "Headphones",
+  "item.gemspark.redbackribbon": "Pretty Pink Ribbon",
+  "item.gemspark.spitfirecap": "Spitfire Cap",
+  "item.gemspark.spitfirecap_specs": "Spitfire Cap with spectacles",
+  "item.gemspark.tiara": "Tiara",
 
   "block.gemspark.tanzanite_ore": "Tanzanite Ore",
   "block.gemspark.topaz_ore": "Topaz Ore",

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "gemspark:wood_golem_relic"
+      "gemspark:farmer_hat"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "gemspark:wood_golem_relic"
+        "recipe": "gemspark:farmer_hat"
       }
     }
   },

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lll",
+    "lcl",
+    "  g"
+  ],
+  "key": {
+    "l": {
+      "item": "minecraft:leather"
+    },
+    "c": {
+      "item": "gemspark:cosmetic_clay"
+    },
+    "g": {
+      "tag": "forge:nuggets/gold"
+    }
+  },
+  "result": {
+    "item": "gemspark:spitfirecap"
+  }
+}

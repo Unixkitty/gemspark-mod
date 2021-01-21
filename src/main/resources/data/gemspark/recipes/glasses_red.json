@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    "P P"
+  ],
+  "key": {
+    "s": {
+      "tag": "forge:gems/ruby"
+    },
+    "P": {
+      "tag": "forge:glass_panes/colorless"
+    }
+  },
+  "result": {
+    "item": "gemspark:glasses_red"
+  }
+}

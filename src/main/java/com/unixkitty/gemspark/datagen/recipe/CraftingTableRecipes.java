@@ -13,6 +13,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -100,14 +101,127 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
     private void registerUniqueRecipes(Consumer<IFinishedRecipe> consumer)
     {
+        //Tiara
+        ShapedRecipeBuilder.shapedRecipe(ModItems.TIARA.get())
+                .key('t', Gem.TANZANITE.getItemTag())
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .key('g', Tags.Items.NUGGETS_GOLD)
+                .patternLine("ggg")
+                .patternLine("gcg")
+                .patternLine("ttt")
+                .addCriterion("has_item", hasItem(ModItems.TANZANITE.get()))
+                .build(consumer);
+
+        //Spitfire Cap with spectacles
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.SPITFIRECAP_SPECS.get())
+                .addIngredient(ModItems.SPECTACLES.get())
+                .addIngredient(ModItems.SPITFIRECAP.get())
+                .addCriterion("has_spectacles", hasItem(ModItems.SPECTACLES.get()))
+                .addCriterion("has_spitfirecap", hasItem(ModItems.SPITFIRECAP.get()))
+                .build(consumer);
+
+        //Spitfire Cap
+        ShapedRecipeBuilder.shapedRecipe(ModItems.SPITFIRECAP.get())
+                .key('l', Items.LEATHER)
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .key('g', Tags.Items.NUGGETS_GOLD)
+                .patternLine("lll")
+                .patternLine("lcl")
+                .patternLine("  g")
+                .addCriterion("has_item", hasItem(ModItems.COSMETIC_CLAY.get()))
+                .build(consumer);
+
+        //Pink Ribbon
+        ShapedRecipeBuilder.shapedRecipe(ModItems.REDBACKRIBBON.get())
+                .key('w', Blocks.PINK_WOOL)
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .patternLine("w w")
+                .patternLine("wcw")
+                .addCriterion("has_item", hasItem(ModItems.COSMETIC_CLAY.get()))
+                .build(consumer);
+
+        //Headphones
+        ShapedRecipeBuilder.shapedRecipe(ModItems.HEADPHONES.get())
+                .key('w', Blocks.WHITE_WOOL)
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .key('b', Blocks.BLACK_WOOL)
+                .patternLine("www")
+                .patternLine("bcb")
+                .addCriterion("has_item", hasItem(ModItems.COSMETIC_CLAY.get()))
+                .build(consumer);
+
+        //Straw Hat
+        ShapedRecipeBuilder.shapedRecipe(ModItems.FARMER_HAT.get())
+                .key('w', Items.WHEAT)
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .patternLine("www")
+                .patternLine("wcw")
+                .patternLine("www")
+                .addCriterion("has_item", hasItem(ModItems.COSMETIC_CLAY.get()))
+                .build(consumer);
+
+        //False Halo
+        ShapedRecipeBuilder.shapedRecipe(ModItems.FALSE_HALO.get())
+                .key('g', Tags.Items.INGOTS_GOLD)
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .patternLine(" g ")
+                .patternLine("gcg")
+                .patternLine(" g ")
+                .addCriterion("has_item", hasItem(ModItems.COSMETIC_CLAY.get()))
+                .build(consumer);
+
+        //Bunny Ears
+        ShapedRecipeBuilder.shapedRecipe(ModItems.BUNNYBAND.get())
+                .key('w', Blocks.WHITE_WOOL)
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .key('r', Items.RABBIT_HIDE)
+                .patternLine("w w")
+                .patternLine(" c ")
+                .patternLine(" r ")
+                .addCriterion("has_item", hasItem(Items.RABBIT_HIDE))
+                .build(consumer);
+
+        //Witch Hat
+        ShapedRecipeBuilder.shapedRecipe(ModItems.WITCH_HAT.get())
+                .key('s', Tags.Items.STRING)
+                .key('t', Gem.TANZANITE.getItemTag())
+                .key('b', Blocks.BLACK_WOOL)
+                .key('c', ModItems.COSMETIC_CLAY.get())
+                .key('p', Blocks.PURPLE_WOOL)
+                .patternLine(" st")
+                .patternLine("bc ")
+                .patternLine("pp ")
+                .addCriterion("has_item", hasItem(Items.STICK))
+                .build(consumer);
+
+        //Cosmetic Clay
+        ShapelessRecipeBuilder.shapelessRecipe(ModItems.COSMETIC_CLAY.get(), 4)
+                .addIngredient(Items.CLAY_BALL)
+                .addIngredient(Tags.Items.DYES_RED)
+                .addIngredient(Tags.Items.DYES_GREEN)
+                .addIngredient(Tags.Items.DYES_BLUE)
+                .addIngredient(Gem.TANZANITE.getItemTag())
+                .addCriterion("has_clay", hasItem(Items.CLAY))
+                .build(consumer);
+
+        //Red glasses
+        ShapedRecipeBuilder.shapedRecipe(ModItems.GLASSES_RED.get())
+                .key('s', Gem.RUBY.getItemTag())
+                .key('P', Tags.Items.GLASS_PANES_COLORLESS)
+                .patternLine(" s ")
+                .patternLine("P P")
+                .addCriterion("has_item", hasItem(Gem.RUBY.getItemTag()))
+                .build(consumer);
+
         //Wood Golem
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.WOOD_GOLEM_RELIC.get())
                 .key('s', Items.STICK)
                 .key('p', Blocks.SPRUCE_PLANKS)
+                .key('c', ModItems.COSMETIC_CLAY.get())
                 .patternLine(" p ")
                 .patternLine("sps")
-                .patternLine("s s")
-                .addCriterion("has_item", hasItem(Items.STICK))
+                .patternLine("scs")
+                .addCriterion("has_item", hasItem(ModItems.COSMETIC_CLAY.get()))
                 .build(consumer);
 
         //Quartz Pedestal

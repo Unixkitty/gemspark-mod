@@ -3,7 +3,7 @@
   "pattern": [
     " p ",
     "sps",
-    "s s"
+    "scs"
   ],
   "key": {
     "s": {
@@ -11,6 +11,9 @@
     },
     "p": {
       "item": "minecraft:spruce_planks"
+    },
+    "c": {
+      "item": "gemspark:cosmetic_clay"
     }
   },
   "result": {

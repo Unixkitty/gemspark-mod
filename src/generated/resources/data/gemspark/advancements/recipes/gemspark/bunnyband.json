@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "gemspark:wood_golem_relic"
+      "gemspark:bunnyband"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "gemspark:cosmetic_clay"
+            "item": "minecraft:rabbit_hide"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "gemspark:wood_golem_relic"
+        "recipe": "gemspark:bunnyband"
       }
     }
   },

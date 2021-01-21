@@ -2,16 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "gemspark:wood_golem_relic"
+      "gemspark:spitfirecap_specs"
     ]
   },
   "criteria": {
-    "has_item": {
+    "has_spectacles": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "gemspark:cosmetic_clay"
+            "item": "gemspark:spectacles"
+          }
+        ]
+      }
+    },
+    "has_spitfirecap": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gemspark:spitfirecap"
           }
         ]
       }
@@ -19,13 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "gemspark:wood_golem_relic"
+        "recipe": "gemspark:spitfirecap_specs"
       }
     }
   },
   "requirements": [
     [
-      "has_item",
+      "has_spectacles",
+      "has_spitfirecap",
       "has_the_recipe"
     ]
   ]

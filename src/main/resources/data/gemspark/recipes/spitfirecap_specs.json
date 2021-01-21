@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gemspark:spectacles"
+    },
+    {
+      "item": "gemspark:spitfirecap"
+    }
+  ],
+  "result": {
+    "item": "gemspark:spitfirecap_specs"
+  }
+}

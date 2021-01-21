@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " g ",
+    "gcg",
+    " g "
+  ],
+  "key": {
+    "g": {
+      "tag": "forge:ingots/gold"
+    },
+    "c": {
+      "item": "gemspark:cosmetic_clay"
+    }
+  },
+  "result": {
+    "item": "gemspark:false_halo"
+  }
+}
