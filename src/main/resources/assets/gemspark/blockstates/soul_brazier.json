@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "gemspark:block/brazier_soul_unlit"
+    },
+    "lit=true": {
+      "model": "gemspark:block/brazier_soul"
+    }
+  }
+}

@@ -101,6 +101,72 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
     private void registerUniqueRecipes(Consumer<IFinishedRecipe> consumer)
     {
+        //Stone Tiles
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.STONE_TILES.get(), 4)
+                .key('S', Blocks.SMOOTH_STONE)
+                .patternLine("SS")
+                .patternLine("SS")
+                .addCriterion("has_item", hasItem(Blocks.SMOOTH_STONE))
+                .build(consumer);
+
+        //Stone Floor Tile
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.STONE_FLOOR_TILE.get())
+                .key('S', Blocks.SMOOTH_STONE)
+                .key('s', Blocks.SMOOTH_STONE_SLAB)
+                .patternLine("sS")
+                .patternLine("Ss")
+                .addCriterion("has_item", hasItem(Blocks.SMOOTH_STONE))
+                .build(consumer);
+
+        //Rocky Grassy Dirt
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.ROCKY_GRASSY_DIRT.get(), 4)
+                .key('c', Tags.Items.COBBLESTONE)
+                .key('d', Blocks.DIRT)
+                .patternLine("dd")
+                .patternLine("cd")
+                .addCriterion("has_item", hasItem(Blocks.DIRT))
+                .build(consumer);
+
+        //Rocky Dirt
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.ROCKY_DIRT.get(), 4)
+                .key('c', Tags.Items.COBBLESTONE)
+                .key('d', Blocks.DIRT)
+                .patternLine("cd")
+                .patternLine("dc")
+                .addCriterion("has_item", hasItem(Blocks.DIRT))
+                .build(consumer);
+
+        //Dark Rocky Dirt
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.DARK_ROCKY_DIRT.get(), 4)
+                .key('c', Tags.Items.COBBLESTONE)
+                .key('d', Blocks.DIRT)
+                .patternLine("cd")
+                .patternLine("cc")
+                .addCriterion("has_item", hasItem(Blocks.DIRT))
+                .build(consumer);
+
+        //Soul Brazier
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.SOUL_BRAZIER.get())
+                .key('b', Blocks.IRON_BARS)
+                .key('s', ItemTags.SOUL_FIRE_BASE_BLOCKS)
+                .key('i', Tags.Items.INGOTS_IRON)
+                .patternLine("bsb")
+                .patternLine(" i ")
+                .patternLine("i i")
+                .addCriterion("has_item", hasItem(Tags.Items.INGOTS_IRON))
+                .build(consumer);
+
+        //Brazier
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.BRAZIER.get())
+                .key('b', Blocks.IRON_BARS)
+                .key('c', ItemTags.COALS)
+                .key('i', Tags.Items.INGOTS_IRON)
+                .patternLine("bcb")
+                .patternLine(" i ")
+                .patternLine("i i")
+                .addCriterion("has_item", hasItem(Tags.Items.INGOTS_IRON))
+                .build(consumer);
+
         //Tiara
         ShapedRecipeBuilder.shapedRecipe(ModItems.TIARA.get())
                 .key('t', Gem.TANZANITE.getItemTag())

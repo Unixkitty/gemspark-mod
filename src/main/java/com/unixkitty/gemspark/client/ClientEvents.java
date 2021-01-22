@@ -3,9 +3,12 @@ package com.unixkitty.gemspark.client;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.client.gui.PedestalScreen;
 import com.unixkitty.gemspark.client.render.TileEntityPedestalRender;
+import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModContainerTypes;
 import com.unixkitty.gemspark.init.ModTileEntityTypes;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,6 +35,9 @@ public final class ClientEvents
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
         DeferredWorkQueue.runLater(() -> ScreenManager.registerFactory(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new));
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.BRAZIER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.getCutout());
     }
 
     @SubscribeEvent

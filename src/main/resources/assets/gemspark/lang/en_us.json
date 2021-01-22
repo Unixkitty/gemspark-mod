@@ -152,5 +152,14 @@
   "block.gemspark.lamp_post_cap_warped":"Warped Lamp Post Cap",
   "block.gemspark.lamp_post_cap_crimson": "Crimson Lamp Post Cap",
 
-  "block.gemspark.wood_golem_relic": "Inactive Wooden Golem"
+  "block.gemspark.wood_golem_relic": "Inactive Wooden Golem",
+
+  "block.gemspark.brazier": "Brazier",
+  "block.gemspark.soul_brazier": "Soulfire Brazier",
+
+  "block.gemspark.rocky_dirt": "Rocky Dirt",
+  "block.gemspark.rocky_grassy_dirt": "Rocky Grassy Dirt",
+  "block.gemspark.dark_rocky_dirt": "Dark Rocky Dirt",
+  "block.gemspark.stone_floor_tile": "Stone Floor Tile",
+  "block.gemspark.stone_tiles": "Stone Tiles"
 }

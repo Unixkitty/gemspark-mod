@@ -3,6 +3,7 @@ package com.unixkitty.gemspark.datagen;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.datagen.recipe.CraftingTableRecipes;
 import com.unixkitty.gemspark.datagen.recipe.SmeltingRecipes;
+import com.unixkitty.gemspark.datagen.recipe.StonecutterRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,6 +26,7 @@ public final class DataGenerators
             generator.addProvider(new CraftingTableRecipes(generator));
             generator.addProvider(new SmeltingRecipes(generator));
             generator.addProvider(new ModLootTables(generator));
+            generator.addProvider(new StonecutterRecipes(generator));
         }
     }
 }

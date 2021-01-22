@@ -1,16 +1,20 @@
 package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
+import com.unixkitty.gemspark.block.BlockLampPostCap;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import com.unixkitty.gemspark.worldgen.OreGeneration;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -39,27 +43,4 @@ public final class ModRegistry
         OreGeneration.register();
     }
 
-    public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
-    {
-        if (
-                !event.getWorld().isRemote
-                        && event.getPlayer() instanceof ServerPlayerEntity
-                        && event.getWorld().getBlockState(event.getPos()).getBlock() == ModBlocks.WOOD_GOLEM_RELIC.get()
-                        && event.getItemStack().getItem() == Items.STICK
-        )
-        {
-            BlockState state = event.getWorld().getBlockState(event.getPos());
-
-            if (event.getPlayer().isSneaking())
-            {
-                //Change pose
-                event.getWorld().setBlockState(event.getPos(), state.with(POSE, state.get(POSE).cycle()), 3);
-            }
-            else
-            {
-                //Rotate
-                event.getWorld().setBlockState(event.getPos(), state.with(HorizontalBlock.HORIZONTAL_FACING, state.get(HorizontalBlock.HORIZONTAL_FACING).rotateY()), 3);
-            }
-        }
-    }
 }

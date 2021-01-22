@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cd",
+    "dc"
+  ],
+  "key": {
+    "c": {
+      "tag": "forge:cobblestone"
+    },
+    "d": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "result": {
+    "item": "gemspark:rocky_dirt",
+    "count": 4
+  }
+}

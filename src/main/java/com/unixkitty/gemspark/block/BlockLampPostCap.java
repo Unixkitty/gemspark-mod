@@ -1,10 +1,9 @@
 package com.unixkitty.gemspark.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -15,8 +14,10 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 public class BlockLampPostCap extends HorizontalBlock
@@ -72,6 +73,25 @@ public class BlockLampPostCap extends HorizontalBlock
     {
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    {
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
+
+        if (!world.isRemote && (placer != null && !placer.isSneaking()))
+        {
+            BlockPos offsetPos = pos.offset(state.get(HORIZONTAL_FACING), 1);
+
+            if (world.getBlockState(offsetPos).getBlock().matchesBlock(Blocks.AIR))
+            {
+                world.removeBlock(pos, false);
+                world.setBlockState(offsetPos, state, 3);
+                state.updateNeighbours(world, pos, 3); //Update old position
+            }
+        }
+    }
+
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)

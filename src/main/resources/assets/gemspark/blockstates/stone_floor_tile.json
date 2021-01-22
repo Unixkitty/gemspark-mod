@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gemspark:block/stone_floor_tile"
+      }
+    ]
+  }
+}

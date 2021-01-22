@@ -4,6 +4,7 @@ import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModBlocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -43,6 +44,8 @@ public class ModBlockTags extends BlockTagsProvider
         getOrCreateBuilder(ModTags.Blocks.SAPPHIRE_ORE).add(ModBlocks.SAPPHIRE_ORE.get());
         getOrCreateBuilder(ModTags.Blocks.PINK_SAPPHIRE_ORE).add(ModBlocks.PINK_SAPPHIRE_ORE.get());
         getOrCreateBuilder(ModTags.Blocks.RUBY_ORE).add(ModBlocks.RUBY_ORE.get());
+
+        getOrCreateBuilder(BlockTags.CAMPFIRES).add(ModBlocks.BRAZIER.get(), ModBlocks.SOUL_BRAZIER.get());
     }
 
     @Override

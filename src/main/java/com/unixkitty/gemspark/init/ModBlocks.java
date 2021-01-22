@@ -2,12 +2,13 @@ package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.block.BlockLampPostCap;
-import com.unixkitty.gemspark.block.BlockPedestal;
-import com.unixkitty.gemspark.block.BlockWoodGolem;
-import com.unixkitty.gemspark.block.InvertedRedstoneLampBlock;
-import net.minecraft.block.*;
+import com.unixkitty.gemspark.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.RedstoneLampBlock;
 import net.minecraft.entity.EntityType;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
@@ -15,6 +16,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.ToIntFunction;
 
 @SuppressWarnings("unused")
 public final class ModBlocks
@@ -88,7 +91,17 @@ public final class ModBlocks
     public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setupLampPost("lamp_post_cap_warped", Block.Properties.from(Blocks.WARPED_FENCE));
     public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setupLampPost("lamp_post_cap_crimson", Block.Properties.from(Blocks.CRIMSON_FENCE));
 
-    public static final RegistryObject<Block> WOOD_GOLEM_RELIC = BLOCKS.register("wood_golem_relic", () -> new BlockWoodGolem(AbstractBlock.Properties.from(Blocks.SPRUCE_PLANKS).setAllowsSpawn(ModBlocks::neverAllowSpawn)));
+    public static final RegistryObject<Block> WOOD_GOLEM_RELIC = BLOCKS.register("wood_golem_relic", () -> new BlockWoodGolem(Block.Properties.from(Blocks.SPRUCE_PLANKS).setAllowsSpawn(ModBlocks::neverAllowSpawn)));
+
+    public static final RegistryObject<Block> BRAZIER = BLOCKS.register("brazier", () -> new BlockBrazier(1, Block.Properties.from(Blocks.IRON_BARS).setLightLevel(getLightValueLit(15)).notSolid()));
+    public static final RegistryObject<Block> SOUL_BRAZIER = BLOCKS.register("soul_brazier", () -> new BlockBrazier(2, Block.Properties.from(Blocks.IRON_BARS).setLightLevel(getLightValueLit(10)).notSolid()));
+
+    public static final RegistryObject<Block> ROCKY_DIRT = BLOCKS.register("rocky_dirt", () -> new BlockDirt(Block.Properties.from(Blocks.DIRT)));
+    public static final RegistryObject<Block> ROCKY_GRASSY_DIRT = BLOCKS.register("rocky_grassy_dirt", () -> new BlockDirt(Block.Properties.from(Blocks.COARSE_DIRT)));
+    public static final RegistryObject<Block> DARK_ROCKY_DIRT = BLOCKS.register("dark_rocky_dirt", () -> new BlockDirt(Block.Properties.from(Blocks.GRAVEL)));
+
+    public static final RegistryObject<Block> STONE_FLOOR_TILE = BLOCKS.register("stone_floor_tile", () -> new Block(Block.Properties.from(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> STONE_TILES = BLOCKS.register("stone_tiles", () -> new Block(Block.Properties.from(Blocks.SMOOTH_STONE)));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
@@ -137,5 +150,10 @@ public final class ModBlocks
     private static Boolean neverAllowSpawn(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity)
     {
         return false;
+    }
+
+    private static ToIntFunction<BlockState> getLightValueLit(int lightValue)
+    {
+        return (state) -> state.get(BlockStateProperties.LIT) ? lightValue : 0;
     }
 }

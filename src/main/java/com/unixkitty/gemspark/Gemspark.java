@@ -34,7 +34,7 @@ public class Gemspark
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoading);
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, ModRegistry::onBlockRightClicked);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, ModEvents::onBlockRightClicked);
     }
 
     public static Logger log()

@@ -28,7 +28,7 @@ public class BlockWoodGolem extends HorizontalBlock
 {
     public static final EnumProperty<Pose> POSE = EnumProperty.create("pose", Pose.class);
 
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 14, 16, 14);
+    private static final VoxelShape SHAPE = Block.makeCuboidShape(4, 0, 4, 12, 16, 12);
 
     public BlockWoodGolem(Properties builder)
     {
