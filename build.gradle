@@ -125,7 +125,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-${modMinecraftVersion}:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
 
     compile project(":gemspork")
 }
