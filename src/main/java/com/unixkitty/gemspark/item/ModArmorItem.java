@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.item.Item.Properties;
+
 public class ModArmorItem extends ArmorItem
 {
     private final String materialString;
@@ -34,13 +36,13 @@ public class ModArmorItem extends ArmorItem
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
     {
-        if (!world.isRemote && player.ticksExisted % 90 == 0 && this.getArmorMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties())
+        if (!world.isClientSide && player.tickCount % 90 == 0 && this.getMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties())
         {
             boolean shouldApplyEffect = false;
 
-            for (ItemStack armorStack : player.getArmorInventoryList())
+            for (ItemStack armorStack : player.getArmorSlots())
             {
-                if ((armorStack.getItem() instanceof ArmorItem && ((ArmorItem) armorStack.getItem()).getArmorMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties()))
+                if ((armorStack.getItem() instanceof ArmorItem && ((ArmorItem) armorStack.getItem()).getMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties()))
                 {
                     shouldApplyEffect = true;
                 }
@@ -53,7 +55,7 @@ public class ModArmorItem extends ArmorItem
 
             if (shouldApplyEffect)
             {
-                player.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 100, 0, false, false));
+                player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 100, 0, false, false));
             }
         }
     }

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "gemspark:pink_sapphire_ore"
-  },
-  "result": "gemspark:pink_sapphire",
-  "experience": 1.0,
-  "cookingtime": 200
-}

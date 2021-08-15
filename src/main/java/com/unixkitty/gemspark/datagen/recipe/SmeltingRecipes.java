@@ -18,7 +18,7 @@ public class SmeltingRecipes extends SmeltingRecipeProvider
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
     {
         addBasicOreCooking(consumer, ModBlocks.TANZANITE_ORE.get(), ModItems.TANZANITE.get(), Gem.TANZANITE.toString());
         addBasicOreCooking(consumer, ModBlocks.TOPAZ_ORE.get(), ModItems.TOPAZ.get(), Gem.TOPAZ.toString());

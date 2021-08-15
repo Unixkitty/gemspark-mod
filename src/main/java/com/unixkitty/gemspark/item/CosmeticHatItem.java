@@ -16,6 +16,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class CosmeticHatItem extends Item
 {
     public CosmeticHatItem(Properties properties)
@@ -37,28 +39,28 @@ public class CosmeticHatItem extends Item
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
     {
-        ItemStack heldStack = playerIn.getHeldItem(handIn);
-        ItemStack equippedStack = playerIn.getItemStackFromSlot(getEquipmentSlot(heldStack));
+        ItemStack heldStack = playerIn.getItemInHand(handIn);
+        ItemStack equippedStack = playerIn.getItemBySlot(getEquipmentSlot(heldStack));
 
         if (equippedStack.isEmpty())
         {
-            playerIn.setItemStackToSlot(getEquipmentSlot(heldStack), heldStack.copy());
+            playerIn.setItemSlot(getEquipmentSlot(heldStack), heldStack.copy());
             heldStack.setCount(0);
-            return ActionResult.func_233538_a_(heldStack, worldIn.isRemote());
+            return ActionResult.sidedSuccess(heldStack, worldIn.isClientSide());
         }
         else
         {
-            return ActionResult.resultFail(heldStack);
+            return ActionResult.fail(heldStack);
         }
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
     {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslationTextComponent("text.gemspark.cosmetic.info").mergeStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslationTextComponent("text.gemspark.cosmetic.info").withStyle(TextFormatting.DARK_GRAY)));
     }
 }

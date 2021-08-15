@@ -22,40 +22,40 @@ public class InvertedRedstoneLampBlock extends RedstoneLampBlock
 
     public InvertedRedstoneLampBlock()
     {
-        super(Block.Properties.from(Blocks.REDSTONE_LAMP));
-        this.setDefaultState(this.getDefaultState().with(LIT, true));
+        super(Block.Properties.copy(Blocks.REDSTONE_LAMP));
+        this.registerDefaultState(this.defaultBlockState().setValue(LIT, true));
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        return this.getDefaultState().with(LIT, !context.getWorld().isBlockPowered(context.getPos()));
+        return this.defaultBlockState().setValue(LIT, !context.getLevel().hasNeighborSignal(context.getClickedPos()));
     }
 
     @Override
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
     {
-        if (!worldIn.isRemote)
+        if (!worldIn.isClientSide)
         {
-            if ((!state.get(LIT) && worldIn.isBlockPowered(pos)) || (state.get(LIT) && !worldIn.isBlockPowered(pos)))
+            if ((!state.getValue(LIT) && worldIn.hasNeighborSignal(pos)) || (state.getValue(LIT) && !worldIn.hasNeighborSignal(pos)))
             {
-                worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
+                worldIn.getBlockTicks().scheduleTick(pos, this, 4);
             }
             else
             {
-                //func_235896_a_ -> cycle
-                worldIn.setBlockState(pos, state.func_235896_a_(LIT));
+                //cycle -> cycle
+                worldIn.setBlockAndUpdate(pos, state.cycle(LIT));
             }
 
         }
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_)
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_)
     {
-        if (!worldIn.isRemote)
+        if (!worldIn.isClientSide)
         {
-            Gemspark.log().debug("Inverted Lamp info: [" + state + "], [" + state.getLightValue() + "], [" + state.get(LIT) + "]");
+            Gemspark.log().debug("Inverted Lamp info: [" + state + "], [" + state.getLightEmission() + "], [" + state.getValue(LIT) + "]");
         }
 
         return ActionResultType.SUCCESS;
@@ -64,9 +64,9 @@ public class InvertedRedstoneLampBlock extends RedstoneLampBlock
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand)
     {
-        if (state.get(LIT) && worldIn.isBlockPowered(pos))
+        if (state.getValue(LIT) && worldIn.hasNeighborSignal(pos))
         {
-            worldIn.setBlockState(pos, state.func_235896_a_(LIT), 2);
+            worldIn.setBlock(pos, state.cycle(LIT), 2);
         }
 
     }

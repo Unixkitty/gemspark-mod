@@ -23,7 +23,7 @@ public class ModItemGroups
         }
 
         @Override
-        public ItemStack createIcon()
+        public ItemStack makeIcon()
         {
             return iconSupplier.get();
         }

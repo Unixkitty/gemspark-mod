@@ -107,12 +107,12 @@ public final class ModItems
 
     private static Item.Properties basicProperties()
     {
-        return new Item.Properties().group(ModItemGroups.PRIMARY);
+        return new Item.Properties().tab(ModItemGroups.PRIMARY);
     }
 
     private static RegistryObject<Item> registerCosmeticHat(String name)
     {
-        return ITEMS.register(name, () -> new CosmeticHatItem(basicProperties().maxStackSize(1)));
+        return ITEMS.register(name, () -> new CosmeticHatItem(basicProperties().stacksTo(1)));
     }
 
     private static RegistryObject<Item> registerArmorItem(String name, IArmorMaterial armorMaterial, EquipmentSlotType slot)

@@ -43,7 +43,7 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
 
             TileEntityPedestal.this.syncForRender();
 
-            TileEntityPedestal.this.markDirty();
+            TileEntityPedestal.this.setChanged();
         }
     };
 
@@ -100,9 +100,9 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
      * Invalidates our tile entity
      */
     @Override
-    public void remove()
+    public void setRemoved()
     {
-        super.remove();
+        super.setRemoved();
         // We need to invalidate our capability references so that any cached references (by other mods) don't
         // continue to reference our capabilities and try to use them and/or prevent them from being garbage collected
         inventoryCapabilityExternal.invalidate();
@@ -116,16 +116,16 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
     @Override
     public AxisAlignedBB getRenderBoundingBox()
     {
-        return new AxisAlignedBB(getPos(), getPos().add(1, 2, 1));
+        return new AxisAlignedBB(getBlockPos(), getBlockPos().offset(1, 2, 1));
     }
 
     //Thanks Vazkii
     public void syncForRender()
     {
         SUpdateTileEntityPacket packet = this.getUpdatePacket();
-        BlockPos pos = this.getPos();
+        BlockPos pos = this.getBlockPos();
 
-        World world = this.getWorld();
+        World world = this.getLevel();
 
         //Can happen on first join
         if (world == null)
@@ -139,7 +139,7 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
 
         if (packet != null && world instanceof ServerWorld)
         {
-            ((ServerChunkProvider) this.getWorld().getChunkProvider()).chunkManager.getTrackingPlayers(new ChunkPos(pos), false).forEach(e -> e.connection.sendPacket(packet));
+            ((ServerChunkProvider) this.getLevel().getChunkSource()).chunkMap.getPlayers(new ChunkPos(pos), false).forEach(e -> e.connection.send(packet));
         }
     }
 }

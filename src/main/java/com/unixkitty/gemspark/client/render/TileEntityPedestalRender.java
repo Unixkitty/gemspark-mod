@@ -27,17 +27,17 @@ public class TileEntityPedestalRender extends TileEntityRenderer<TileEntityPedes
     @Override
     public void render(@Nonnull TileEntityPedestal pedestal, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light, int overlay)
     {
-        if (pedestal.getWorld() == null) return;
+        if (pedestal.getLevel() == null) return;
 
         if (!pedestal.getItemHandler().getStackInSlot(0).isEmpty())
         {
             ItemStack storedStack = pedestal.getItemHandler().getStackInSlot(0);
 
-            matrix.push();
+            matrix.pushPose();
 
             if (itemEntity == null)
             {
-                itemEntity = new ItemEntity(Objects.requireNonNull(pedestal.getWorld()), pedestal.getPos().getX(), pedestal.getPos().getY() + 1, pedestal.getPos().getZ(), storedStack);
+                itemEntity = new ItemEntity(Objects.requireNonNull(pedestal.getLevel()), pedestal.getBlockPos().getX(), pedestal.getBlockPos().getY() + 1, pedestal.getBlockPos().getZ(), storedStack);
                 itemEntity.makeFakeItem();
             }
 
@@ -47,22 +47,22 @@ public class TileEntityPedestalRender extends TileEntityRenderer<TileEntityPedes
             {
                 matrix.translate(0.5f, 1.25f, 0.5f);
 
-                long gametime = pedestal.getWorld().getGameTime();
+                long gametime = pedestal.getLevel().getGameTime();
 
                 matrix.translate(0, Math.sin((gametime - pedestal.lastChangeTime + partialTicks) / 8) / 16.0, 0);
-                matrix.rotate(Vector3f.YP.rotationDegrees((gametime + partialTicks) * 4));
+                matrix.mulPose(Vector3f.YP.rotationDegrees((gametime + partialTicks) * 4));
             }
             else
             {
                 matrix.translate(0.5f, 1.125f, 0.5f);
-                matrix.rotate(Vector3f.YP.rotationDegrees(pedestal.itemFacingDirection));
+                matrix.mulPose(Vector3f.YP.rotationDegrees(pedestal.itemFacingDirection));
             }
 
-            Minecraft.getInstance().getItemRenderer().renderItem(itemEntity.getItem(), ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrix, buffer);
+            Minecraft.getInstance().getItemRenderer().renderStatic(itemEntity.getItem(), ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrix, buffer);
 
             matrix.translate(-0.5f, -1.5f, -0.5f);
 
-            matrix.pop();
+            matrix.popPose();
         }
     }
 }

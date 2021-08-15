@@ -26,12 +26,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class BlockBrazier extends Block implements IWaterLoggable
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
+    private static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
 
     private final int fireDamage;
 
@@ -41,18 +43,18 @@ public class BlockBrazier extends Block implements IWaterLoggable
 
         this.fireDamage = fireDamage;
 
-        this.setDefaultState(this.getStateContainer().getBaseState().with(LIT, true).with(WATERLOGGED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(LIT, true).setValue(WATERLOGGED, false));
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity)
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity)
     {
-        if (!entity.isImmuneToFire() && state.get(LIT) && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity))
+        if (!entity.fireImmune() && state.getValue(LIT) && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity))
         {
-            entity.attackEntityFrom(DamageSource.IN_FIRE, (float) this.fireDamage);
+            entity.hurt(DamageSource.IN_FIRE, (float) this.fireDamage);
         }
 
-        super.onEntityCollision(state, world, pos, entity);
+        super.entityInside(state, world, pos, entity);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class BlockBrazier extends Block implements IWaterLoggable
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state)
+    public BlockRenderType getRenderShape(BlockState state)
     {
         return BlockRenderType.MODEL;
     }
@@ -71,54 +73,54 @@ public class BlockBrazier extends Block implements IWaterLoggable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        final boolean flag = context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER;
+        final boolean flag = context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
 
-        return this.getDefaultState().with(WATERLOGGED, flag).with(LIT, !flag);
+        return this.defaultBlockState().setValue(WATERLOGGED, flag).setValue(LIT, !flag);
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos)
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos)
     {
-        if (state.get(WATERLOGGED))
+        if (state.getValue(WATERLOGGED))
         {
-            world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
-        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, World world, BlockPos pos, Random rand)
     {
-        if (state.get(LIT) && rand.nextInt(10) == 0)
+        if (state.getValue(LIT) && rand.nextInt(10) == 0)
         {
-            world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
+            world.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
         }
     }
 
     @Override
-    public boolean receiveFluid(IWorld world, BlockPos pos, BlockState state, FluidState fluidState)
+    public boolean placeLiquid(IWorld world, BlockPos pos, BlockState state, FluidState fluidState)
     {
-        if (!state.get(WATERLOGGED) && fluidState.getFluid() == Fluids.WATER)
+        if (!state.getValue(WATERLOGGED) && fluidState.getType() == Fluids.WATER)
         {
-            if (state.get(LIT))
+            if (state.getValue(LIT))
             {
-                if (!world.isRemote())
+                if (!world.isClientSide())
                 {
-                    world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
 
-                if (world.isRemote())
+                if (world.isClientSide())
                 {
                     for (int i = 0; i < 20; ++i)
                     {
-                        CampfireBlock.spawnSmokeParticles((World) world, pos, false, true);
+                        CampfireBlock.makeParticles((World) world, pos, false, true);
                     }
                 }
             }
 
-            world.setBlockState(pos, state.with(WATERLOGGED, true).with(LIT, false), 3);
-            world.getPendingFluidTicks().scheduleTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+            world.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 3);
+            world.getLiquidTicks().scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
             return true;
         }
         else
@@ -130,11 +132,11 @@ public class BlockBrazier extends Block implements IWaterLoggable
     @Override
     public FluidState getFluidState(BlockState state)
     {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(LIT, WATERLOGGED);
     }

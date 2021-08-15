@@ -16,7 +16,7 @@ public class ModItemTags extends ItemTagsProvider
     }
 
     @Override
-    protected void registerTags()
+    protected void addTags()
     {
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
         copy(ModTags.Blocks.TANZANITE_ORE, ModTags.Items.TANZANITE_ORE);
@@ -33,18 +33,18 @@ public class ModItemTags extends ItemTagsProvider
         copy(ModTags.Blocks.RUBY_BLOCK, ModTags.Items.RUBY_BLOCK);
 
         /* Block tags copying end */
-        getOrCreateBuilder(Tags.Items.GEMS).addTags(
+        tag(Tags.Items.GEMS).addTags(
                 Gem.TANZANITE.getItemTag(),
                 Gem.TOPAZ.getItemTag(),
                 Gem.SAPPHIRE.getItemTag(),
                 Gem.PINK_SAPPHIRE.getItemTag(),
                 Gem.RUBY.getItemTag()
         );
-        getOrCreateBuilder(Gem.TANZANITE.getItemTag()).add(ModItems.TANZANITE.get());
-        getOrCreateBuilder(Gem.TOPAZ.getItemTag()).add(ModItems.TOPAZ.get());
-        getOrCreateBuilder(Gem.SAPPHIRE.getItemTag()).add(ModItems.SAPPHIRE.get());
-        getOrCreateBuilder(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
-        getOrCreateBuilder(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
+        tag(Gem.TANZANITE.getItemTag()).add(ModItems.TANZANITE.get());
+        tag(Gem.TOPAZ.getItemTag()).add(ModItems.TOPAZ.get());
+        tag(Gem.SAPPHIRE.getItemTag()).add(ModItems.SAPPHIRE.get());
+        tag(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
+        tag(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
     }
 
     @Override

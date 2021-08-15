@@ -18,7 +18,7 @@ public class ModEvents
 {
     public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
     {
-        if (!event.getWorld().isRemote)
+        if (!event.getWorld().isClientSide)
         {
             //Wood golem stuff
             if (
@@ -29,15 +29,15 @@ public class ModEvents
             {
                 BlockState state = event.getWorld().getBlockState(event.getPos());
 
-                if (event.getPlayer().isSneaking())
+                if (event.getPlayer().isShiftKeyDown())
                 {
                     //Change pose
-                    event.getWorld().setBlockState(event.getPos(), state.with(POSE, state.get(POSE).cycle()), 3);
+                    event.getWorld().setBlock(event.getPos(), state.setValue(POSE, state.getValue(POSE).cycle()), 3);
                 }
                 else
                 {
                     //Rotate
-                    event.getWorld().setBlockState(event.getPos(), state.with(HorizontalBlock.HORIZONTAL_FACING, state.get(HorizontalBlock.HORIZONTAL_FACING).rotateY()), 3);
+                    event.getWorld().setBlock(event.getPos(), state.setValue(HorizontalBlock.FACING, state.getValue(HorizontalBlock.FACING).getClockWise()), 3);
                 }
             }
 
@@ -50,25 +50,25 @@ public class ModEvents
                 BlockState blockstate = world.getBlockState(blockpos);
                 BlockState blockstate2 = null;
 
-                if (blockstate.get(BlockBrazier.LIT))
+                if (blockstate.getValue(BlockBrazier.LIT))
                 {
-                    if (!world.isRemote())
+                    if (!world.isClientSide())
                     {
-                        world.playEvent(null, 1009, blockpos, 0);
+                        world.levelEvent(null, 1009, blockpos, 0);
                     }
 
-                    blockstate2 = blockstate.with(BlockBrazier.LIT, false);
+                    blockstate2 = blockstate.setValue(BlockBrazier.LIT, false);
                 }
 
                 if (blockstate2 != null)
                 {
-                    if (!world.isRemote)
+                    if (!world.isClientSide)
                     {
-                        world.setBlockState(blockpos, blockstate2, 11);
+                        world.setBlock(blockpos, blockstate2, 11);
                         if (playerentity != null)
                         {
-                            event.getItemStack().damageItem(1, playerentity, (player) -> {
-                                player.sendBreakAnimation(event.getHand());
+                            event.getItemStack().hurtAndBreak(1, playerentity, (player) -> {
+                                player.broadcastBreakEvent(event.getHand());
                             });
                         }
                     }

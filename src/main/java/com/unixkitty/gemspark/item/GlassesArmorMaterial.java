@@ -22,37 +22,37 @@ public enum GlassesArmorMaterial implements IArmorMaterial
 
     GlassesArmorMaterial(ITag<Item> repairItem)
     {
-        this.repairItem = new LazyValue<>(() -> Ingredient.fromTag(repairItem));
+        this.repairItem = new LazyValue<>(() -> Ingredient.of(repairItem));
     }
 
     @Override
-    public int getDurability(EquipmentSlotType slot)
+    public int getDurabilityForSlot(EquipmentSlotType slot)
     {
-        return ArmorMaterial.LEATHER.getDurability(slot);
+        return ArmorMaterial.LEATHER.getDurabilityForSlot(slot);
     }
 
     @Override
-    public int getDamageReductionAmount(EquipmentSlotType slot)
+    public int getDefenseForSlot(EquipmentSlotType slot)
     {
-        return ArmorMaterial.LEATHER.getDamageReductionAmount(slot);
+        return ArmorMaterial.LEATHER.getDefenseForSlot(slot);
     }
 
     @Override
-    public int getEnchantability()
+    public int getEnchantmentValue()
     {
-        return ArmorMaterial.GOLD.getEnchantability();
+        return ArmorMaterial.GOLD.getEnchantmentValue();
     }
 
     @Override
-    public SoundEvent getSoundEvent()
+    public SoundEvent getEquipSound()
     {
-        return ArmorMaterial.LEATHER.getSoundEvent();
+        return ArmorMaterial.LEATHER.getEquipSound();
     }
 
     @Override
-    public Ingredient getRepairMaterial()
+    public Ingredient getRepairIngredient()
     {
-        return this.repairItem.getValue();
+        return this.repairItem.get();
     }
 
     @Override

@@ -24,7 +24,7 @@ public class OreGeneration
     {
         Registry<ConfiguredFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_FEATURE;
 
-        RuleTest fillerBlockType = OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER;
+        RuleTest fillerBlockType = OreFeatureConfig.FillerBlockType.NETHER_ORE_REPLACEABLES;
 
         PINK_SAPPHIRE_ORE = HelperUtil.registerOreFeature(
                 fillerBlockType,
@@ -35,7 +35,7 @@ public class OreGeneration
                 Config.pinkSapphireMaxHeight.get()
         );
 
-        fillerBlockType = OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD;
+        fillerBlockType = OreFeatureConfig.FillerBlockType.NATURAL_STONE;
 
         TANZANITE_ORE = HelperUtil.registerOreFeature(
                 fillerBlockType,
@@ -85,26 +85,26 @@ public class OreGeneration
         {
             if (Config.generatePinkSapphireOre.get())
             {
-                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.PINK_SAPPHIRE_ORE);
+                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.PINK_SAPPHIRE_ORE);
             }
         }
         else if (event.getCategory() != Biome.Category.THEEND)
         {
             if (Config.generateTanzaniteOre.get())
             {
-                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.TANZANITE_ORE);
+                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.TANZANITE_ORE);
             }
             if (Config.generateTopazOre.get())
             {
-                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.TOPAZ_ORE);
+                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.TOPAZ_ORE);
             }
             if (Config.generateSapphireOre.get())
             {
-                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.SAPPHIRE_ORE);
+                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.SAPPHIRE_ORE);
             }
             if (Config.generateRubyOre.get())
             {
-                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.RUBY_ORE);
+                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.RUBY_ORE);
             }
         }
     }

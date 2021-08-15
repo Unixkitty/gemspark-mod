@@ -24,27 +24,29 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class BlockWoodGolem extends HorizontalBlock
 {
     public static final EnumProperty<Pose> POSE = EnumProperty.create("pose", Pose.class);
 
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(4, 0, 4, 12, 16, 12);
+    private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 16, 12);
 
     public BlockWoodGolem(Properties builder)
     {
         super(builder);
 
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(POSE, Pose.STANDING));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POSE, Pose.STANDING));
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit)
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit)
     {
-        if (!world.isRemote)
+        if (!world.isClientSide)
         {
-            if (player instanceof ServerPlayerEntity && player.isSneaking() && player.getHeldItem(hand).isEmpty())
+            if (player instanceof ServerPlayerEntity && player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty())
             {
-                if (player.inventory.addItemStackToInventory(new ItemStack(ModBlocks.WOOD_GOLEM_RELIC.get())))
+                if (player.inventory.add(new ItemStack(ModBlocks.WOOD_GOLEM_RELIC.get())))
                 {
                     world.removeBlock(pos, false);
                 }
@@ -66,7 +68,7 @@ public class BlockWoodGolem extends HorizontalBlock
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state)
+    public BlockRenderType getRenderShape(BlockState state)
     {
         return BlockRenderType.MODEL;
     }
@@ -80,13 +82,13 @@ public class BlockWoodGolem extends HorizontalBlock
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite()).with(POSE, Pose.STANDING);
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(POSE, Pose.STANDING);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
     {
-        builder.add(HORIZONTAL_FACING, POSE);
+        builder.add(FACING, POSE);
     }
 
     public enum Pose implements IStringSerializable
@@ -111,7 +113,7 @@ public class BlockWoodGolem extends HorizontalBlock
         }
 
         @Override
-        public String getString()
+        public String getSerializedName()
         {
             return this.toString().toLowerCase();
         }

@@ -20,35 +20,37 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class BlockLampPostCap extends HorizontalBlock
 {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final VoxelShape SHAPE_NORTH = makeShape(
-            Block.makeCuboidShape(5, -1, 21, 11, 5, 27),
-            Block.makeCuboidShape(6, 0, 5, 10, 4, 21)
+            Block.box(5, -1, 21, 11, 5, 27),
+            Block.box(6, 0, 5, 10, 4, 21)
     );
 
     private static final VoxelShape SHAPE_EAST = makeShape(
-            Block.makeCuboidShape(-11, -1, 5, -5, 5, 11),
-            Block.makeCuboidShape(-5, 0, 6, 11, 4, 10)
+            Block.box(-11, -1, 5, -5, 5, 11),
+            Block.box(-5, 0, 6, 11, 4, 10)
     );
 
     private static final VoxelShape SHAPE_SOUTH = makeShape(
-            Block.makeCuboidShape(5, -1, -11, 11, 5, -5),
-            Block.makeCuboidShape(6, 0, -5, 10, 4, 11)
+            Block.box(5, -1, -11, 11, 5, -5),
+            Block.box(6, 0, -5, 10, 4, 11)
     );
 
     private static final VoxelShape SHAPE_WEST = makeShape(
-            Block.makeCuboidShape(21, -1, 5, 27, 5, 11),
-            Block.makeCuboidShape(5, 0, 6, 21, 4, 10)
+            Block.box(21, -1, 5, 27, 5, 11),
+            Block.box(5, 0, 6, 21, 4, 10)
     );
 
     public BlockLampPostCap(Properties properties)
     {
         super(properties);
 
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     /**
@@ -71,43 +73,43 @@ public class BlockLampPostCap extends HorizontalBlock
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    public void setPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
     {
-        super.onBlockPlacedBy(world, pos, state, placer, stack);
+        super.setPlacedBy(world, pos, state, placer, stack);
 
-        if (!world.isRemote && (placer != null && !placer.isSneaking()))
+        if (!world.isClientSide && (placer != null && !placer.isShiftKeyDown()))
         {
-            BlockPos offsetPos = pos.offset(state.get(HORIZONTAL_FACING), 1);
+            BlockPos offsetPos = pos.relative(state.getValue(FACING), 1);
 
-            if (world.getBlockState(offsetPos).getBlock().matchesBlock(Blocks.AIR))
+            if (world.getBlockState(offsetPos).getBlock().is(Blocks.AIR))
             {
                 world.removeBlock(pos, false);
-                world.setBlockState(offsetPos, state, 3);
-                state.updateNeighbours(world, pos, 3); //Update old position
+                world.setBlock(offsetPos, state, 3);
+                state.updateNeighbourShapes(world, pos, 3); //Update old position
             }
         }
     }
 
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(FACING);
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state)
+    public BlockRenderType getRenderShape(BlockState state)
     {
         return BlockRenderType.MODEL;
     }
 
     private VoxelShape getShapeFromFace(final BlockState state)
     {
-        switch (state.get(FACING))
+        switch (state.getValue(FACING))
         {
             case EAST:
                 return SHAPE_EAST;
@@ -122,6 +124,6 @@ public class BlockLampPostCap extends HorizontalBlock
 
     private static VoxelShape makeShape(@Nonnull VoxelShape... shapes)
     {
-        return Stream.of(shapes).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+        return Stream.of(shapes).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
     }
 }

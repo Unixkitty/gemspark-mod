@@ -34,10 +34,10 @@ public final class ClientEvents
     {
         // Register ContainerType Screens
         // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
-        DeferredWorkQueue.runLater(() -> ScreenManager.registerFactory(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new));
+        DeferredWorkQueue.runLater(() -> ScreenManager.register(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new));
 
-        RenderTypeLookup.setRenderLayer(ModBlocks.BRAZIER.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.BRAZIER.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.cutout());
     }
 
     @SubscribeEvent

@@ -32,7 +32,7 @@ public class ContainerPedestal extends Container
     public ContainerPedestal(final int windowId, final PlayerInventory playerInventory, final TileEntityPedestal tileEntity)
     {
         super(ModContainerTypes.PEDESTAL.get(), windowId);
-        this.canInteractWithCallable = IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos());
+        this.canInteractWithCallable = IWorldPosCallable.create(Objects.requireNonNull(tileEntity.getLevel()), tileEntity.getBlockPos());
 
         final int PEDESTAL_SLOT_X = 80;
         final int PEDESTAL_SLOT_Y = 35;
@@ -69,7 +69,7 @@ public class ContainerPedestal extends Container
     {
         Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
         Objects.requireNonNull(data, "data cannot be null!");
-        final TileEntity tileAtPos = playerInventory.player.world.getTileEntity(data.readBlockPos());
+        final TileEntity tileAtPos = playerInventory.player.level.getBlockEntity(data.readBlockPos());
 
         if (tileAtPos instanceof TileEntityPedestal)
         {
@@ -90,34 +90,34 @@ public class ContainerPedestal extends Container
      */
     @Nonnull
     @Override
-    public ItemStack transferStackInSlot(final PlayerEntity player, final int index)
+    public ItemStack quickMoveStack(final PlayerEntity player, final int index)
     {
         ItemStack returnStack = ItemStack.EMPTY;
-        final Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack())
+        final Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem())
         {
-            final ItemStack slotStack = slot.getStack();
+            final ItemStack slotStack = slot.getItem();
             returnStack = slotStack.copy();
 
-            final int containerSlots = this.inventorySlots.size() - player.inventory.mainInventory.size();
+            final int containerSlots = this.slots.size() - player.inventory.items.size();
             if (index < containerSlots)
             {
-                if (!mergeItemStack(slotStack, containerSlots, this.inventorySlots.size(), true))
+                if (!moveItemStackTo(slotStack, containerSlots, this.slots.size(), true))
                 {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (!mergeItemStack(slotStack, 0, containerSlots, false))
+            else if (!moveItemStackTo(slotStack, 0, containerSlots, false))
             {
                 return ItemStack.EMPTY;
             }
             if (slotStack.getCount() == 0)
             {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             }
             else
             {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
             if (slotStack.getCount() == returnStack.getCount())
             {
@@ -129,9 +129,9 @@ public class ContainerPedestal extends Container
     }
 
     @Override
-    public boolean canInteractWith(@Nonnull final PlayerEntity player)
+    public boolean stillValid(@Nonnull final PlayerEntity player)
     {
-        return isWithinUsableDistance(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get())
-                || isWithinUsableDistance(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.BLACKSTONE_PEDESTAL).get());
+        return stillValid(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.QUARTZ_PEDESTAL).get())
+                || stillValid(canInteractWithCallable, player, Objects.requireNonNull(ModBlocks.BLACKSTONE_PEDESTAL).get());
     }
 }

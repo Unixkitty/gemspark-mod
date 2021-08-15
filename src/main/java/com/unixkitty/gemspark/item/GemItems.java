@@ -98,7 +98,7 @@ public class GemItems
 
     private static Item.Properties itemProperties(Gem gem)
     {
-        return new Item.Properties().rarity(gem.getRarity()).group(ModItemGroups.PRIMARY);
+        return new Item.Properties().rarity(gem.getRarity()).tab(ModItemGroups.PRIMARY);
     }
 
 }

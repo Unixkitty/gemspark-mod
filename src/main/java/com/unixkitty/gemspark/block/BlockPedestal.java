@@ -37,16 +37,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class BlockPedestal extends ContainerBlock
 {
     //private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 15, 16, 15);
     private static final VoxelShape SHAPE = Stream.of(
-            Block.makeCuboidShape(2, 0, 2, 14, 1, 14),
-            Block.makeCuboidShape(3, 1, 3, 13, 14, 13),
-            Block.makeCuboidShape(2, 14, 2, 14, 15, 14),
-            Block.makeCuboidShape(1, 15, 1, 15, 16, 15)
+            Block.box(2, 0, 2, 14, 1, 14),
+            Block.box(3, 1, 3, 13, 14, 13),
+            Block.box(2, 14, 2, 14, 15, 14),
+            Block.box(1, 15, 1, 15, 16, 15)
     )
-            .reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+            .reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
 
     public BlockPedestal(Properties properties)
     {
@@ -65,45 +67,45 @@ public class BlockPedestal extends ContainerBlock
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState state)
+    public BlockRenderType getRenderShape(BlockState state)
     {
         return BlockRenderType.MODEL;
     }
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn)
+    public TileEntity newBlockEntity(IBlockReader worldIn)
     {
         return ModTileEntityTypes.PEDESTAL.get().create();
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
     {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslationTextComponent("text.pedestal.info").mergeStyle(TextFormatting.DARK_GRAY)));
-        tooltip.add((new TranslationTextComponent("text.pedestal.info2").mergeStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslationTextComponent("text.pedestal.info").withStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslationTextComponent("text.pedestal.info2").withStyle(TextFormatting.DARK_GRAY)));
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
     {
-        if (!world.isRemote)
+        if (!world.isClientSide)
         {
-            if (this.getContainer(state, world, pos) != null && player instanceof ServerPlayerEntity)
+            if (this.getMenuProvider(state, world, pos) != null && player instanceof ServerPlayerEntity)
             {
-                TileEntity tile = world.getTileEntity(pos);
+                TileEntity tile = world.getBlockEntity(pos);
 
                 if (!(tile instanceof TileEntityPedestal)) return ActionResultType.FAIL;
 
                 TileEntityPedestal tileEntity = (TileEntityPedestal) tile;
 
                 IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
-                ItemStack heldItem = player.getHeldItem(hand);
+                ItemStack heldItem = player.getItemInHand(hand);
 
-                if (!player.isSneaking())
+                if (!player.isShiftKeyDown())
                 {
                     if (heldItem.isEmpty())
                     {
@@ -113,7 +115,7 @@ public class BlockPedestal extends ContainerBlock
                         }
                         else
                         {
-                            player.setHeldItem(hand, itemHandler.extractItem(0, 64, false));
+                            player.setItemInHand(hand, itemHandler.extractItem(0, 64, false));
                         }
                     }
                     else if (heldItem.getItem() == Items.STICK)
@@ -124,7 +126,7 @@ public class BlockPedestal extends ContainerBlock
                     }
                     else
                     {
-                        switch (player.getHorizontalFacing().getOpposite())
+                        switch (player.getDirection().getOpposite())
                         {
                             case NORTH:
                                 tileEntity.itemFacingDirection = 180;
@@ -146,11 +148,11 @@ public class BlockPedestal extends ContainerBlock
                         }
                         else
                         {
-                            player.setHeldItem(hand, itemHandler.insertItem(0, heldItem, false));
+                            player.setItemInHand(hand, itemHandler.insertItem(0, heldItem, false));
                         }
                     }
 
-                    tileEntity.markDirty();
+                    tileEntity.setChanged();
                 }
                 else
                 {
@@ -163,16 +165,16 @@ public class BlockPedestal extends ContainerBlock
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
         if (state.getBlock() != newState.getBlock())
         {
-            ItemStack itemStack = ((TileEntityPedestal) Objects.requireNonNull(worldIn.getTileEntity(pos))).getItemHandler().getStackInSlot(0);
+            ItemStack itemStack = ((TileEntityPedestal) Objects.requireNonNull(worldIn.getBlockEntity(pos))).getItemHandler().getStackInSlot(0);
             if (!itemStack.isEmpty())
             {
-                InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack);
             }
         }
-        super.onReplaced(state, worldIn, pos, newState, isMoving);
+        super.onRemove(state, worldIn, pos, newState, isMoving);
     }
 }

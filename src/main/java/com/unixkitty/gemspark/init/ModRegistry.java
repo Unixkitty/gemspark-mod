@@ -33,7 +33,7 @@ public final class ModRegistry
     {
         // BlockItems for all blocks
         ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block ->
-                event.getRegistry().register(new BlockItem(block, new Item.Properties().group(ModItemGroups.PRIMARY)).setRegistryName(Objects.requireNonNull(block.getRegistryName())))
+                event.getRegistry().register(new BlockItem(block, new Item.Properties().tab(ModItemGroups.PRIMARY)).setRegistryName(Objects.requireNonNull(block.getRegistryName())))
         );
     }
 

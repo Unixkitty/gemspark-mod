@@ -19,23 +19,23 @@ public class StonecutterRecipes extends RecipeProvider
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
     {
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.STONE_FLOOR_TILE.get()), Blocks.SMOOTH_STONE)
-                .addCriterion("has_item", hasItem(Blocks.SMOOTH_STONE))
-                .build(consumer, "smooth_stone_from_stone_floor_tile_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.STONE_FLOOR_TILE.get()), Blocks.SMOOTH_STONE)
+                .unlocks("has_item", has(Blocks.SMOOTH_STONE))
+                .save(consumer, "smooth_stone_from_stone_floor_tile_stonecutting");
 
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(ModBlocks.STONE_TILES.get()), Blocks.SMOOTH_STONE)
-                .addCriterion("has_item", hasItem(Blocks.SMOOTH_STONE))
-                .build(consumer, "smooth_stone_from_stone_tiles_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.STONE_TILES.get()), Blocks.SMOOTH_STONE)
+                .unlocks("has_item", has(Blocks.SMOOTH_STONE))
+                .save(consumer, "smooth_stone_from_stone_tiles_stonecutting");
 
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Blocks.SMOOTH_STONE), ModBlocks.STONE_FLOOR_TILE.get())
-                .addCriterion("has_item", hasItem(Blocks.SMOOTH_STONE))
-                .build(consumer, "stone_floor_tile_from_smooth_stone_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.STONE_FLOOR_TILE.get())
+                .unlocks("has_item", has(Blocks.SMOOTH_STONE))
+                .save(consumer, "stone_floor_tile_from_smooth_stone_stonecutting");
 
-        SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(Blocks.SMOOTH_STONE), ModBlocks.STONE_TILES.get())
-                .addCriterion("has_item", hasItem(Blocks.SMOOTH_STONE))
-                .build(consumer, "stone_tiles_from_smooth_stone_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.STONE_TILES.get())
+                .unlocks("has_item", has(Blocks.SMOOTH_STONE))
+                .save(consumer, "stone_tiles_from_smooth_stone_stonecutting");
     }
 
     @Override

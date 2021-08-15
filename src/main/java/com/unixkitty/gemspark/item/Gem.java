@@ -42,7 +42,7 @@ public enum Gem
 
         this.toolProperties = new DynamicTieredToolProperties(
                 tierIndex, TIERS,
-                rarity == Rarity.RARE ? TOOL_CEIL_TIER.getHarvestLevel() : TOOL_FLOOR_TIER.getHarvestLevel(),
+                rarity == Rarity.RARE ? TOOL_CEIL_TIER.getLevel() : TOOL_FLOOR_TIER.getLevel(),
                 enchantability,
                 TIER_FLOOR_BUMP,
                 TOOL_FLOOR_TIER, TOOL_CEIL_TIER,
@@ -54,7 +54,7 @@ public enum Gem
                 enchantability,
                 TIER_FLOOR_BUMP,
                 ARMOR_FLOOR_TIER, ARMOR_CEIL_TIER,
-                SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+                SoundEvents.ARMOR_EQUIP_DIAMOND,
                 itemTag
         );
     }

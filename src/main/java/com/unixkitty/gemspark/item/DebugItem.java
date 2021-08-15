@@ -16,25 +16,25 @@ public class DebugItem extends Item
 {
     public DebugItem()
     {
-        super(new Item.Properties().group(ModItemGroups.PRIMARY).rarity(Rarity.EPIC).maxStackSize(1));
+        super(new Item.Properties().tab(ModItemGroups.PRIMARY).rarity(Rarity.EPIC).stacksTo(1));
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context)
+    public ActionResultType useOn(ItemUseContext context)
     {
-        if (!context.getWorld().isRemote && context.getPlayer() instanceof ServerPlayerEntity && context.getPlayer().canUseCommandBlock())
+        if (!context.getLevel().isClientSide && context.getPlayer() instanceof ServerPlayerEntity && context.getPlayer().canUseGameMasterBlocks())
         {
-            context.getPlayer().sendMessage(new StringTextComponent("Block: " + context.getWorld().getBlockState(context.getPos())), context.getPlayer().getUniqueID());
+            context.getPlayer().sendMessage(new StringTextComponent("Block: " + context.getLevel().getBlockState(context.getClickedPos())), context.getPlayer().getUUID());
 
-            TileEntity tileEntity = context.getWorld().getTileEntity(context.getPos());
+            TileEntity tileEntity = context.getLevel().getBlockEntity(context.getClickedPos());
 
             if (tileEntity != null)
             {
                 CompoundNBT compound = new CompoundNBT();
 
-                tileEntity.write(compound);
+                tileEntity.save(compound);
 
-                context.getPlayer().sendMessage(new TranslationTextComponent("commands.data.block.query", tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), compound.toFormattedComponent()), context.getPlayer().getUniqueID());
+                context.getPlayer().sendMessage(new TranslationTextComponent("commands.data.block.query", tileEntity.getBlockPos().getX(), tileEntity.getBlockPos().getY(), tileEntity.getBlockPos().getZ(), compound.getPrettyDisplay()), context.getPlayer().getUUID());
             }
         }
 
@@ -127,7 +127,7 @@ public class DebugItem extends Item
     }*/
 
     @Override
-    public boolean hasEffect(ItemStack stack)
+    public boolean isFoil(ItemStack stack)
     {
         return true;
     }

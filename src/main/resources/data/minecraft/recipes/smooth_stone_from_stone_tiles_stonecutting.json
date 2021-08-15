@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "gemspark:stone_tiles"
-  },
-  "result": "minecraft:smooth_stone",
-  "count": 1
-}

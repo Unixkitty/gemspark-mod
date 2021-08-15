@@ -81,38 +81,38 @@ public final class ModBlocks
     public static final RegistryObject<Block> COLORED_INVERTED_LAMP_RED = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_red");
     public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BLACK = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_black");
 
-    public static final RegistryObject<Block> LAMP_POST_CAP_OAK = setupLampPost("lamp_post_cap_oak", Block.Properties.from(Blocks.OAK_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_NETHER_BRICK = setupLampPost("lamp_post_cap_nether_brick", Block.Properties.from(Blocks.NETHER_BRICK_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_SPRUCE = setupLampPost("lamp_post_cap_spruce", Block.Properties.from(Blocks.SPRUCE_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_BIRCH = setupLampPost("lamp_post_cap_birch", Block.Properties.from(Blocks.BIRCH_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_JUNGLE = setupLampPost("lamp_post_cap_jungle", Block.Properties.from(Blocks.JUNGLE_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_ACACIA = setupLampPost("lamp_post_cap_acacia", Block.Properties.from(Blocks.ACACIA_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_DARK_OAK = setupLampPost("lamp_post_cap_dark_oak", Block.Properties.from(Blocks.DARK_OAK_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setupLampPost("lamp_post_cap_warped", Block.Properties.from(Blocks.WARPED_FENCE));
-    public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setupLampPost("lamp_post_cap_crimson", Block.Properties.from(Blocks.CRIMSON_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_OAK = setupLampPost("lamp_post_cap_oak", Block.Properties.copy(Blocks.OAK_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_NETHER_BRICK = setupLampPost("lamp_post_cap_nether_brick", Block.Properties.copy(Blocks.NETHER_BRICK_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_SPRUCE = setupLampPost("lamp_post_cap_spruce", Block.Properties.copy(Blocks.SPRUCE_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_BIRCH = setupLampPost("lamp_post_cap_birch", Block.Properties.copy(Blocks.BIRCH_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_JUNGLE = setupLampPost("lamp_post_cap_jungle", Block.Properties.copy(Blocks.JUNGLE_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_ACACIA = setupLampPost("lamp_post_cap_acacia", Block.Properties.copy(Blocks.ACACIA_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_DARK_OAK = setupLampPost("lamp_post_cap_dark_oak", Block.Properties.copy(Blocks.DARK_OAK_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setupLampPost("lamp_post_cap_warped", Block.Properties.copy(Blocks.WARPED_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setupLampPost("lamp_post_cap_crimson", Block.Properties.copy(Blocks.CRIMSON_FENCE));
 
-    public static final RegistryObject<Block> WOOD_GOLEM_RELIC = BLOCKS.register("wood_golem_relic", () -> new BlockWoodGolem(Block.Properties.from(Blocks.SPRUCE_PLANKS).setAllowsSpawn(ModBlocks::neverAllowSpawn)));
+    public static final RegistryObject<Block> WOOD_GOLEM_RELIC = BLOCKS.register("wood_golem_relic", () -> new BlockWoodGolem(Block.Properties.copy(Blocks.SPRUCE_PLANKS).isValidSpawn(ModBlocks::neverAllowSpawn)));
 
-    public static final RegistryObject<Block> BRAZIER = BLOCKS.register("brazier", () -> new BlockBrazier(1, Block.Properties.from(Blocks.IRON_BARS).setLightLevel(getLightValueLit(15)).notSolid()));
-    public static final RegistryObject<Block> SOUL_BRAZIER = BLOCKS.register("soul_brazier", () -> new BlockBrazier(2, Block.Properties.from(Blocks.IRON_BARS).setLightLevel(getLightValueLit(10)).notSolid()));
+    public static final RegistryObject<Block> BRAZIER = BLOCKS.register("brazier", () -> new BlockBrazier(1, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(15)).noOcclusion()));
+    public static final RegistryObject<Block> SOUL_BRAZIER = BLOCKS.register("soul_brazier", () -> new BlockBrazier(2, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(10)).noOcclusion()));
 
-    public static final RegistryObject<Block> ROCKY_DIRT = BLOCKS.register("rocky_dirt", () -> new BlockDirt(Block.Properties.from(Blocks.DIRT)));
-    public static final RegistryObject<Block> ROCKY_GRASSY_DIRT = BLOCKS.register("rocky_grassy_dirt", () -> new BlockDirt(Block.Properties.from(Blocks.COARSE_DIRT)));
-    public static final RegistryObject<Block> DARK_ROCKY_DIRT = BLOCKS.register("dark_rocky_dirt", () -> new BlockDirt(Block.Properties.from(Blocks.GRAVEL)));
+    public static final RegistryObject<Block> ROCKY_DIRT = BLOCKS.register("rocky_dirt", () -> new BlockDirt(Block.Properties.copy(Blocks.DIRT)));
+    public static final RegistryObject<Block> ROCKY_GRASSY_DIRT = BLOCKS.register("rocky_grassy_dirt", () -> new BlockDirt(Block.Properties.copy(Blocks.COARSE_DIRT)));
+    public static final RegistryObject<Block> DARK_ROCKY_DIRT = BLOCKS.register("dark_rocky_dirt", () -> new BlockDirt(Block.Properties.copy(Blocks.GRAVEL)));
 
-    public static final RegistryObject<Block> STONE_FLOOR_TILE = BLOCKS.register("stone_floor_tile", () -> new Block(Block.Properties.from(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> STONE_TILES = BLOCKS.register("stone_tiles", () -> new Block(Block.Properties.from(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> STONE_FLOOR_TILE = BLOCKS.register("stone_floor_tile", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> STONE_TILES = BLOCKS.register("stone_tiles", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
         switch (blockType)
         {
             case GEM_BLOCK:
-                return BLOCKS.register(name, () -> new Block(Block.Properties.from(Blocks.DIAMOND_BLOCK)));
+                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
             case LANTERN:
-                return BLOCKS.register(name, () -> new Block(Block.Properties.from(Blocks.GLOWSTONE)));
+                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
             case ORE:
-                return BLOCKS.register(name, () -> new Block(Block.Properties.from(Blocks.DIAMOND_ORE))
+                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_ORE))
                 {
                     @Override
                     public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch)
@@ -121,9 +121,9 @@ public final class ModBlocks
                     }
                 });
             case PEDESTAL:
-                return BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.from(Blocks.QUARTZ_BLOCK).notSolid().setAllowsSpawn(ModBlocks::neverAllowSpawn)));
+                return BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
             case REDSTONE_LAMP:
-                return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.from(Blocks.REDSTONE_LAMP)));
+                return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
             case INVERTED_REDSTONE_LAMP:
                 return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, InvertedRedstoneLampBlock::new);
             default:
@@ -133,7 +133,7 @@ public final class ModBlocks
 
     private static RegistryObject<Block> setupLampPost(String name, Block.Properties properties)
     {
-        return BLOCKS.register(name, () -> new BlockLampPostCap(properties.setAllowsSpawn(ModBlocks::neverAllowSpawn)));
+        return BLOCKS.register(name, () -> new BlockLampPostCap(properties.isValidSpawn(ModBlocks::neverAllowSpawn)));
     }
 
     private enum ModBlockType
@@ -154,6 +154,6 @@ public final class ModBlocks
 
     private static ToIntFunction<BlockState> getLightValueLit(int lightValue)
     {
-        return (state) -> state.get(BlockStateProperties.LIT) ? lightValue : 0;
+        return (state) -> state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
     }
 }
