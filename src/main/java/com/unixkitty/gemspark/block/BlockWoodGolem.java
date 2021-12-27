@@ -1,32 +1,30 @@
 package com.unixkitty.gemspark.block;
 
 import com.unixkitty.gemspark.init.ModBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
-public class BlockWoodGolem extends HorizontalBlock
+public class BlockWoodGolem extends HorizontalDirectionalBlock
 {
     public static final EnumProperty<Pose> POSE = EnumProperty.create("pose", Pose.class);
 
@@ -40,58 +38,54 @@ public class BlockWoodGolem extends HorizontalBlock
     }
 
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit)
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit)
     {
         if (!world.isClientSide)
         {
-            if (player instanceof ServerPlayerEntity && player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty())
+            if (player instanceof ServerPlayer && player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty())
             {
-                if (player.inventory.add(new ItemStack(ModBlocks.WOOD_GOLEM_RELIC.get())))
+                if (player.getInventory().add(new ItemStack(ModBlocks.WOOD_GOLEM_RELIC.get())))
                 {
                     world.removeBlock(pos, false);
                 }
             }
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
-    /**
-     * @deprecated Call via {@link BlockState#getShape(IBlockReader, BlockPos, ISelectionContext)}
-     * Implementing/overriding is fine.
-     */
     @Nonnull
     @Override
-    public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context)
+    public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context)
     {
         return SHAPE;
     }
 
     @Override
-    public BlockRenderType getRenderShape(BlockState state)
+    public RenderShape getRenderShape(BlockState state)
     {
-        return BlockRenderType.MODEL;
+        return RenderShape.MODEL;
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(POSE, Pose.STANDING);
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(FACING, POSE);
     }
 
-    public enum Pose implements IStringSerializable
+    public enum Pose implements StringRepresentable
     {
         STANDING,
         SLUMPED,
@@ -99,17 +93,12 @@ public class BlockWoodGolem extends HorizontalBlock
 
         public Pose cycle()
         {
-            switch (this)
-            {
-                case STANDING:
-                    return SLUMPED;
-                case SLUMPED:
-                    return SITTING_SLUMPED;
-                case SITTING_SLUMPED:
-                    return STANDING;
-                default:
-                    throw new IllegalStateException("Illegal state cycling operation for " + this);
-            }
+            return switch (this)
+                    {
+                        case STANDING -> SLUMPED;
+                        case SLUMPED -> SITTING_SLUMPED;
+                        case SITTING_SLUMPED -> STANDING;
+                    };
         }
 
         @Override

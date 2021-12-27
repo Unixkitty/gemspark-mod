@@ -6,34 +6,36 @@ import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspark.item.GemItems;
-import com.unixkitty.gemspork.lib.HelperUtil;
-import com.unixkitty.gemspork.lib.datagen.recipe.CraftingTableRecipeProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import com.unixkitty.gemspark.util.HelperUtil;
+import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.data.ShapelessRecipeBuilder;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-public class CraftingTableRecipes extends CraftingTableRecipeProvider
+public class CraftingTableRecipes extends RecipeProvider
 {
     public CraftingTableRecipes(DataGenerator generator)
     {
-        super(Gemspark.MODID, generator);
+        super(generator);
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
     {
         registerSimpleArmorSet(consumer, Gem.TANZANITE.getItemTag());
         registerSimpleArmorSet(consumer, Gem.TOPAZ.getItemTag());
@@ -77,9 +79,9 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
         registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_CRIMSON.get(), Blocks.CRIMSON_FENCE);
     }
 
-    private void registerColoredLamp(Consumer<IFinishedRecipe> consumer, boolean inverted)
+    private void registerColoredLamp(Consumer<FinishedRecipe> consumer, boolean inverted)
     {
-        IItemProvider output;
+        ItemLike output;
         Ingredient dustOrTorchIngredient;
 
         for (DyeColor color : DyeColor.values())
@@ -89,7 +91,7 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
             ShapedRecipeBuilder.shaped(output)
                     .define('g', Tags.Items.DUSTS_GLOWSTONE)
-                    .define('P', ItemTags.bind("forge" + ":" + "glass_panes/" + color.toString()))
+                    .define('P', ItemTags.bind("forge" + ":" + "glass_panes/" + color))
                     .define('R', dustOrTorchIngredient)
                     .pattern("PgP")
                     .pattern("PgP")
@@ -99,7 +101,7 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
         }
     }
 
-    private void registerUniqueRecipes(Consumer<IFinishedRecipe> consumer)
+    private void registerUniqueRecipes(Consumer<FinishedRecipe> consumer)
     {
         //Stone Tiles
         ShapedRecipeBuilder.shaped(ModBlocks.STONE_TILES.get(), 4)
@@ -340,9 +342,9 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .save(consumer);
     }
 
-    private void registerLantern(Consumer<IFinishedRecipe> consumer, ITag.INamedTag<Item> gemIngredient)
+    private void registerLantern(Consumer<FinishedRecipe> consumer, Tag.Named<Item> gemIngredient)
     {
-        IItemProvider output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "lantern");
+        ItemLike output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "lantern");
 
         ShapedRecipeBuilder.shaped(output, Config.GEMLANTERNSFROMCRAFT)
                 .define('g', gemIngredient)
@@ -355,7 +357,7 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .save(consumer);
     }
 
-    private void registerLampPostCap(Consumer<IFinishedRecipe> consumer, Block lampPostCap, Block fence)
+    private void registerLampPostCap(Consumer<FinishedRecipe> consumer, Block lampPostCap, Block fence)
     {
         ShapedRecipeBuilder.shaped(lampPostCap)
                 .define('i', Tags.Items.INGOTS_IRON)
@@ -365,5 +367,120 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .pattern("  i")
                 .unlockedBy("has_item", has(fence))
                 .save(consumer);
+    }
+
+    protected void registerCompression(Consumer<FinishedRecipe> consumer, Tag.Named<Item> ingredient)
+    {
+        ItemLike output = HelperUtil.itemFromMaterialTag(ingredient, Gemspark.MODID, "block");
+
+        ShapedRecipeBuilder.shaped(output)
+                .define('I', Ingredient.of(ingredient))
+                .pattern("III")
+                .pattern("III")
+                .pattern("III")
+                .unlockedBy("has_item", has(ingredient))
+                .save(consumer);
+
+        //Decompression
+        ItemLike output2 = HelperUtil.itemFromTag(Gemspark.MODID, ingredient);
+        ShapelessRecipeBuilder.shapeless(output2, 9)
+                .unlockedBy("has_item", has(output2))
+                .requires(output)
+                .save(consumer);
+    }
+
+    protected void registerToolSetRecipes(Consumer<FinishedRecipe> consumer, Tag.Named<Item> ingredient)
+    {
+        CriterionTriggerInstance criterion = has(ingredient);
+
+        Item axe = HelperUtil.itemFromMaterialTag(ingredient, Gemspark.MODID, "axe");
+        Item sword = HelperUtil.itemFromMaterialTag(ingredient, Gemspark.MODID, "sword");
+        Item shovel = HelperUtil.itemFromMaterialTag(ingredient, Gemspark.MODID, "shovel");
+        Item pickaxe = HelperUtil.itemFromMaterialTag(ingredient, Gemspark.MODID, "pickaxe");
+        Item hoe = HelperUtil.itemFromMaterialTag(ingredient, Gemspark.MODID, "hoe");
+
+        ShapedRecipeBuilder.shaped(pickaxe)
+                .define('S', ingredient)
+                .define('T', Tags.Items.RODS_WOODEN)
+                .pattern("SSS")
+                .pattern(" T ")
+                .pattern(" T ")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(shovel)
+                .define('S', ingredient)
+                .define('T', Tags.Items.RODS_WOODEN)
+                .pattern("S")
+                .pattern("T")
+                .pattern("T")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(axe)
+                .define('S', ingredient)
+                .define('T', Tags.Items.RODS_WOODEN)
+                .pattern("SS")
+                .pattern("TS")
+                .pattern("T ")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(sword)
+                .define('S', ingredient)
+                .define('T', Tags.Items.RODS_WOODEN)
+                .pattern("S")
+                .pattern("S")
+                .pattern("T")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(hoe)
+                .define('S', ingredient)
+                .define('T', Tags.Items.RODS_WOODEN)
+                .pattern("SS")
+                .pattern(" T")
+                .pattern(" T")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+    }
+
+    protected void registerSimpleArmorSet(Consumer<FinishedRecipe> consumer, Tag.Named<Item> ingredient)
+    {
+        CriterionTriggerInstance criterion = has(ingredient);
+
+        Item helmet = HelperUtil.armorItemFromMaterialResource(ingredient, EquipmentSlot.HEAD, Gemspark.MODID);
+        Item chestplate = HelperUtil.armorItemFromMaterialResource(ingredient, EquipmentSlot.CHEST, Gemspark.MODID);
+        Item leggings = HelperUtil.armorItemFromMaterialResource(ingredient, EquipmentSlot.LEGS, Gemspark.MODID);
+        Item boots = HelperUtil.armorItemFromMaterialResource(ingredient, EquipmentSlot.FEET, Gemspark.MODID);
+
+        ShapedRecipeBuilder.shaped(helmet)
+                .define('S', ingredient)
+                .pattern("SSS")
+                .pattern("S S")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(chestplate)
+                .define('S', ingredient)
+                .pattern("S S")
+                .pattern("SSS")
+                .pattern("SSS")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(leggings)
+                .define('S', ingredient)
+                .pattern("SSS")
+                .pattern("S S")
+                .pattern("S S")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(boots)
+                .define('S', ingredient)
+                .pattern("S S")
+                .pattern("S S")
+                .unlockedBy("has_item", criterion)
+                .save(consumer);
+    }
+
+    @Override
+    public String getName()
+    {
+        return Gemspark.MODID + " " + this.getClass().getSimpleName();
     }
 }

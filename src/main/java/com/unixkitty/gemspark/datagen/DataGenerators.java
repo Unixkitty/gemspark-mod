@@ -1,15 +1,17 @@
 package com.unixkitty.gemspark.datagen;
 
 import com.unixkitty.gemspark.Gemspark;
+import com.unixkitty.gemspark.datagen.loot.ModLootTables;
 import com.unixkitty.gemspark.datagen.recipe.CraftingTableRecipes;
 import com.unixkitty.gemspark.datagen.recipe.SmeltingRecipes;
 import com.unixkitty.gemspark.datagen.recipe.StonecutterRecipes;
+import com.unixkitty.gemspark.datagen.tag.ModBlockTags;
+import com.unixkitty.gemspark.datagen.tag.ModItemTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
-//This gets called directly by Forge?
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = Gemspark.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators

@@ -1,21 +1,26 @@
 package com.unixkitty.gemspark.block;
 
 import com.unixkitty.gemspark.Gemspark;
-import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 //Copy of vanilla RedstoneLampBlock, but with inverted logic
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RedstoneLampBlock;
+import net.minecraft.world.level.block.RedstoneTorchBlock;
+import net.minecraft.world.level.block.state.BlockState;
+
 public class InvertedRedstoneLampBlock extends RedstoneLampBlock
 {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
@@ -27,13 +32,13 @@ public class InvertedRedstoneLampBlock extends RedstoneLampBlock
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         return this.defaultBlockState().setValue(LIT, !context.getLevel().hasNeighborSignal(context.getClickedPos()));
     }
 
     @Override
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
+    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
     {
         if (!worldIn.isClientSide)
         {
@@ -51,18 +56,18 @@ public class InvertedRedstoneLampBlock extends RedstoneLampBlock
     }
 
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_)
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_)
     {
         if (!worldIn.isClientSide)
         {
             Gemspark.log().debug("Inverted Lamp info: [" + state + "], [" + state.getLightEmission() + "], [" + state.getValue(LIT) + "]");
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand)
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand)
     {
         if (state.getValue(LIT) && worldIn.hasNeighborSignal(pos))
         {

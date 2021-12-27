@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gemspark:cosmetic_clay"
+            "items": [
+              "gemspark:cosmetic_clay"
+            ]
           }
         ]
       }

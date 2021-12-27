@@ -2,14 +2,14 @@ package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.block.BlockBrazier;
 import com.unixkitty.gemspark.block.BlockWoodGolem;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Items;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import static com.unixkitty.gemspark.block.BlockWoodGolem.POSE;
@@ -22,7 +22,7 @@ public class ModEvents
         {
             //Wood golem stuff
             if (
-                    event.getPlayer() instanceof ServerPlayerEntity
+                    event.getPlayer() instanceof ServerPlayer
                             && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockWoodGolem
                             && event.getItemStack().getItem() == Items.STICK
             )
@@ -37,15 +37,15 @@ public class ModEvents
                 else
                 {
                     //Rotate
-                    event.getWorld().setBlock(event.getPos(), state.setValue(HorizontalBlock.FACING, state.getValue(HorizontalBlock.FACING).getClockWise()), 3);
+                    event.getWorld().setBlock(event.getPos(), state.setValue(HorizontalDirectionalBlock.FACING, state.getValue(HorizontalDirectionalBlock.FACING).getClockWise()), 3);
                 }
             }
 
             //Put out brazier with shovel
             if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockBrazier && event.getItemStack().getItem() instanceof ShovelItem)
             {
-                World world = event.getWorld();
-                PlayerEntity playerentity = event.getPlayer();
+                Level world = event.getWorld();
+                Player playerentity = event.getPlayer();
                 BlockPos blockpos = event.getPos();
                 BlockState blockstate = world.getBlockState(blockpos);
                 BlockState blockstate2 = null;

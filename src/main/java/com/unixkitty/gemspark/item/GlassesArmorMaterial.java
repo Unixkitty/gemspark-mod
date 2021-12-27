@@ -1,16 +1,16 @@
 package com.unixkitty.gemspark.item;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.common.Tags;
 
-public enum GlassesArmorMaterial implements IArmorMaterial
+public enum GlassesArmorMaterial implements ArmorMaterial
 {
     SPECTACLES(Gem.SAPPHIRE.getItemTag()),
     TECHNICOLOR(Tags.Items.GEMS_EMERALD),
@@ -18,35 +18,35 @@ public enum GlassesArmorMaterial implements IArmorMaterial
     RED(Gem.RUBY.getItemTag())
     ;
 
-    private final LazyValue<Ingredient> repairItem;
+    private final LazyLoadedValue<Ingredient> repairItem;
 
-    GlassesArmorMaterial(ITag<Item> repairItem)
+    GlassesArmorMaterial(Tag<Item> repairItem)
     {
-        this.repairItem = new LazyValue<>(() -> Ingredient.of(repairItem));
+        this.repairItem = new LazyLoadedValue<>(() -> Ingredient.of(repairItem));
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlotType slot)
+    public int getDurabilityForSlot(EquipmentSlot slot)
     {
-        return ArmorMaterial.LEATHER.getDurabilityForSlot(slot);
+        return ArmorMaterials.LEATHER.getDurabilityForSlot(slot);
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlotType slot)
+    public int getDefenseForSlot(EquipmentSlot slot)
     {
-        return ArmorMaterial.LEATHER.getDefenseForSlot(slot);
+        return ArmorMaterials.LEATHER.getDefenseForSlot(slot);
     }
 
     @Override
     public int getEnchantmentValue()
     {
-        return ArmorMaterial.GOLD.getEnchantmentValue();
+        return ArmorMaterials.GOLD.getEnchantmentValue();
     }
 
     @Override
     public SoundEvent getEquipSound()
     {
-        return ArmorMaterial.LEATHER.getEquipSound();
+        return ArmorMaterials.LEATHER.getEquipSound();
     }
 
     @Override
@@ -64,7 +64,7 @@ public enum GlassesArmorMaterial implements IArmorMaterial
     @Override
     public float getToughness()
     {
-        return ArmorMaterial.LEATHER.getToughness();
+        return ArmorMaterials.LEATHER.getToughness();
     }
 
     @Override

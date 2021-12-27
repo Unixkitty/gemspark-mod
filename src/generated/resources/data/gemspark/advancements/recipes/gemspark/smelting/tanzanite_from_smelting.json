@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gemspark:tanzanite_ore"
+            "items": [
+              "gemspark:tanzanite_ore"
+            ]
           }
         ]
       }

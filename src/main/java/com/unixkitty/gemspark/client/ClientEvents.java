@@ -2,18 +2,16 @@ package com.unixkitty.gemspark.client;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.client.gui.PedestalScreen;
-import com.unixkitty.gemspark.client.render.TileEntityPedestalRender;
+import com.unixkitty.gemspark.client.render.BlockEntityPedestalRender;
+import com.unixkitty.gemspark.init.ModBlockEntityTypes;
 import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModContainerTypes;
-import com.unixkitty.gemspark.init.ModTileEntityTypes;
-import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -33,17 +31,20 @@ public final class ClientEvents
     public static void onFMLClientSetupEvent(final FMLClientSetupEvent event)
     {
         // Register ContainerType Screens
-        // ScreenManager.registerFactory is not safe to call during parallel mod loading so we queue it to run later
-        DeferredWorkQueue.runLater(() -> ScreenManager.register(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new));
+        // ScreenManager.registerFactory is not safe to call during parallel mod loading, so we queue it to run later
+        event.enqueueWork(() ->
+        {
+            MenuScreens.register(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new);
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.BRAZIER.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(ModBlocks.BRAZIER.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.cutout());
+        });
     }
 
     @SubscribeEvent
-    public static void registerModels(ModelRegistryEvent event)
+    public static void registerModels(EntityRenderersEvent.RegisterRenderers event)
     {
-        ClientRegistry.bindTileEntityRenderer(ModTileEntityTypes.PEDESTAL.get(), TileEntityPedestalRender::new);
+        event.registerBlockEntityRenderer(ModBlockEntityTypes.PEDESTAL.get(), BlockEntityPedestalRender::new);
     }
 
 }

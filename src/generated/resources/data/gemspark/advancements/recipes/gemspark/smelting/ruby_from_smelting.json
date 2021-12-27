@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gemspark:ruby_ore"
+            "items": [
+              "gemspark:ruby_ore"
+            ]
           }
         ]
       }

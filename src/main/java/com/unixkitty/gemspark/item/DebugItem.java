@@ -1,16 +1,16 @@
 package com.unixkitty.gemspark.item;
 
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.Rarity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 
 public class DebugItem extends Item
 {
@@ -20,25 +20,25 @@ public class DebugItem extends Item
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context)
+    public InteractionResult useOn(UseOnContext context)
     {
-        if (!context.getLevel().isClientSide && context.getPlayer() instanceof ServerPlayerEntity && context.getPlayer().canUseGameMasterBlocks())
+        if (!context.getLevel().isClientSide && context.getPlayer() instanceof ServerPlayer && context.getPlayer().canUseGameMasterBlocks())
         {
-            context.getPlayer().sendMessage(new StringTextComponent("Block: " + context.getLevel().getBlockState(context.getClickedPos())), context.getPlayer().getUUID());
+            context.getPlayer().sendMessage(new TextComponent("Block: " + context.getLevel().getBlockState(context.getClickedPos())), context.getPlayer().getUUID());
 
-            TileEntity tileEntity = context.getLevel().getBlockEntity(context.getClickedPos());
+            BlockEntity tileEntity = context.getLevel().getBlockEntity(context.getClickedPos());
 
             if (tileEntity != null)
             {
-                CompoundNBT compound = new CompoundNBT();
+                CompoundTag compound = new CompoundTag();
 
                 tileEntity.save(compound);
 
-                context.getPlayer().sendMessage(new TranslationTextComponent("commands.data.block.query", tileEntity.getBlockPos().getX(), tileEntity.getBlockPos().getY(), tileEntity.getBlockPos().getZ(), compound.getPrettyDisplay()), context.getPlayer().getUUID());
+                context.getPlayer().sendMessage(new TranslatableComponent("commands.data.block.query", tileEntity.getBlockPos().getX(), tileEntity.getBlockPos().getY(), tileEntity.getBlockPos().getZ(), compound.getAsString()), context.getPlayer().getUUID());
             }
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     /*//Non-block rightClick

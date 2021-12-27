@@ -1,34 +1,33 @@
 package com.unixkitty.gemspark.block;
 
-import com.unixkitty.gemspark.init.ModTileEntityTypes;
-import com.unixkitty.gemspark.tileentity.TileEntityPedestal;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import com.unixkitty.gemspark.blockentity.BlockEntityPedestal;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nonnull;
@@ -37,72 +36,64 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
-public class BlockPedestal extends ContainerBlock
+public class BlockPedestal extends BaseEntityBlock
 {
     //private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 15, 16, 15);
     private static final VoxelShape SHAPE = Stream.of(
-            Block.box(2, 0, 2, 14, 1, 14),
-            Block.box(3, 1, 3, 13, 14, 13),
-            Block.box(2, 14, 2, 14, 15, 14),
-            Block.box(1, 15, 1, 15, 16, 15)
-    )
-            .reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+                    Block.box(2, 0, 2, 14, 1, 14),
+                    Block.box(3, 1, 3, 13, 14, 13),
+                    Block.box(2, 14, 2, 14, 15, 14),
+                    Block.box(1, 15, 1, 15, 16, 15)
+            )
+            .reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     public BlockPedestal(Properties properties)
     {
         super(properties);
     }
 
-    /**
-     * @deprecated Call via {@link BlockState#getShape(IBlockReader, BlockPos, ISelectionContext)}
-     * Implementing/overriding is fine.
-     */
     @Nonnull
     @Override
-    public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context)
+    public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context)
     {
         return SHAPE;
     }
 
     @Override
-    public BlockRenderType getRenderShape(BlockState state)
+    public RenderShape getRenderShape(BlockState state)
     {
-        return BlockRenderType.MODEL;
+        return RenderShape.MODEL;
     }
 
     @Nullable
     @Override
-    public TileEntity newBlockEntity(IBlockReader worldIn)
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState state)
     {
-        return ModTileEntityTypes.PEDESTAL.get().create();
+        return new BlockEntityPedestal(blockPos, state);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
+    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn)
     {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslationTextComponent("text.pedestal.info").withStyle(TextFormatting.DARK_GRAY)));
-        tooltip.add((new TranslationTextComponent("text.pedestal.info2").withStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslatableComponent("text.pedestal.info").withStyle(ChatFormatting.DARK_GRAY)));
+        tooltip.add((new TranslatableComponent("text.pedestal.info2").withStyle(ChatFormatting.DARK_GRAY)));
     }
 
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult rayTraceResult)
     {
         if (!world.isClientSide)
         {
-            if (this.getMenuProvider(state, world, pos) != null && player instanceof ServerPlayerEntity)
+            if (this.getMenuProvider(state, world, pos) != null && player instanceof ServerPlayer)
             {
-                TileEntity tile = world.getBlockEntity(pos);
+                BlockEntity tile = world.getBlockEntity(pos);
 
-                if (!(tile instanceof TileEntityPedestal)) return ActionResultType.FAIL;
+                if (!(tile instanceof BlockEntityPedestal blockEntity)) return InteractionResult.FAIL;
 
-                TileEntityPedestal tileEntity = (TileEntityPedestal) tile;
-
-                IItemHandlerModifiable itemHandler = tileEntity.getItemHandler();
+                IItemHandlerModifiable itemHandler = blockEntity.getItemHandler();
                 ItemStack heldItem = player.getItemInHand(hand);
 
                 if (!player.isShiftKeyDown())
@@ -111,7 +102,7 @@ public class BlockPedestal extends ContainerBlock
                     {
                         if (itemHandler.getStackInSlot(0).isEmpty())
                         {
-                            NetworkHooks.openGui((ServerPlayerEntity) player, tileEntity, pos);
+                            NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
                         }
                         else
                         {
@@ -121,25 +112,17 @@ public class BlockPedestal extends ContainerBlock
                     else if (heldItem.getItem() == Items.STICK)
                     {
                         //Toggle display render rotation using a vanilla stick
-                        tileEntity.shouldRotate = !tileEntity.shouldRotate;
-                        tileEntity.syncForRender();
+                        blockEntity.shouldRotate = !blockEntity.shouldRotate;
+                        blockEntity.syncForRender();
                     }
                     else
                     {
                         switch (player.getDirection().getOpposite())
                         {
-                            case NORTH:
-                                tileEntity.itemFacingDirection = 180;
-                                break;
-                            case WEST:
-                                tileEntity.itemFacingDirection = 270;
-                                break;
-                            case SOUTH:
-                                tileEntity.itemFacingDirection = 0;
-                                break;
-                            case EAST:
-                                tileEntity.itemFacingDirection = 90;
-                                break;
+                            case NORTH -> blockEntity.itemFacingDirection = 180;
+                            case WEST -> blockEntity.itemFacingDirection = 270;
+                            case SOUTH -> blockEntity.itemFacingDirection = 0;
+                            case EAST -> blockEntity.itemFacingDirection = 90;
                         }
 
                         if (player.isCreative())
@@ -152,27 +135,27 @@ public class BlockPedestal extends ContainerBlock
                         }
                     }
 
-                    tileEntity.setChanged();
+                    blockEntity.setChanged();
                 }
                 else
                 {
-                    NetworkHooks.openGui((ServerPlayerEntity) player, tileEntity, pos);
+                    NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
                 }
             }
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving)
     {
         if (state.getBlock() != newState.getBlock())
         {
-            ItemStack itemStack = ((TileEntityPedestal) Objects.requireNonNull(worldIn.getBlockEntity(pos))).getItemHandler().getStackInSlot(0);
+            ItemStack itemStack = ((BlockEntityPedestal) Objects.requireNonNull(worldIn.getBlockEntity(pos))).getItemHandler().getStackInSlot(0);
             if (!itemStack.isEmpty())
             {
-                InventoryHelper.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack);
             }
         }
         super.onRemove(state, worldIn, pos, newState, isMoving);

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "gemspark:pink_sapphire_ore"
+            "items": [
+              "gemspark:pink_sapphire_ore"
+            ]
           }
         ]
       }

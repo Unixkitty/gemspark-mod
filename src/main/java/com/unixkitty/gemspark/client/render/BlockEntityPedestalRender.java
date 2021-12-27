@@ -1,31 +1,30 @@
 package com.unixkitty.gemspark.client.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.unixkitty.gemspark.tileentity.TileEntityPedestal;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
+import com.unixkitty.gemspark.blockentity.BlockEntityPedestal;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-public class TileEntityPedestalRender extends TileEntityRenderer<TileEntityPedestal>
+public class BlockEntityPedestalRender implements BlockEntityRenderer<BlockEntityPedestal>
 {
     private ItemEntity itemEntity;
 
-    public TileEntityPedestalRender(TileEntityRendererDispatcher rendererDispatcherIn)
+    public BlockEntityPedestalRender(BlockEntityRendererProvider.Context context)
     {
-        super(rendererDispatcherIn);
+
     }
 
     @Override
-    public void render(@Nonnull TileEntityPedestal pedestal, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int light, int overlay)
+    public void render(@Nonnull BlockEntityPedestal pedestal, float partialTicks, PoseStack matrix, MultiBufferSource buffer, int light, int overlay)
     {
         if (pedestal.getLevel() == null) return;
 
@@ -58,7 +57,7 @@ public class TileEntityPedestalRender extends TileEntityRenderer<TileEntityPedes
                 matrix.mulPose(Vector3f.YP.rotationDegrees(pedestal.itemFacingDirection));
             }
 
-            Minecraft.getInstance().getItemRenderer().renderStatic(itemEntity.getItem(), ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrix, buffer);
+            Minecraft.getInstance().getItemRenderer().renderStatic(itemEntity.getItem(), ItemTransforms.TransformType.GROUND, light, overlay, matrix, buffer, 1);
 
             matrix.translate(-0.5f, -1.5f, -0.5f);
 

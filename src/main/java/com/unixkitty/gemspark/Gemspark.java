@@ -30,7 +30,7 @@ public class Gemspark
 
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
-        ModTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
+        ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoading);

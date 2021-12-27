@@ -2,14 +2,16 @@ package com.unixkitty.gemspark.worldgen;
 
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.init.ModBlocks;
-import com.unixkitty.gemspork.lib.HelperUtil;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.template.RuleTest;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 public class OreGeneration
@@ -22,48 +24,48 @@ public class OreGeneration
 
     public static void register()
     {
-        Registry<ConfiguredFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_FEATURE;
+        Registry<ConfiguredFeature<?, ?>> registry = BuiltinRegistries.CONFIGURED_FEATURE;
 
-        RuleTest fillerBlockType = OreFeatureConfig.FillerBlockType.NETHER_ORE_REPLACEABLES;
+        RuleTest fillerBlockType = OreConfiguration.Predicates.NETHER_ORE_REPLACEABLES;
 
-        PINK_SAPPHIRE_ORE = HelperUtil.registerOreFeature(
+        PINK_SAPPHIRE_ORE = registerOreFeature(
                 fillerBlockType,
-                ModBlocks.PINK_SAPPHIRE_ORE.get(),
+                ModBlocks.PINK_SAPPHIRE_ORE.get().defaultBlockState(),
                 Config.pinkSapphireVeinSize.get(),
                 Config.pinkSapphireVeinsPerChunk.get(),
                 Config.pinkSapphireMinHeight.get(),
                 Config.pinkSapphireMaxHeight.get()
         );
 
-        fillerBlockType = OreFeatureConfig.FillerBlockType.NATURAL_STONE;
+        fillerBlockType = OreConfiguration.Predicates.NATURAL_STONE;
 
-        TANZANITE_ORE = HelperUtil.registerOreFeature(
+        TANZANITE_ORE = registerOreFeature(
                 fillerBlockType,
-                ModBlocks.TANZANITE_ORE.get(),
+                ModBlocks.TANZANITE_ORE.get().defaultBlockState(),
                 Config.tanzaniteVeinSize.get(),
                 Config.tanzaniteVeinsPerChunk.get(),
                 Config.tanzaniteMinHeight.get(),
                 Config.tanzaniteMaxHeight.get()
         );
-        TOPAZ_ORE = HelperUtil.registerOreFeature(
+        TOPAZ_ORE = registerOreFeature(
                 fillerBlockType,
-                ModBlocks.TOPAZ_ORE.get(),
+                ModBlocks.TOPAZ_ORE.get().defaultBlockState(),
                 Config.topazVeinSize.get(),
                 Config.topazVeinsPerChunk.get(),
                 Config.topazMinHeight.get(),
                 Config.topazMaxHeight.get()
         );
-        SAPPHIRE_ORE = HelperUtil.registerOreFeature(
+        SAPPHIRE_ORE = registerOreFeature(
                 fillerBlockType,
-                ModBlocks.SAPPHIRE_ORE.get(),
+                ModBlocks.SAPPHIRE_ORE.get().defaultBlockState(),
                 Config.sapphireVeinSize.get(),
                 Config.sapphireVeinsPerChunk.get(),
                 Config.sapphireMinHeight.get(),
                 Config.sapphireMaxHeight.get()
         );
-        RUBY_ORE = HelperUtil.registerOreFeature(
+        RUBY_ORE = registerOreFeature(
                 fillerBlockType,
-                ModBlocks.RUBY_ORE.get(),
+                ModBlocks.RUBY_ORE.get().defaultBlockState(),
                 Config.rubyVeinSize.get(),
                 Config.rubyVeinsPerChunk.get(),
                 Config.rubyMinHeight.get(),
@@ -81,32 +83,46 @@ public class OreGeneration
     {
         if (!Config.generateOres.get()) return;
 
-        if (event.getCategory() == Biome.Category.NETHER)
+        if (event.getCategory() == Biome.BiomeCategory.NETHER)
         {
             if (Config.generatePinkSapphireOre.get())
             {
-                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.PINK_SAPPHIRE_ORE);
+                event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreGeneration.PINK_SAPPHIRE_ORE);
             }
         }
-        else if (event.getCategory() != Biome.Category.THEEND)
+        else if (event.getCategory() != Biome.BiomeCategory.THEEND)
         {
             if (Config.generateTanzaniteOre.get())
             {
-                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.TANZANITE_ORE);
+                event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreGeneration.TANZANITE_ORE);
             }
             if (Config.generateTopazOre.get())
             {
-                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.TOPAZ_ORE);
+                event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreGeneration.TOPAZ_ORE);
             }
             if (Config.generateSapphireOre.get())
             {
-                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.SAPPHIRE_ORE);
+                event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreGeneration.SAPPHIRE_ORE);
             }
             if (Config.generateRubyOre.get())
             {
-                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, OreGeneration.RUBY_ORE);
+                event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OreGeneration.RUBY_ORE);
             }
         }
     }
+
+    private static ConfiguredFeature<?, ?> registerOreFeature(RuleTest replaceBlock, BlockState oreBlockState, int veinSize, int timesPerChunk, int minHeight, int maxHeight)
+    {
+        return Feature.ORE.configured(
+                new OreConfiguration(
+                        replaceBlock,
+                        oreBlockState,
+                        veinSize
+                )
+        ).rangeUniform(
+                VerticalAnchor.aboveBottom(minHeight),
+                VerticalAnchor.belowTop(maxHeight)
+        ).squared().count(timesPerChunk);
+    } 
 
 }

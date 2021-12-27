@@ -1,28 +1,31 @@
 package com.unixkitty.gemspark.block;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class BlockLampPostCap extends HorizontalBlock
+public class BlockLampPostCap extends HorizontalDirectionalBlock
 {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -53,31 +56,27 @@ public class BlockLampPostCap extends HorizontalBlock
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    /**
-     * @deprecated Call via {@link BlockState#getShape(IBlockReader, BlockPos, ISelectionContext)}
-     * Implementing/overriding is fine.
-     */
     @Nonnull
     @Override
-    public VoxelShape getShape(final BlockState state, final IBlockReader worldIn, final BlockPos pos, final ISelectionContext context)
+    public VoxelShape getShape(final BlockState state, final BlockGetter worldIn, final BlockPos pos, final CollisionContext context)
     {
         return this.getShapeFromFace(state);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
     {
         return this.getShapeFromFace(state);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    public void setPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
     {
         super.setPlacedBy(world, pos, state, placer, stack);
 
@@ -85,7 +84,7 @@ public class BlockLampPostCap extends HorizontalBlock
         {
             BlockPos offsetPos = pos.relative(state.getValue(FACING), 1);
 
-            if (world.getBlockState(offsetPos).getBlock().is(Blocks.AIR))
+            if (world.getBlockState(offsetPos).getBlock().equals(Blocks.AIR))
             {
                 world.removeBlock(pos, false);
                 world.setBlock(offsetPos, state, 3);
@@ -96,34 +95,30 @@ public class BlockLampPostCap extends HorizontalBlock
 
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(FACING);
     }
 
     @Override
-    public BlockRenderType getRenderShape(BlockState state)
+    public RenderShape getRenderShape(BlockState state)
     {
-        return BlockRenderType.MODEL;
+        return RenderShape.MODEL;
     }
 
     private VoxelShape getShapeFromFace(final BlockState state)
     {
-        switch (state.getValue(FACING))
-        {
-            case EAST:
-                return SHAPE_EAST;
-            case SOUTH:
-                return SHAPE_SOUTH;
-            case WEST:
-                return SHAPE_WEST;
-            default:
-                return SHAPE_NORTH;
-        }
+        return switch (state.getValue(FACING))
+                {
+                    case EAST -> SHAPE_EAST;
+                    case SOUTH -> SHAPE_SOUTH;
+                    case WEST -> SHAPE_WEST;
+                    default -> SHAPE_NORTH;
+                };
     }
 
     private static VoxelShape makeShape(@Nonnull VoxelShape... shapes)
     {
-        return Stream.of(shapes).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+        return Stream.of(shapes).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     }
 }

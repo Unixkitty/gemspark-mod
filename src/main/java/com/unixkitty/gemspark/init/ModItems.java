@@ -3,14 +3,18 @@ package com.unixkitty.gemspark.init;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.item.*;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
-import net.minecraft.entity.Entity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public final class ModItems
 {
@@ -54,34 +58,34 @@ public final class ModItems
     public static final RegistryObject<Item> PINK_SAPPHIRE_HOE = GemItems.registerHoeItem(Gem.PINK_SAPPHIRE);
     public static final RegistryObject<Item> RUBY_HOE = GemItems.registerHoeItem(Gem.RUBY);
 
-    public static final RegistryObject<Item> TANZANITE_HELMET = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> TOPAZ_HELMET = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> SAPPHIRE_HELMET = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> PINK_SAPPHIRE_HELMET = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> RUBY_HELMET = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlotType.HEAD);
+    public static final RegistryObject<Item> TANZANITE_HELMET = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlot.HEAD);
+    public static final RegistryObject<Item> TOPAZ_HELMET = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlot.HEAD);
+    public static final RegistryObject<Item> SAPPHIRE_HELMET = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlot.HEAD);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_HELMET = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlot.HEAD);
+    public static final RegistryObject<Item> RUBY_HELMET = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlot.HEAD);
 
-    public static final RegistryObject<Item> TANZANITE_CHESTPLATE = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> TOPAZ_CHESTPLATE = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> SAPPHIRE_CHESTPLATE = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> PINK_SAPPHIRE_CHESTPLATE = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.CHEST);
-    public static final RegistryObject<Item> RUBY_CHESTPLATE = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlotType.CHEST);
+    public static final RegistryObject<Item> TANZANITE_CHESTPLATE = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlot.CHEST);
+    public static final RegistryObject<Item> TOPAZ_CHESTPLATE = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlot.CHEST);
+    public static final RegistryObject<Item> SAPPHIRE_CHESTPLATE = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlot.CHEST);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_CHESTPLATE = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlot.CHEST);
+    public static final RegistryObject<Item> RUBY_CHESTPLATE = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlot.CHEST);
 
-    public static final RegistryObject<Item> TANZANITE_LEGGINGS = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> TOPAZ_LEGGINGS = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> SAPPHIRE_LEGGINGS = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> PINK_SAPPHIRE_LEGGINGS = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.LEGS);
-    public static final RegistryObject<Item> RUBY_LEGGINGS = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlotType.LEGS);
+    public static final RegistryObject<Item> TANZANITE_LEGGINGS = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlot.LEGS);
+    public static final RegistryObject<Item> TOPAZ_LEGGINGS = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlot.LEGS);
+    public static final RegistryObject<Item> SAPPHIRE_LEGGINGS = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlot.LEGS);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_LEGGINGS = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlot.LEGS);
+    public static final RegistryObject<Item> RUBY_LEGGINGS = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlot.LEGS);
 
-    public static final RegistryObject<Item> TANZANITE_BOOTS = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> TOPAZ_BOOTS = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> SAPPHIRE_BOOTS = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> PINK_SAPPHIRE_BOOTS = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlotType.FEET);
-    public static final RegistryObject<Item> RUBY_BOOTS = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlotType.FEET);
+    public static final RegistryObject<Item> TANZANITE_BOOTS = GemItems.registerArmorItem(Gem.TANZANITE, EquipmentSlot.FEET);
+    public static final RegistryObject<Item> TOPAZ_BOOTS = GemItems.registerArmorItem(Gem.TOPAZ, EquipmentSlot.FEET);
+    public static final RegistryObject<Item> SAPPHIRE_BOOTS = GemItems.registerArmorItem(Gem.SAPPHIRE, EquipmentSlot.FEET);
+    public static final RegistryObject<Item> PINK_SAPPHIRE_BOOTS = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlot.FEET);
+    public static final RegistryObject<Item> RUBY_BOOTS = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlot.FEET);
 
-    public static final RegistryObject<Item> SPECTACLES = registerArmorItem("spectacles", GlassesArmorMaterial.SPECTACLES, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> GLASSES_TECHNICOLOR = registerArmorItem("glasses_technicolor", GlassesArmorMaterial.TECHNICOLOR, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> GLASSES_3D = registerArmorItem("glasses_3d", GlassesArmorMaterial.THREE_DEE, EquipmentSlotType.HEAD);
-    public static final RegistryObject<Item> GLASSES_RED = registerArmorItem("glasses_red", GlassesArmorMaterial.RED, EquipmentSlotType.HEAD);
+    public static final RegistryObject<Item> SPECTACLES = registerArmorItem("spectacles", GlassesArmorMaterial.SPECTACLES, EquipmentSlot.HEAD);
+    public static final RegistryObject<Item> GLASSES_TECHNICOLOR = registerArmorItem("glasses_technicolor", GlassesArmorMaterial.TECHNICOLOR, EquipmentSlot.HEAD);
+    public static final RegistryObject<Item> GLASSES_3D = registerArmorItem("glasses_3d", GlassesArmorMaterial.THREE_DEE, EquipmentSlot.HEAD);
+    public static final RegistryObject<Item> GLASSES_RED = registerArmorItem("glasses_red", GlassesArmorMaterial.RED, EquipmentSlot.HEAD);
 
     public static final RegistryObject<Item> COSMETIC_CLAY = ITEMS.register("cosmetic_clay", () -> new Item(basicProperties()));
 
@@ -95,9 +99,9 @@ public final class ModItems
     public static final RegistryObject<Item> SPITFIRECAP_SPECS = registerCosmeticHat("spitfirecap_specs");
     public static final RegistryObject<Item> TIARA = registerCosmeticHat("tiara");
 
-    public static String getArmorTextureString(String material, EquipmentSlotType slot, String type)
+    public static String getArmorTextureString(String material, EquipmentSlot slot, String type)
     {
-        return String.format("%s:textures/models/armor/%s_layer_%d%s.png", Gemspark.MODID, material, (slot == EquipmentSlotType.LEGS ? 2 : 1), type == null ? "" : String.format("_%s", type));
+        return String.format("%s:textures/models/armor/%s_layer_%d%s.png", Gemspark.MODID, material, (slot == EquipmentSlot.LEGS ? 2 : 1), type == null ? "" : String.format("_%s", type));
     }
 
     private static RegistryObject<Item> registerDebugItem()
@@ -115,13 +119,13 @@ public final class ModItems
         return ITEMS.register(name, () -> new CosmeticHatItem(basicProperties().stacksTo(1)));
     }
 
-    private static RegistryObject<Item> registerArmorItem(String name, IArmorMaterial armorMaterial, EquipmentSlotType slot)
+    private static RegistryObject<Item> registerArmorItem(String name, ArmorMaterial armorMaterial, EquipmentSlot slot)
     {
         return ITEMS.register(name, () -> new ArmorItem(armorMaterial, slot, basicProperties())
         {
             @Nullable
             @Override
-            public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
+            public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type)
             {
                 return getArmorTextureString(name, slot, type);
             }

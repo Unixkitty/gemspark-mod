@@ -3,26 +3,24 @@ package com.unixkitty.gemspark.item;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
-import com.unixkitty.gemspork.lib.HelperUtil;
-import net.minecraft.block.Block;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.util.IItemProvider;
-import net.minecraftforge.fml.RegistryObject;
+import com.unixkitty.gemspark.util.HelperUtil;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import static net.minecraftforge.common.ToolType.*;
 
 public class GemItems
 {
     public static final int TIERS = 5;
     public static final float TIER_FLOOR_BUMP = 0.4f;
 
-    public static final ItemTier TOOL_FLOOR_TIER = ItemTier.IRON;
-    public static final ItemTier TOOL_CEIL_TIER = ItemTier.DIAMOND;
+    public static final Tiers TOOL_FLOOR_TIER = Tiers.IRON;
+    public static final Tiers TOOL_CEIL_TIER = Tiers.DIAMOND;
 
-    public static final ArmorMaterial ARMOR_FLOOR_TIER = ArmorMaterial.IRON;
-    public static final ArmorMaterial ARMOR_CEIL_TIER = ArmorMaterial.DIAMOND;
+    public static final ArmorMaterials ARMOR_FLOOR_TIER = ArmorMaterials.IRON;
+    public static final ArmorMaterials ARMOR_CEIL_TIER = ArmorMaterials.DIAMOND;
 
     public static RegistryObject<Item> registerGemItem(Gem gem)
     {
@@ -31,7 +29,7 @@ public class GemItems
 
     public static RegistryObject<Item> registerAxeItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_" + AXE.getName(), () -> new AxeItem(gem.getToolProperties(), 5.0f, -3.0F, itemProperties(gem)));
+        return ModItems.ITEMS.register(gem + "_axe", () -> new AxeItem(gem.getToolProperties(), 5.0f, -3.0F, itemProperties(gem)));
     }
 
     public static RegistryObject<Item> registerSwordItem(Gem gem)
@@ -42,14 +40,14 @@ public class GemItems
 
     public static RegistryObject<Item> registerShovelItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_" + SHOVEL.getName(), () ->
+        return ModItems.ITEMS.register(gem + "_shovel", () ->
                 new ShovelItem(gem.getToolProperties(), 1.5f, -3.0F, itemProperties(gem))
         );
     }
 
     public static RegistryObject<Item> registerPickaxeItem(Gem gem)
     {
-        return ModItems.ITEMS.register(gem + "_" + PICKAXE.getName(), () ->
+        return ModItems.ITEMS.register(gem + "_pickaxe", () ->
                 new PickaxeItem(gem.getToolProperties(), 1, -2.8F, itemProperties(gem))
         );
     }
@@ -61,35 +59,32 @@ public class GemItems
         );
     }
 
-    public static RegistryObject<Item> registerArmorItem(Gem gem, EquipmentSlotType slot)
+    public static RegistryObject<Item> registerArmorItem(Gem gem, EquipmentSlot slot)
     {
         return ModItems.ITEMS.register(HelperUtil.armorMaterialString(gem.toString(), slot), () ->
                 new ModArmorItem(gem.toString(), gem.getArmorProperties(), slot, itemProperties(gem))
         );
     }
 
-    public static IItemProvider gemItemOrAlternative(Block block)
+    public static ItemLike gemItemOrAlternative(Block block)
     {
         for (Gem gem : Gem.values())
         {
             if (HelperUtil.isResource(block.getRegistryName(), gem.toString(), false))
             {
-                switch (gem)
-                {
-                    case DIAMOND:
-                        return Items.DIAMOND;
-                    case EMERALD:
-                        return Items.EMERALD;
-                    default:
-                        return HelperUtil.itemFromTag(Gemspark.MODID, gem.getItemTag());
-                }
+                return switch (gem)
+                        {
+                            case DIAMOND -> Items.DIAMOND;
+                            case EMERALD -> Items.EMERALD;
+                            default -> HelperUtil.itemFromTag(Gemspark.MODID, gem.getItemTag());
+                        };
             }
         }
 
         return block;
     }
 
-    public static IItemProvider coloredLampFromDye(DyeColor color, boolean inverted)
+    public static ItemLike coloredLampFromDye(DyeColor color, boolean inverted)
     {
         String lampString = (inverted ? "colored_inverted_lamp_" : "colored_lamp_") + color.toString();
 

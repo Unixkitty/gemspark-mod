@@ -1,23 +1,24 @@
-package com.unixkitty.gemspark.tileentity;
+package com.unixkitty.gemspark.blockentity;
 
 import com.unixkitty.gemspark.container.ContainerPedestal;
-import com.unixkitty.gemspark.init.ModTileEntityTypes;
-import com.unixkitty.gemspork.lib.tileentity.TileEntityMod;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerChunkProvider;
-import net.minecraft.world.server.ServerWorld;
+import com.unixkitty.gemspark.init.ModBlockEntityTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerChunkCache;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.Nameable;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -27,12 +28,14 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEntityPedestal extends TileEntityMod implements INamedContainerProvider
+public class BlockEntityPedestal extends ModBlockEntity implements MenuProvider, Nameable
 {
     private static final String INVENTORY_TAG = "inventory";
     private static final String LAST_CHANGE_TIME_TAG = "lastChangeTime";
     private static final String SHOULD_ROTATE_TAG = "shouldRotate";
     private static final String ITEM_FACING_DIRECTION_TAG = "itemFacingDirection";
+
+    private final Component name = new TranslatableComponent("text.pedestal.title");
 
     protected final ItemStackHandler inventory = new ItemStackHandler(1)
     {
@@ -41,9 +44,9 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
         {
             super.onContentsChanged(slot);
 
-            TileEntityPedestal.this.syncForRender();
+            BlockEntityPedestal.this.syncForRender();
 
-            TileEntityPedestal.this.setChanged();
+            BlockEntityPedestal.this.setChanged();
         }
     };
 
@@ -53,22 +56,22 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
     public boolean shouldRotate;
     public float itemFacingDirection;
 
-    public TileEntityPedestal()
+    public BlockEntityPedestal(BlockPos blockPos, BlockState blockState)
     {
-        super(ModTileEntityTypes.PEDESTAL.get());
-    }
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TranslationTextComponent("text.pedestal.title");
+        super(ModBlockEntityTypes.PEDESTAL.get(), blockPos, blockState);
     }
 
     @Nullable
     @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_)
+    public AbstractContainerMenu createMenu(int p_createMenu_1_, Inventory p_createMenu_2_, Player p_39956_)
     {
-        return new ContainerPedestal(p_createMenu_1_, p_createMenu_2_, this);
+        return this.createMenu(p_createMenu_1_, p_createMenu_2_);
+    }
+
+    @Nullable
+    public AbstractContainerMenu createMenu(int windowId, Inventory inventory)
+    {
+        return new ContainerPedestal(windowId, inventory, inventory.player.getCommandSenderWorld(), this.getBlockPos());
     }
 
     @Nonnull
@@ -79,7 +82,7 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
     }
 
     @Override
-    public void writePacketNBT(CompoundNBT compound)
+    public void writePacketNBT(CompoundTag compound)
     {
         compound.put(INVENTORY_TAG, this.inventory.serializeNBT());
         compound.putLong(LAST_CHANGE_TIME_TAG, this.lastChangeTime);
@@ -88,7 +91,7 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
     }
 
     @Override
-    public void readPacketNBT(CompoundNBT compound)
+    public void readPacketNBT(CompoundTag compound)
     {
         this.inventory.deserializeNBT(compound.getCompound(INVENTORY_TAG));
         this.lastChangeTime = compound.getLong(LAST_CHANGE_TIME_TAG);
@@ -114,18 +117,18 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
     }
 
     @Override
-    public AxisAlignedBB getRenderBoundingBox()
+    public AABB getRenderBoundingBox()
     {
-        return new AxisAlignedBB(getBlockPos(), getBlockPos().offset(1, 2, 1));
+        return new AABB(getBlockPos(), getBlockPos().offset(1, 2, 1));
     }
 
     //Thanks Vazkii
     public void syncForRender()
     {
-        SUpdateTileEntityPacket packet = this.getUpdatePacket();
+        ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
         BlockPos pos = this.getBlockPos();
 
-        World world = this.getLevel();
+        Level world = this.getLevel();
 
         //Can happen on first join
         if (world == null)
@@ -137,9 +140,21 @@ public class TileEntityPedestal extends TileEntityMod implements INamedContainer
             this.lastChangeTime = world.getGameTime();
         }
 
-        if (packet != null && world instanceof ServerWorld)
+        if (packet != null && world instanceof ServerLevel)
         {
-            ((ServerChunkProvider) this.getLevel().getChunkSource()).chunkMap.getPlayers(new ChunkPos(pos), false).forEach(e -> e.connection.send(packet));
+            ((ServerChunkCache) this.getLevel().getChunkSource()).chunkMap.getPlayers(new ChunkPos(pos), false).forEach(e -> e.connection.send(packet));
         }
+    }
+
+    @Override
+    public Component getName()
+    {
+        return this.name;
+    }
+
+    @Override
+    public Component getDisplayName()
+    {
+        return this.getName();
     }
 }

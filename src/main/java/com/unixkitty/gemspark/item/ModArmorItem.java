@@ -1,25 +1,25 @@
 package com.unixkitty.gemspark.item;
 
 import com.unixkitty.gemspark.init.ModItems;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.Item.Properties;
 
 public class ModArmorItem extends ArmorItem
 {
     private final String materialString;
 
-    public ModArmorItem(String materialString, IArmorMaterial material, EquipmentSlotType slot, Properties properties)
+    public ModArmorItem(String materialString, ArmorMaterial material, EquipmentSlot slot, Properties properties)
     {
         super(material, slot, properties);
 
@@ -28,13 +28,13 @@ public class ModArmorItem extends ArmorItem
 
     @Nullable
     @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type)
+    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type)
     {
         return ModItems.getArmorTextureString(this.materialString, slot, type);
     }
 
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
+    public void onArmorTick(ItemStack stack, Level world, Player player)
     {
         if (!world.isClientSide && player.tickCount % 90 == 0 && this.getMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties())
         {
@@ -55,7 +55,7 @@ public class ModArmorItem extends ArmorItem
 
             if (shouldApplyEffect)
             {
-                player.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 100, 0, false, false));
+                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, false, false));
             }
         }
     }

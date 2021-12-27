@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "gemspark:tanzanite_block",
+    "gemspark:topaz_block",
+    "gemspark:sapphire_block",
+    "gemspark:pink_sapphire_block",
+    "gemspark:ruby_block",
+    "gemspark:tanzanite_ore",
+    "gemspark:topaz_ore",
+    "gemspark:sapphire_ore",
+    "gemspark:pink_sapphire_ore",
+    "gemspark:ruby_ore",
+    "gemspark:blackstone_pedestal",
+    "gemspark:quartz_pedestal",
+    "gemspark:soul_brazier",
+    "gemspark:brazier",
+    "gemspark:stone_tiles",
+    "gemspark:stone_floor_tile"
+  ]
+}

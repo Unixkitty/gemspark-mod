@@ -3,17 +3,17 @@ package com.unixkitty.gemspark.init;
 import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.RedstoneLampBlock;
-import net.minecraft.entity.EntityType;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RedstoneLampBlock;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -96,39 +96,32 @@ public final class ModBlocks
     public static final RegistryObject<Block> BRAZIER = BLOCKS.register("brazier", () -> new BlockBrazier(1, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(15)).noOcclusion()));
     public static final RegistryObject<Block> SOUL_BRAZIER = BLOCKS.register("soul_brazier", () -> new BlockBrazier(2, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(10)).noOcclusion()));
 
-    public static final RegistryObject<Block> ROCKY_DIRT = BLOCKS.register("rocky_dirt", () -> new BlockDirt(Block.Properties.copy(Blocks.DIRT)));
-    public static final RegistryObject<Block> ROCKY_GRASSY_DIRT = BLOCKS.register("rocky_grassy_dirt", () -> new BlockDirt(Block.Properties.copy(Blocks.COARSE_DIRT)));
-    public static final RegistryObject<Block> DARK_ROCKY_DIRT = BLOCKS.register("dark_rocky_dirt", () -> new BlockDirt(Block.Properties.copy(Blocks.GRAVEL)));
+    public static final RegistryObject<Block> ROCKY_DIRT = BLOCKS.register("rocky_dirt", () -> new Block(Block.Properties.copy(Blocks.DIRT)));
+    public static final RegistryObject<Block> ROCKY_GRASSY_DIRT = BLOCKS.register("rocky_grassy_dirt", () -> new Block(Block.Properties.copy(Blocks.COARSE_DIRT)));
+    public static final RegistryObject<Block> DARK_ROCKY_DIRT = BLOCKS.register("dark_rocky_dirt", () -> new Block(Block.Properties.copy(Blocks.GRAVEL)));
 
     public static final RegistryObject<Block> STONE_FLOOR_TILE = BLOCKS.register("stone_floor_tile", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
     public static final RegistryObject<Block> STONE_TILES = BLOCKS.register("stone_tiles", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
-        switch (blockType)
-        {
-            case GEM_BLOCK:
-                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
-            case LANTERN:
-                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
-            case ORE:
-                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_ORE))
+        return switch (blockType)
                 {
-                    @Override
-                    public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch)
+                    case GEM_BLOCK -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
+                    case LANTERN -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
+                    case ORE -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_ORE))
                     {
-                        return silktouch == 0 ? MathHelper.nextInt(RANDOM, 3, 7) : 0;
-                    }
-                });
-            case PEDESTAL:
-                return BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
-            case REDSTONE_LAMP:
-                return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
-            case INVERTED_REDSTONE_LAMP:
-                return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, InvertedRedstoneLampBlock::new);
-            default:
-                return null;
-        }
+                        @Override
+                        public int getExpDrop(BlockState state, LevelReader world, BlockPos pos, int fortune, int silktouch)
+                        {
+                            return silktouch == 0 ? Mth.nextInt(RANDOM, 3, 7) : 0;
+                        }
+                    });
+                    case PEDESTAL -> BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
+                    case REDSTONE_LAMP -> !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
+                    case INVERTED_REDSTONE_LAMP -> !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, InvertedRedstoneLampBlock::new);
+                    default -> null;
+                };
     }
 
     private static RegistryObject<Block> setupLampPost(String name, Block.Properties properties)
@@ -147,7 +140,7 @@ public final class ModBlocks
         LAMP_POST
     }
 
-    private static Boolean neverAllowSpawn(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity)
+    private static Boolean neverAllowSpawn(BlockState state, BlockGetter reader, BlockPos pos, EntityType<?> entity)
     {
         return false;
     }

@@ -1,15 +1,15 @@
 package com.unixkitty.gemspark.item;
 
-import com.unixkitty.gemspork.item.DynamicTieredArmorProperties;
-import com.unixkitty.gemspork.item.DynamicTieredToolProperties;
-import com.unixkitty.gemspork.item.TagHelper;
-import com.unixkitty.gemspork.lib.HelperUtil;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
-import net.minecraft.item.Rarity;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.SoundEvents;
+import com.unixkitty.gemspark.util.HelperUtil;
+import com.unixkitty.gemspark.util.TagHelper;
+import com.unixkitty.gemspark.util.item.DynamicTieredArmorProperties;
+import com.unixkitty.gemspark.util.item.DynamicTieredToolProperties;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Tier;
 import net.minecraftforge.common.Tags;
 
 import static com.unixkitty.gemspark.item.GemItems.*;
@@ -28,10 +28,10 @@ public enum Gem
     private final String name;
     private final Rarity rarity;
 
-    private final ITag.INamedTag<Item> itemTag;
+    private final Tag.Named<Item> itemTag;
 
-    private final IItemTier toolProperties;
-    private final IArmorMaterial armorProperties;
+    private final Tier toolProperties;
+    private final ArmorMaterial armorProperties;
 
     Gem(int tierIndex, String name, Rarity rarity, int enchantability)
     {
@@ -70,17 +70,17 @@ public enum Gem
         return rarity;
     }
 
-    public ITag.INamedTag<Item> getItemTag()
+    public Tag.Named<Item> getItemTag()
     {
         return this.itemTag;
     }
 
-    public IItemTier getToolProperties()
+    public Tier getToolProperties()
     {
         return this.toolProperties;
     }
 
-    public IArmorMaterial getArmorProperties()
+    public ArmorMaterial getArmorProperties()
     {
         return this.armorProperties;
     }

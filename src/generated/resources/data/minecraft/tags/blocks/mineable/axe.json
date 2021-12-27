@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "gemspark:lamp_post_cap_oak",
+    "gemspark:lamp_post_cap_nether_brick",
+    "gemspark:lamp_post_cap_spruce",
+    "gemspark:lamp_post_cap_birch",
+    "gemspark:lamp_post_cap_jungle",
+    "gemspark:lamp_post_cap_acacia",
+    "gemspark:lamp_post_cap_dark_oak",
+    "gemspark:lamp_post_cap_warped",
+    "gemspark:lamp_post_cap_crimson",
+    "gemspark:wood_golem_relic"
+  ]
+}

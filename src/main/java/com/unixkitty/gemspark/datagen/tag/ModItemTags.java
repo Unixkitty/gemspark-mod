@@ -1,10 +1,10 @@
-package com.unixkitty.gemspark.datagen;
+package com.unixkitty.gemspark.datagen.tag;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.ItemTagsProvider;
+import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
