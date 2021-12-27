@@ -1,11 +1,13 @@
 package com.unixkitty.gemspark.item;
 
+import com.unixkitty.gemspark.compat.CuriosCompat;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
@@ -17,6 +19,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import net.minecraft.item.Item.Properties;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class CosmeticHatItem extends Item
 {
@@ -62,5 +65,12 @@ public class CosmeticHatItem extends Item
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
         tooltip.add((new TranslationTextComponent("text.gemspark.cosmetic.info").withStyle(TextFormatting.DARK_GRAY)));
+    }
+
+    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt)
+    {
+        return CuriosCompat.initCap(stack);
     }
 }
