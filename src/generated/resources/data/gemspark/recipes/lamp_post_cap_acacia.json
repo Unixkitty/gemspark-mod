@@ -7,7 +7,7 @@
   ],
   "key": {
     "i": {
-      "tag": "forge:ingots/iron"
+      "tag": "forge:nuggets/iron"
     },
     "F": {
       "item": "minecraft:acacia_fence"

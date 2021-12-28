@@ -358,7 +358,7 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
     private void registerLampPostCap(Consumer<IFinishedRecipe> consumer, Block lampPostCap, Block fence)
     {
         ShapedRecipeBuilder.shaped(lampPostCap)
-                .define('i', Tags.Items.INGOTS_IRON)
+                .define('i', Tags.Items.NUGGETS_IRON)
                 .define('F', fence)
                 .pattern("ii ")
                 .pattern("iF ")
