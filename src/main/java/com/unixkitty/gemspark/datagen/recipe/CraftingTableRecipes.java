@@ -179,12 +179,12 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .save(consumer);
 
         //Spitfire Cap with spectacles
-        ShapelessRecipeBuilder.shapeless(ModItems.SPITFIRECAP_SPECS.get())
+/*        ShapelessRecipeBuilder.shapeless(ModItems.SPITFIRECAP_SPECS.get())
                 .requires(ModItems.SPECTACLES.get())
                 .requires(ModItems.SPITFIRECAP.get())
                 .unlockedBy("has_spectacles", has(ModItems.SPECTACLES.get()))
                 .unlockedBy("has_spitfirecap", has(ModItems.SPITFIRECAP.get()))
-                .save(consumer);
+                .save(consumer);*/
 
         //Spitfire Cap
         ShapedRecipeBuilder.shaped(ModItems.SPITFIRECAP.get())
