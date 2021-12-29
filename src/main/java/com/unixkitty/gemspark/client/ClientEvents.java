@@ -3,6 +3,7 @@ package com.unixkitty.gemspark.client;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.client.gui.PedestalScreen;
 import com.unixkitty.gemspark.client.render.BlockEntityPedestalRender;
+import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.init.ModBlockEntityTypes;
 import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModContainerTypes;
@@ -39,6 +40,8 @@ public final class ClientEvents
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.cutout());
 
         });
+
+        CuriosCompat.registerRenderers();
     }
 
     @SubscribeEvent

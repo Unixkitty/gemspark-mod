@@ -2,8 +2,8 @@ package com.unixkitty.gemspark.datagen.tag;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModBlocks;
-import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;

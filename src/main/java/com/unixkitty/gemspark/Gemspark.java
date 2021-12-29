@@ -1,5 +1,6 @@
 package com.unixkitty.gemspark;
 
+import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.init.*;
 import com.unixkitty.gemspark.worldgen.OreGeneration;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,6 +24,8 @@ public class Gemspark
 
     public Gemspark()
     {
+        CuriosCompat.init();
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 

@@ -1,11 +1,11 @@
 package com.unixkitty.gemspark.util.item;
 
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.tags.Tag;
-import net.minecraft.sounds.SoundEvent;
 
 public class DynamicTieredArmorProperties extends DynamicTierProperties implements ArmorMaterial
 {

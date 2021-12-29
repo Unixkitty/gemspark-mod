@@ -123,6 +123,6 @@ public class OreGeneration
                 VerticalAnchor.aboveBottom(minHeight),
                 VerticalAnchor.belowTop(maxHeight)
         ).squared().count(timesPerChunk);
-    } 
+    }
 
 }

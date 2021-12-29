@@ -1,6 +1,54 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "gemspark:item/glasses_red"
-  }
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "gemspark:item/glasses_red"
+	},
+	"elements": [
+		{
+			"name": "inner_front",
+			"from": [4, 2, 4],
+			"to": [12, 5, 4],
+			"faces": {
+				"north": {"uv": [1, 4, 15, 14], "texture": "#0"},
+				"south": {"uv": [1, 4, 15, 14], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-50, -38, -60],
+			"translation": [0, 8.75, -0.5],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-50, -38, -60],
+			"translation": [0, 8.75, -0.5],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 3, 0],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 3, 0],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"ground": {
+			"translation": [0, 6, 0],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"gui": {
+			"rotation": [38, 170, 0],
+			"translation": [0, 6.25, 0],
+			"scale": [1.75, 1.75, 1.75]
+		},
+		"head": {
+			"translation": [0, 7, 0],
+			"scale": [1.85, 1.85, 1.85]
+		},
+		"fixed": {
+			"translation": [0, 5.5, 3],
+			"scale": [1.5, 1.5, 1.5]
+		}
+	}
 }

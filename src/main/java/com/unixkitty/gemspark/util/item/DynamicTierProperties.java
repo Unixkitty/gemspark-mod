@@ -1,9 +1,9 @@
 package com.unixkitty.gemspark.util.item;
 
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public abstract class DynamicTierProperties
 {

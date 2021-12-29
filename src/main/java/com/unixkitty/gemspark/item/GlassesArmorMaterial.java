@@ -1,13 +1,13 @@
 package com.unixkitty.gemspark.item;
 
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterials;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ArmorMaterials;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 
 public enum GlassesArmorMaterial implements ArmorMaterial
@@ -15,8 +15,7 @@ public enum GlassesArmorMaterial implements ArmorMaterial
     SPECTACLES(Gem.SAPPHIRE.getItemTag()),
     TECHNICOLOR(Tags.Items.GEMS_EMERALD),
     THREE_DEE(Tags.Items.GEMS_DIAMOND),
-    RED(Gem.RUBY.getItemTag())
-    ;
+    RED(Gem.RUBY.getItemTag());
 
     private final LazyLoadedValue<Ingredient> repairItem;
 

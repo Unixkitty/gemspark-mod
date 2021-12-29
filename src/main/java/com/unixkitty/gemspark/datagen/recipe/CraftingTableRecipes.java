@@ -180,14 +180,6 @@ public class CraftingTableRecipes extends RecipeProvider
                 .unlockedBy("has_item", has(ModItems.TANZANITE.get()))
                 .save(consumer);
 
-        //Spitfire Cap with spectacles
-        ShapelessRecipeBuilder.shapeless(ModItems.SPITFIRECAP_SPECS.get())
-                .requires(ModItems.SPECTACLES.get())
-                .requires(ModItems.SPITFIRECAP.get())
-                .unlockedBy("has_spectacles", has(ModItems.SPECTACLES.get()))
-                .unlockedBy("has_spitfirecap", has(ModItems.SPITFIRECAP.get()))
-                .save(consumer);
-
         //Spitfire Cap
         ShapedRecipeBuilder.shaped(ModItems.SPITFIRECAP.get())
                 .define('l', Items.LEATHER)
@@ -360,7 +352,7 @@ public class CraftingTableRecipes extends RecipeProvider
     private void registerLampPostCap(Consumer<FinishedRecipe> consumer, Block lampPostCap, Block fence)
     {
         ShapedRecipeBuilder.shaped(lampPostCap)
-                .define('i', Tags.Items.INGOTS_IRON)
+                .define('i', Tags.Items.NUGGETS_IRON)
                 .define('F', fence)
                 .pattern("ii ")
                 .pattern("iF ")

@@ -1,20 +1,16 @@
 package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.item.*;
+import com.unixkitty.gemspark.item.CosmeticHatItem;
+import com.unixkitty.gemspark.item.DebugItem;
+import com.unixkitty.gemspark.item.Gem;
+import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 public final class ModItems
 {
@@ -82,13 +78,12 @@ public final class ModItems
     public static final RegistryObject<Item> PINK_SAPPHIRE_BOOTS = GemItems.registerArmorItem(Gem.PINK_SAPPHIRE, EquipmentSlot.FEET);
     public static final RegistryObject<Item> RUBY_BOOTS = GemItems.registerArmorItem(Gem.RUBY, EquipmentSlot.FEET);
 
-    public static final RegistryObject<Item> SPECTACLES = registerArmorItem("spectacles", GlassesArmorMaterial.SPECTACLES, EquipmentSlot.HEAD);
-    public static final RegistryObject<Item> GLASSES_TECHNICOLOR = registerArmorItem("glasses_technicolor", GlassesArmorMaterial.TECHNICOLOR, EquipmentSlot.HEAD);
-    public static final RegistryObject<Item> GLASSES_3D = registerArmorItem("glasses_3d", GlassesArmorMaterial.THREE_DEE, EquipmentSlot.HEAD);
-    public static final RegistryObject<Item> GLASSES_RED = registerArmorItem("glasses_red", GlassesArmorMaterial.RED, EquipmentSlot.HEAD);
-
     public static final RegistryObject<Item> COSMETIC_CLAY = ITEMS.register("cosmetic_clay", () -> new Item(basicProperties()));
 
+    public static final RegistryObject<Item> SPECTACLES = registerCosmeticHat("spectacles");
+    public static final RegistryObject<Item> GLASSES_TECHNICOLOR = registerCosmeticHat("glasses_technicolor");
+    public static final RegistryObject<Item> GLASSES_3D = registerCosmeticHat("glasses_3d");
+    public static final RegistryObject<Item> GLASSES_RED = registerCosmeticHat("glasses_red");
     public static final RegistryObject<Item> WITCH_HAT = registerCosmeticHat("witch_hat");
     public static final RegistryObject<Item> BUNNYBAND = registerCosmeticHat("bunnyband");
     public static final RegistryObject<Item> FALSE_HALO = registerCosmeticHat("false_halo");
@@ -96,7 +91,6 @@ public final class ModItems
     public static final RegistryObject<Item> HEADPHONES = registerCosmeticHat("headphones");
     public static final RegistryObject<Item> REDBACKRIBBON = registerCosmeticHat("redbackribbon");
     public static final RegistryObject<Item> SPITFIRECAP = registerCosmeticHat("spitfirecap");
-    public static final RegistryObject<Item> SPITFIRECAP_SPECS = registerCosmeticHat("spitfirecap_specs");
     public static final RegistryObject<Item> TIARA = registerCosmeticHat("tiara");
 
     public static String getArmorTextureString(String material, EquipmentSlot slot, String type)
@@ -119,7 +113,7 @@ public final class ModItems
         return ITEMS.register(name, () -> new CosmeticHatItem(basicProperties().stacksTo(1)));
     }
 
-    private static RegistryObject<Item> registerArmorItem(String name, ArmorMaterial armorMaterial, EquipmentSlot slot)
+/*    private static RegistryObject<Item> registerArmorItem(String name, ArmorMaterial armorMaterial, EquipmentSlot slot)
     {
         return ITEMS.register(name, () -> new ArmorItem(armorMaterial, slot, basicProperties())
         {
@@ -130,5 +124,5 @@ public final class ModItems
                 return getArmorTextureString(name, slot, type);
             }
         });
-    }
+    }*/
 }

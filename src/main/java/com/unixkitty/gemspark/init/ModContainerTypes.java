@@ -1,12 +1,10 @@
 package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.blockentity.BlockEntityPedestal;
 import com.unixkitty.gemspark.container.ContainerPedestal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

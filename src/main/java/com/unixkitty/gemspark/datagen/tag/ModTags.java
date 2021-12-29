@@ -2,8 +2,8 @@ package com.unixkitty.gemspark.datagen.tag;
 
 import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspark.util.TagHelper;
-import net.minecraft.world.item.Item;
 import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 
