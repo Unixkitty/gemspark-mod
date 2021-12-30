@@ -53,13 +53,13 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
         registerCompression(consumer, Gem.PINK_SAPPHIRE.getItemTag());
         registerCompression(consumer, Gem.RUBY.getItemTag());
 
-        registerLantern(consumer, Gem.TANZANITE.getItemTag());
-        registerLantern(consumer, Gem.TOPAZ.getItemTag());
-        registerLantern(consumer, Gem.SAPPHIRE.getItemTag());
-        registerLantern(consumer, Gem.PINK_SAPPHIRE.getItemTag());
-        registerLantern(consumer, Gem.RUBY.getItemTag());
-        registerLantern(consumer, Tags.Items.GEMS_EMERALD);
-        registerLantern(consumer, Tags.Items.GEMS_DIAMOND);
+        registerGemsparkBlock(consumer, Gem.TANZANITE.getItemTag());
+        registerGemsparkBlock(consumer, Gem.TOPAZ.getItemTag());
+        registerGemsparkBlock(consumer, Gem.SAPPHIRE.getItemTag());
+        registerGemsparkBlock(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerGemsparkBlock(consumer, Gem.RUBY.getItemTag());
+        registerGemsparkBlock(consumer, Tags.Items.GEMS_EMERALD);
+        registerGemsparkBlock(consumer, Tags.Items.GEMS_DIAMOND);
 
         registerUniqueRecipes(consumer);
 
@@ -89,7 +89,7 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
 
             ShapedRecipeBuilder.shaped(output)
                     .define('g', Tags.Items.DUSTS_GLOWSTONE)
-                    .define('P', ItemTags.bind("forge" + ":" + "glass_panes/" + color.toString()))
+                    .define('P', ItemTags.bind("forge" + ":" + "glass_panes/" + color))
                     .define('R', dustOrTorchIngredient)
                     .pattern("PgP")
                     .pattern("PgP")
@@ -340,18 +340,15 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .save(consumer);
     }
 
-    private void registerLantern(Consumer<IFinishedRecipe> consumer, ITag.INamedTag<Item> gemIngredient)
+    private void registerGemsparkBlock(Consumer<IFinishedRecipe> consumer, ITag.INamedTag<Item> gemIngredient)
     {
-        IItemProvider output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "lantern");
+        IItemProvider output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "gemspark_block");
 
-        ShapedRecipeBuilder.shaped(output, Config.GEMLANTERNSFROMCRAFT)
-                .define('g', gemIngredient)
-                .define('d', Tags.Items.DUSTS_GLOWSTONE)
-                .define('G', Tags.Items.GLASS_COLORLESS)
-                .pattern("gdg")
-                .pattern("dGd")
-                .pattern("gdg")
-                .unlockedBy("has_item", has(gemIngredient))
+        ShapelessRecipeBuilder.shapeless(output, Config.GEMSPARK_BLOCKS_FROM_CRAFT)
+                .requires(Tags.Items.GLASS_COLORLESS)
+                .requires(gemIngredient)
+                .requires(Blocks.GLOWSTONE)
+                .unlockedBy("has_gem", has(gemIngredient))
                 .save(consumer);
     }
 

@@ -13,8 +13,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.item.Item.Properties;
-
 public class ModArmorItem extends ArmorItem
 {
     private final String materialString;

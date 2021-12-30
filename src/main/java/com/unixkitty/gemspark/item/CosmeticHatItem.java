@@ -14,12 +14,10 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import net.minecraft.item.Item.Properties;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class CosmeticHatItem extends Item
 {
@@ -64,7 +62,7 @@ public class CosmeticHatItem extends Item
     {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslationTextComponent("text.gemspark.cosmetic.info").withStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslationTextComponent("text.gemspark.cosmetic.info").withStyle(TextFormatting.GRAY)));
     }
 
     @Nullable

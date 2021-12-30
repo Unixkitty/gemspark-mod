@@ -26,8 +26,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class BlockBrazier extends Block implements IWaterLoggable
 {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;

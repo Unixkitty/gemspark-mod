@@ -15,8 +15,7 @@ public enum GlassesArmorMaterial implements IArmorMaterial
     SPECTACLES(Gem.SAPPHIRE.getItemTag()),
     TECHNICOLOR(Tags.Items.GEMS_EMERALD),
     THREE_DEE(Tags.Items.GEMS_DIAMOND),
-    RED(Gem.RUBY.getItemTag())
-    ;
+    RED(Gem.RUBY.getItemTag());
 
     private final LazyValue<Ingredient> repairItem;
 

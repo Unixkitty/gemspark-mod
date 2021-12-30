@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gemspark:emerald_gemspark_block"
+    ]
+  },
+  "criteria": {
+    "has_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/emerald"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gemspark:emerald_gemspark_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gem",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -24,8 +24,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class BlockWoodGolem extends HorizontalBlock
 {
     public static final EnumProperty<Pose> POSE = EnumProperty.create("pose", Pose.class);

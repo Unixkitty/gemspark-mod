@@ -20,8 +20,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class BlockLampPostCap extends HorizontalBlock
 {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "gemspark:tanzanite_gemspark_block"
+  },
+  "result": "gemspark:tanzanite_lantern",
+  "count": 1
+}

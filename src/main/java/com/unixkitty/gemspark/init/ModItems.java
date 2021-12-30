@@ -91,7 +91,7 @@ public final class ModItems
     public static final RegistryObject<Item> HEADPHONES = registerCosmeticHat("headphones");
     public static final RegistryObject<Item> REDBACKRIBBON = registerCosmeticHat("redbackribbon");
     public static final RegistryObject<Item> SPITFIRECAP = registerCosmeticHat("spitfirecap");
-//    public static final RegistryObject<Item> SPITFIRECAP_SPECS = registerCosmeticHat("spitfirecap_specs");
+    //    public static final RegistryObject<Item> SPITFIRECAP_SPECS = registerCosmeticHat("spitfirecap_specs");
     public static final RegistryObject<Item> TIARA = registerCosmeticHat("tiara");
 
     public static String getArmorTextureString(String material, EquipmentSlotType slot, String type)

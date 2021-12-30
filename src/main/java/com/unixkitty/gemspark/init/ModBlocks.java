@@ -30,6 +30,14 @@ public final class ModBlocks
     public static final RegistryObject<Block> PINK_SAPPHIRE_BLOCK = setup(ModBlockType.GEM_BLOCK, "pink_sapphire_block");
     public static final RegistryObject<Block> RUBY_BLOCK = setup(ModBlockType.GEM_BLOCK, "ruby_block");
 
+    public static final RegistryObject<Block> EMERALD_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "emerald_gemspark_block");
+    public static final RegistryObject<Block> DIAMOND_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "diamond_gemspark_block");
+    public static final RegistryObject<Block> TANZANITE_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "tanzanite_gemspark_block");
+    public static final RegistryObject<Block> TOPAZ_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "topaz_gemspark_block");
+    public static final RegistryObject<Block> SAPPHIRE_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "sapphire_gemspark_block");
+    public static final RegistryObject<Block> PINK_SAPPHIRE_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "pink_sapphire_gemspark_block");
+    public static final RegistryObject<Block> RUBY_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "ruby_gemspark_block");
+
     public static final RegistryObject<Block> EMERALD_LANTERN = setup(ModBlockType.LANTERN, "emerald_lantern");
     public static final RegistryObject<Block> DIAMOND_LANTERN = setup(ModBlockType.LANTERN, "diamond_lantern");
     public static final RegistryObject<Block> TANZANITE_LANTERN = setup(ModBlockType.LANTERN, "tanzanite_lantern");
@@ -111,6 +119,8 @@ public final class ModBlocks
                 return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
             case LANTERN:
                 return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
+            case GEMSPARK:
+                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 8)));
             case ORE:
                 return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_ORE))
                 {
@@ -140,6 +150,7 @@ public final class ModBlocks
     {
         GEM_BLOCK,
         LANTERN,
+        GEMSPARK,
         ORE,
         PEDESTAL,
         REDSTONE_LAMP,

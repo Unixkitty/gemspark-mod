@@ -37,17 +37,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class BlockPedestal extends ContainerBlock
 {
     //private static final VoxelShape SHAPE = Block.makeCuboidShape(1, 0, 1, 15, 16, 15);
     private static final VoxelShape SHAPE = Stream.of(
-            Block.box(2, 0, 2, 14, 1, 14),
-            Block.box(3, 1, 3, 13, 14, 13),
-            Block.box(2, 14, 2, 14, 15, 14),
-            Block.box(1, 15, 1, 15, 16, 15)
-    )
+                    Block.box(2, 0, 2, 14, 1, 14),
+                    Block.box(3, 1, 3, 13, 14, 13),
+                    Block.box(2, 14, 2, 14, 15, 14),
+                    Block.box(1, 15, 1, 15, 16, 15)
+            )
             .reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
 
     public BlockPedestal(Properties properties)
@@ -85,8 +83,8 @@ public class BlockPedestal extends ContainerBlock
     {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslationTextComponent("text.pedestal.info").withStyle(TextFormatting.DARK_GRAY)));
-        tooltip.add((new TranslationTextComponent("text.pedestal.info2").withStyle(TextFormatting.DARK_GRAY)));
+        tooltip.add((new TranslationTextComponent("text.pedestal.info").withStyle(TextFormatting.GRAY)));
+        tooltip.add((new TranslationTextComponent("text.pedestal.info2").withStyle(TextFormatting.GRAY)));
     }
 
     @Override

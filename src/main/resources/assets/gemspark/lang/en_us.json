@@ -95,6 +95,14 @@
   "block.gemspark.pink_sapphire_block": "Pink Sapphire Block",
   "block.gemspark.ruby_block": "Ruby Block",
 
+  "block.gemspark.emerald_gemspark_block": "Emerald Gemspark Block",
+  "block.gemspark.diamond_gemspark_block": "Diamond Gemspark Block",
+  "block.gemspark.tanzanite_gemspark_block": "Tanzanite Gemspark Block",
+  "block.gemspark.topaz_gemspark_block": "Topaz Gemspark Block",
+  "block.gemspark.sapphire_gemspark_block": "Sapphire Gemspark Block",
+  "block.gemspark.pink_sapphire_gemspark_block": "Pink Sapphire Gemspark Block",
+  "block.gemspark.ruby_gemspark_block": "Ruby Gemspark Block",
+
   "block.gemspark.emerald_lantern": "Emerald Lantern",
   "block.gemspark.diamond_lantern": "Diamond Lantern",
   "block.gemspark.tanzanite_lantern": "Tanzanite Lantern",

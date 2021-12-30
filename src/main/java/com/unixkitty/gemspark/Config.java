@@ -57,8 +57,7 @@ public class Config
     /* END ENTRIES */
 
     /* Non-configurable */
-    public static final int GEMLANTERNSFROMCRAFT = 2;
-    public static final int GEMDROPSFROMLANTERNS = 2;
+    public static final int GEMSPARK_BLOCKS_FROM_CRAFT = 8;
     public static final int GEMDROPSFROMORE = 1;
 
     static
