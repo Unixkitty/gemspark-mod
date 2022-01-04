@@ -110,6 +110,12 @@ public final class ModBlocks
 
     public static final RegistryObject<Block> STONE_FLOOR_TILE = BLOCKS.register("stone_floor_tile", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
     public static final RegistryObject<Block> STONE_TILES = BLOCKS.register("stone_tiles", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> SMOKED_STONE = BLOCKS.register("smoked_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> SMOKED_STONE_CTM = BLOCKS.register("smoked_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> METAL_FRAMED_STONE = BLOCKS.register("metal_framed_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> METAL_FRAMED_STONE_CTM = BLOCKS.register("metal_framed_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> ACCENTUATED_STONE = BLOCKS.register("accentuated_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> ACCENTUATED_STONE_CTM = BLOCKS.register("accentuated_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {

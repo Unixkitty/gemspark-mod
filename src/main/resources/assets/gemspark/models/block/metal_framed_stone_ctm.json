@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "gemspark:block/metal_framed_stone_ctm"
+  }
+}

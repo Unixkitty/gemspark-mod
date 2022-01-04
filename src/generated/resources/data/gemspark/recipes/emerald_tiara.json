@@ -7,7 +7,7 @@
   ],
   "key": {
     "t": {
-      "tag": "forge:gems/tanzanite"
+      "tag": "forge:gems/emerald"
     },
     "c": {
       "item": "gemspark:cosmetic_clay"
@@ -17,6 +17,6 @@
     }
   },
   "result": {
-    "item": "gemspark:tiara"
+    "item": "gemspark:emerald_tiara"
   }
 }

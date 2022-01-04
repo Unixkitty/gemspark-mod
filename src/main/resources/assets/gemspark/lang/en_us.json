@@ -68,8 +68,9 @@
   "item.gemspark.glasses_technicolor": "Amazing Technicolor Glasses",
   "item.gemspark.glasses_3d": "3D Glasses",
   "item.gemspark.glasses_red": "Red Glasses",
+  "item.gemspark.funky_alien_glasses": "Funky Alien Glasses",
 
-  "text.gemspark.cosmetic.info": "Purely cosmetic",
+  "text.gemspark.cosmetic.info": "Cosmetic wearable",
 
   "item.gemspark.cosmetic_clay": "Cosmetic Clay",
 
@@ -81,7 +82,16 @@
   "item.gemspark.redbackribbon": "Pretty Pink Ribbon",
   "item.gemspark.spitfirecap": "Spitfire Cap",
   "item.gemspark.spitfirecap_specs": "Spitfire Cap with spectacles",
-  "item.gemspark.tiara": "Tiara",
+  "item.gemspark.tanzanite_tiara": "Tanzanite Tiara",
+  "item.gemspark.silver_tanzanite_tiara": "Silver Tanzanite Tiara",
+  "item.gemspark.ruby_crown": "Ruby Crown",
+  "item.gemspark.silver_ruby_crown": "Silver Ruby Crown",
+  "item.gemspark.sapphire_tiara": "Sapphire Tiara",
+  "item.gemspark.silver_sapphire_tiara": "Silver Sapphire Tiara",
+  "item.gemspark.rgb_crown": "RGB Crown",
+  "item.gemspark.silver_rgb_crown": "Silver RGB Crown",
+  "item.gemspark.emerald_tiara": "Emerald Tiara",
+  "item.gemspark.silver_emerald_tiara": "Silver Emerald Tiara",
 
   "block.gemspark.tanzanite_ore": "Tanzanite Ore",
   "block.gemspark.topaz_ore": "Topaz Ore",
@@ -169,5 +179,11 @@
   "block.gemspark.rocky_grassy_dirt": "Rocky Grassy Dirt",
   "block.gemspark.dark_rocky_dirt": "Dark Rocky Dirt",
   "block.gemspark.stone_floor_tile": "Stone Floor Tile",
-  "block.gemspark.stone_tiles": "Stone Tiles"
+  "block.gemspark.stone_tiles": "Stone Tiles",
+  "block.gemspark.accentuated_stone": "Accentuated Stone",
+  "block.gemspark.accentuated_stone_ctm": "Accentuated Stone (ctm)",
+  "block.gemspark.metal_framed_stone": "Metal Framed Stone",
+  "block.gemspark.metal_framed_stone_ctm": "Metal Framed Stone (ctm)",
+  "block.gemspark.smoked_stone": "Smoked Stone",
+  "block.gemspark.smoked_stone_ctm": "Smoked Stone (ctm)"
 }

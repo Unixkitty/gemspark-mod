@@ -10,16 +10,16 @@ import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.Tags;
 
-public enum GlassesArmorMaterial implements IArmorMaterial
+public enum ModSimpleArmorMaterial implements IArmorMaterial
 {
-    SPECTACLES(Gem.SAPPHIRE.getItemTag()),
-    TECHNICOLOR(Tags.Items.GEMS_EMERALD),
-    THREE_DEE(Tags.Items.GEMS_DIAMOND),
-    RED(Gem.RUBY.getItemTag());
+    CROWN(Tags.Items.INGOTS_GOLD),
+    SILVER_CROWN(Tags.Items.INGOTS_IRON),
+    RGB_CROWN(Tags.Items.INGOTS_GOLD),
+    SILVER_RGB_CROWN(Tags.Items.INGOTS_IRON);
 
     private final LazyValue<Ingredient> repairItem;
 
-    GlassesArmorMaterial(ITag<Item> repairItem)
+    ModSimpleArmorMaterial(ITag<Item> repairItem)
     {
         this.repairItem = new LazyValue<>(() -> Ingredient.of(repairItem));
     }

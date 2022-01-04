@@ -24,18 +24,27 @@ public class StonecutterRecipes extends RecipeProvider
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.STONE_FLOOR_TILE.get()), Blocks.SMOOTH_STONE)
                 .unlocks("has_item", has(Blocks.SMOOTH_STONE))
                 .save(consumer, "smooth_stone_from_stone_floor_tile_stonecutting");
-
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.STONE_TILES.get()), Blocks.SMOOTH_STONE)
                 .unlocks("has_item", has(Blocks.SMOOTH_STONE))
                 .save(consumer, "smooth_stone_from_stone_tiles_stonecutting");
-
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.STONE_FLOOR_TILE.get())
                 .unlocks("has_item", has(Blocks.SMOOTH_STONE))
                 .save(consumer, "stone_floor_tile_from_smooth_stone_stonecutting");
-
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.STONE_TILES.get())
                 .unlocks("has_item", has(Blocks.SMOOTH_STONE))
                 .save(consumer, "stone_tiles_from_smooth_stone_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.ACCENTUATED_STONE.get())
+                .unlocks("has_item", has(Blocks.SMOOTH_STONE))
+                .save(consumer, "accentuated_stone_from_smooth_stone_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.ACCENTUATED_STONE.get()), ModBlocks.ACCENTUATED_STONE_CTM.get())
+                .unlocks("has_item", has(ModBlocks.ACCENTUATED_STONE.get()))
+                .save(consumer, "accentuated_stone_ctm_from_accentuated_stone_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.METAL_FRAMED_STONE.get()), ModBlocks.METAL_FRAMED_STONE_CTM.get())
+                .unlocks("has_item", has(ModBlocks.METAL_FRAMED_STONE.get()))
+                .save(consumer, "metal_framed_stone_ctm_from_metal_framed_stone_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.SMOKED_STONE.get()), ModBlocks.SMOKED_STONE_CTM.get())
+                .unlocks("has_item", has(ModBlocks.SMOKED_STONE.get()))
+                .save(consumer, "smoked_stone_ctm_from_smoked_stone_stonecutting");
 
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.PINK_SAPPHIRE_GEMSPARK_BLOCK.get()), ModBlocks.PINK_SAPPHIRE_LANTERN.get())
                 .unlocks("has_item", has(ModBlocks.PINK_SAPPHIRE_GEMSPARK_BLOCK.get()))

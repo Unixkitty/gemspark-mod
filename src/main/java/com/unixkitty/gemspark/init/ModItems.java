@@ -1,16 +1,25 @@
 package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
+import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.item.CosmeticHatItem;
 import com.unixkitty.gemspark.item.DebugItem;
 import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
+import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import javax.annotation.Nullable;
 
 public final class ModItems
 {
@@ -91,8 +100,19 @@ public final class ModItems
     public static final RegistryObject<Item> HEADPHONES = registerCosmeticHat("headphones");
     public static final RegistryObject<Item> REDBACKRIBBON = registerCosmeticHat("redbackribbon");
     public static final RegistryObject<Item> SPITFIRECAP = registerCosmeticHat("spitfirecap");
-    //    public static final RegistryObject<Item> SPITFIRECAP_SPECS = registerCosmeticHat("spitfirecap_specs");
-    public static final RegistryObject<Item> TIARA = registerCosmeticHat("tiara");
+    public static final RegistryObject<Item> FUNKY_ALIEN_GLASSES = registerCosmeticHat("funky_alien_glasses");
+
+    public static final RegistryObject<Item> TANZANITE_TIARA = registerCosmeticHat("tanzanite_tiara");
+    public static final RegistryObject<Item> SILVER_TANZANITE_TIARA = registerCosmeticHat("silver_tanzanite_tiara");
+    public static final RegistryObject<Item> EMERALD_TIARA = registerCosmeticHat("emerald_tiara");
+    public static final RegistryObject<Item> SILVER_EMERALD_TIARA = registerCosmeticHat("silver_emerald_tiara");
+    public static final RegistryObject<Item> SAPPHIRE_TIARA = registerCosmeticHat("sapphire_tiara");
+    public static final RegistryObject<Item> SILVER_SAPPHIRE_TIARA = registerCosmeticHat("silver_sapphire_tiara");
+
+    public static final RegistryObject<Item> RUBY_CROWN = registerCosmeticHat("ruby_crown");
+    public static final RegistryObject<Item> SILVER_RUBY_CROWN = registerCosmeticHat("silver_ruby_crown");
+    public static final RegistryObject<Item> RGB_CROWN = registerCosmeticHat("rgb_crown");
+    public static final RegistryObject<Item> SILVER_RGB_CROWN = registerCosmeticHat("silver_rgb_crown");
 
     public static String getArmorTextureString(String material, EquipmentSlotType slot, String type)
     {
@@ -114,7 +134,7 @@ public final class ModItems
         return ITEMS.register(name, () -> new CosmeticHatItem(basicProperties().stacksTo(1)));
     }
 
-/*    private static RegistryObject<Item> registerArmorItem(String name, IArmorMaterial armorMaterial, EquipmentSlotType slot)
+    private static RegistryObject<Item> registerArmorItem(String name, IArmorMaterial armorMaterial, EquipmentSlotType slot)
     {
         return ITEMS.register(name, () -> new ArmorItem(armorMaterial, slot, basicProperties())
         {
@@ -132,5 +152,5 @@ public final class ModItems
                 return CuriosCompat.initCap(stack);
             }
         });
-    }*/
+    }
 }

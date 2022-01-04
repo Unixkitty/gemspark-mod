@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "gemspark:smoked_stone"
+  },
+  "result": "gemspark:smoked_stone_ctm",
+  "count": 1
+}

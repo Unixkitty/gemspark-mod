@@ -5,6 +5,9 @@
         "layer": "SOLID",
         "textures": [
             "gemspark:block/topaz_gemspark_block_ctm"
-        ]
+        ],
+        "extra": {
+            "light": 11
+        }
     }
 }

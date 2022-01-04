@@ -5,8 +5,11 @@ import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspork.lib.datagen.recipe.SmeltingRecipeProvider;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.item.crafting.Ingredient;
 
 import java.util.function.Consumer;
 
@@ -25,6 +28,8 @@ public class SmeltingRecipes extends SmeltingRecipeProvider
         addBasicOreCooking(consumer, ModBlocks.SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get(), Gem.SAPPHIRE.toString());
         addBasicOreCooking(consumer, ModBlocks.PINK_SAPPHIRE_ORE.get(), ModItems.PINK_SAPPHIRE.get(), Gem.PINK_SAPPHIRE.toString());
         addBasicOreCooking(consumer, ModBlocks.RUBY_ORE.get(), ModItems.RUBY.get(), Gem.RUBY.toString());
+
+        CookingRecipeBuilder.smelting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.SMOKED_STONE.get(), 0.1F, 200).unlockedBy("has_item", has(Blocks.SMOOTH_STONE)).save(consumer);
     }
 
 }

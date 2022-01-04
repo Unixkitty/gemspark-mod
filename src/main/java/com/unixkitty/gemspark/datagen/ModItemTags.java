@@ -56,8 +56,8 @@ public class ModItemTags extends ItemTagsProvider
                 ModItems.FARMER_HAT.get(),
                 ModItems.HEADPHONES.get(),
                 ModItems.REDBACKRIBBON.get(),
-                ModItems.SPITFIRECAP.get(),
-                ModItems.TIARA.get()
+                ModItems.SPITFIRECAP.get()
+//                ModItems.TIARA.get()
         );
         tag(ItemTags.createOptional(new ResourceLocation(CuriosCompat.MODID, "curio"))).add(
                 ModItems.SPECTACLES.get(),
