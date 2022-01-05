@@ -1,13 +1,12 @@
 package com.unixkitty.gemspark.init;
 
-import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.RedstoneLampBlock;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.DyeColor;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -55,39 +54,39 @@ public final class ModBlocks
     public static final RegistryObject<Block> QUARTZ_PEDESTAL = setup(ModBlockType.PEDESTAL, "quartz_pedestal");
     public static final RegistryObject<Block> BLACKSTONE_PEDESTAL = setup(ModBlockType.PEDESTAL, "blackstone_pedestal");
 
-    public static final RegistryObject<Block> COLORED_LAMP_WHITE = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_white");
-    public static final RegistryObject<Block> COLORED_LAMP_ORANGE = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_orange");
-    public static final RegistryObject<Block> COLORED_LAMP_MAGENTA = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_magenta");
-    public static final RegistryObject<Block> COLORED_LAMP_LIGHT_BLUE = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_light_blue");
-    public static final RegistryObject<Block> COLORED_LAMP_YELLOW = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_yellow");
-    public static final RegistryObject<Block> COLORED_LAMP_LIME = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_lime");
-    public static final RegistryObject<Block> COLORED_LAMP_PINK = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_pink");
-    public static final RegistryObject<Block> COLORED_LAMP_GRAY = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_gray");
-    public static final RegistryObject<Block> COLORED_LAMP_LIGHT_GRAY = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_light_gray");
-    public static final RegistryObject<Block> COLORED_LAMP_CYAN = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_cyan");
-    public static final RegistryObject<Block> COLORED_LAMP_PURPLE = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_purple");
-    public static final RegistryObject<Block> COLORED_LAMP_BLUE = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_blue");
-    public static final RegistryObject<Block> COLORED_LAMP_BROWN = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_brown");
-    public static final RegistryObject<Block> COLORED_LAMP_GREEN = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_green");
-    public static final RegistryObject<Block> COLORED_LAMP_RED = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_red");
-    public static final RegistryObject<Block> COLORED_LAMP_BLACK = setup(ModBlockType.REDSTONE_LAMP, "colored_lamp_black");
+    public static final RegistryObject<Block> COLORED_LAMP_WHITE = setupRedstoneLamp(DyeColor.WHITE, false);
+    public static final RegistryObject<Block> COLORED_LAMP_ORANGE = setupRedstoneLamp(DyeColor.ORANGE, false);
+    public static final RegistryObject<Block> COLORED_LAMP_MAGENTA = setupRedstoneLamp(DyeColor.MAGENTA, false);
+    public static final RegistryObject<Block> COLORED_LAMP_LIGHT_BLUE = setupRedstoneLamp(DyeColor.LIGHT_BLUE, false);
+    public static final RegistryObject<Block> COLORED_LAMP_YELLOW = setupRedstoneLamp(DyeColor.YELLOW, false);
+    public static final RegistryObject<Block> COLORED_LAMP_LIME = setupRedstoneLamp(DyeColor.LIME, false);
+    public static final RegistryObject<Block> COLORED_LAMP_PINK = setupRedstoneLamp(DyeColor.PINK, false);
+    public static final RegistryObject<Block> COLORED_LAMP_GRAY = setupRedstoneLamp(DyeColor.GRAY, false);
+    public static final RegistryObject<Block> COLORED_LAMP_LIGHT_GRAY = setupRedstoneLamp(DyeColor.LIGHT_GRAY, false);
+    public static final RegistryObject<Block> COLORED_LAMP_CYAN = setupRedstoneLamp(DyeColor.CYAN, false);
+    public static final RegistryObject<Block> COLORED_LAMP_PURPLE = setupRedstoneLamp(DyeColor.PURPLE, false);
+    public static final RegistryObject<Block> COLORED_LAMP_BLUE = setupRedstoneLamp(DyeColor.BLUE, false);
+    public static final RegistryObject<Block> COLORED_LAMP_BROWN = setupRedstoneLamp(DyeColor.BROWN, false);
+    public static final RegistryObject<Block> COLORED_LAMP_GREEN = setupRedstoneLamp(DyeColor.GREEN, false);
+    public static final RegistryObject<Block> COLORED_LAMP_RED = setupRedstoneLamp(DyeColor.RED, false);
+    public static final RegistryObject<Block> COLORED_LAMP_BLACK = setupRedstoneLamp(DyeColor.BLACK, false);
 
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_WHITE = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_white");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_ORANGE = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_orange");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_MAGENTA = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_magenta");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_LIGHT_BLUE = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_light_blue");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_YELLOW = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_yellow");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_LIME = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_lime");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_PINK = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_pink");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_GRAY = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_gray");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_LIGHT_GRAY = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_light_gray");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_CYAN = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_cyan");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_PURPLE = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_purple");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BLUE = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_blue");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BROWN = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_brown");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_GREEN = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_green");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_RED = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_red");
-    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BLACK = setup(ModBlockType.INVERTED_REDSTONE_LAMP, "colored_inverted_lamp_black");
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_WHITE = setupRedstoneLamp(DyeColor.WHITE, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_ORANGE = setupRedstoneLamp(DyeColor.ORANGE, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_MAGENTA = setupRedstoneLamp(DyeColor.MAGENTA, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_LIGHT_BLUE = setupRedstoneLamp(DyeColor.LIGHT_BLUE, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_YELLOW = setupRedstoneLamp(DyeColor.YELLOW, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_LIME = setupRedstoneLamp(DyeColor.LIME, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_PINK = setupRedstoneLamp(DyeColor.PINK, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_GRAY = setupRedstoneLamp(DyeColor.GRAY, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_LIGHT_GRAY = setupRedstoneLamp(DyeColor.LIGHT_GRAY, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_CYAN = setupRedstoneLamp(DyeColor.CYAN, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_PURPLE = setupRedstoneLamp(DyeColor.PURPLE, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BLUE = setupRedstoneLamp(DyeColor.BLUE, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BROWN = setupRedstoneLamp(DyeColor.BROWN, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_GREEN = setupRedstoneLamp(DyeColor.GREEN, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_RED = setupRedstoneLamp(DyeColor.RED, true);
+    public static final RegistryObject<Block> COLORED_INVERTED_LAMP_BLACK = setupRedstoneLamp(DyeColor.BLACK, true);
 
     public static final RegistryObject<Block> LAMP_POST_CAP_OAK = setupLampPost("lamp_post_cap_oak", Block.Properties.copy(Blocks.OAK_FENCE));
     public static final RegistryObject<Block> LAMP_POST_CAP_NETHER_BRICK = setupLampPost("lamp_post_cap_nether_brick", Block.Properties.copy(Blocks.NETHER_BRICK_FENCE));
@@ -126,7 +125,7 @@ public final class ModBlocks
             case LANTERN:
                 return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
             case GEMSPARK:
-                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 8)));
+                return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9)));
             case ORE:
                 return BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_ORE))
                 {
@@ -138,13 +137,17 @@ public final class ModBlocks
                 });
             case PEDESTAL:
                 return BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
-            case REDSTONE_LAMP:
-                return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
-            case INVERTED_REDSTONE_LAMP:
-                return !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, InvertedRedstoneLampBlock::new);
             default:
                 return null;
         }
+    }
+
+    private static RegistryObject<Block> setupRedstoneLamp(DyeColor color, boolean inverted)
+    {
+        return BLOCKS.register(
+                "colored_" + (inverted ? "inverted_" : "") + "lamp_" + color.getName(),
+                () -> inverted ? new LampBlock.Inverted(color) : new LampBlock.Normal(color)
+        );
     }
 
     private static RegistryObject<Block> setupLampPost(String name, Block.Properties properties)
@@ -159,8 +162,6 @@ public final class ModBlocks
         GEMSPARK,
         ORE,
         PEDESTAL,
-        REDSTONE_LAMP,
-        INVERTED_REDSTONE_LAMP,
         LAMP_POST
     }
 

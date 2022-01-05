@@ -1,0 +1,11 @@
+{
+    "normal": {
+        "ctm_version": 1,
+        "type": "normal",
+        "layer": "SOLID",
+        "textures": [],
+        "extra": {
+            "light": 15
+        }
+    }
+}
