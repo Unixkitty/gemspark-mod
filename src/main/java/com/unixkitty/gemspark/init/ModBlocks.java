@@ -116,6 +116,9 @@ public final class ModBlocks
     public static final RegistryObject<Block> ACCENTUATED_STONE = BLOCKS.register("accentuated_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
     public static final RegistryObject<Block> ACCENTUATED_STONE_CTM = BLOCKS.register("accentuated_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
 
+    public static final RegistryObject<Block> LIGHT_RAINBOW_BRICKS = BLOCKS.register("light_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> DARK_RAINBOW_BRICKS = BLOCKS.register("dark_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
+
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
         switch (blockType)

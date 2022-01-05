@@ -177,6 +177,28 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
                 .unlockedBy("has_item", has(ModBlocks.METAL_FRAMED_STONE.get()))
                 .save(consumer);
 
+        //Light Rainbow Bricks
+        ShapelessRecipeBuilder.shapeless(ModBlocks.LIGHT_RAINBOW_BRICKS.get(), 16)
+                .requires(Blocks.BRICKS)
+                .requires(ModItems.COSMETIC_CLAY.get())
+                .requires(Tags.Items.DYES_WHITE)
+                .requires(Gem.RUBY.getItemTag())
+                .requires(Gem.EMERALD.getItemTag())
+                .requires(Gem.SAPPHIRE.getItemTag())
+                .unlockedBy("has_bricks", has(Blocks.BRICKS))
+                .save(consumer);
+
+        //Dark Rainbow Bricks
+        ShapelessRecipeBuilder.shapeless(ModBlocks.DARK_RAINBOW_BRICKS.get(), 16)
+                .requires(Blocks.BRICKS)
+                .requires(ModItems.COSMETIC_CLAY.get())
+                .requires(Tags.Items.DYES_BLACK)
+                .requires(Gem.RUBY.getItemTag())
+                .requires(Gem.EMERALD.getItemTag())
+                .requires(Gem.SAPPHIRE.getItemTag())
+                .unlockedBy("has_bricks", has(Blocks.BRICKS))
+                .save(consumer);
+
         //Spitfire Cap
         ShapedRecipeBuilder.shaped(ModItems.SPITFIRECAP.get())
                 .define('l', Items.LEATHER)
