@@ -11,7 +11,7 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class LampBlock
+public class BlockColoredRedstoneLamp
 {
     private static AbstractBlock.Properties lampProperties(DyeColor color)
     {

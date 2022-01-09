@@ -61,6 +61,14 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
         registerGemsparkBlock(consumer, Tags.Items.GEMS_EMERALD);
         registerGemsparkBlock(consumer, Tags.Items.GEMS_DIAMOND);
 
+        registerGlass(consumer, Gem.TANZANITE.getItemTag());
+        registerGlass(consumer, Gem.TOPAZ.getItemTag());
+        registerGlass(consumer, Gem.SAPPHIRE.getItemTag());
+        registerGlass(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerGlass(consumer, Gem.RUBY.getItemTag());
+        registerGlass(consumer, Tags.Items.GEMS_EMERALD);
+        registerGlass(consumer, Tags.Items.GEMS_DIAMOND);
+
         registerUniqueRecipes(consumer);
 
         registerColoredLamp(consumer, false);
@@ -75,6 +83,31 @@ public class CraftingTableRecipes extends CraftingTableRecipeProvider
         registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_DARK_OAK.get(), Blocks.DARK_OAK_FENCE);
         registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_WARPED.get(), Blocks.WARPED_FENCE);
         registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_CRIMSON.get(), Blocks.CRIMSON_FENCE);
+    }
+
+    private void registerGlass(Consumer<IFinishedRecipe> consumer, ITag.INamedTag<Item> gemIngredient)
+    {
+        IItemProvider output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "glass");
+
+        ShapedRecipeBuilder.shaped(output)
+                .define('G', gemIngredient)
+                .define('g', Tags.Items.GLASS_COLORLESS)
+                .pattern("ggg")
+                .pattern("gGg")
+                .pattern("ggg")
+                .unlockedBy("has_item", has(gemIngredient))
+                .save(consumer);
+
+        IItemProvider output2 = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "glowing_glass");
+
+        ShapedRecipeBuilder.shaped(output2)
+                .define('G', Tags.Items.DUSTS_GLOWSTONE)
+                .define('g', output)
+                .pattern("ggg")
+                .pattern("gGg")
+                .pattern("ggg")
+                .unlockedBy("has_item", has(output))
+                .save(consumer);
     }
 
     private void registerColoredLamp(Consumer<IFinishedRecipe> consumer, boolean inverted)

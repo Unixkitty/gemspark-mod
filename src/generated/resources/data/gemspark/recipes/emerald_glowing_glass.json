@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ggg",
+    "gGg",
+    "ggg"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:dusts/glowstone"
+    },
+    "g": {
+      "item": "gemspark:emerald_glass"
+    }
+  },
+  "result": {
+    "item": "gemspark:emerald_glowing_glass"
+  }
+}

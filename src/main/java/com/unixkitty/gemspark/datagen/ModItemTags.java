@@ -56,8 +56,17 @@ public class ModItemTags extends ItemTagsProvider
                 ModItems.FARMER_HAT.get(),
                 ModItems.HEADPHONES.get(),
                 ModItems.REDBACKRIBBON.get(),
-                ModItems.SPITFIRECAP.get()
-//                ModItems.TIARA.get()
+                ModItems.SPITFIRECAP.get(),
+                ModItems.TANZANITE_TIARA.get(),
+                ModItems.SILVER_TANZANITE_TIARA.get(),
+                ModItems.EMERALD_TIARA.get(),
+                ModItems.SILVER_EMERALD_TIARA.get(),
+                ModItems.SAPPHIRE_TIARA.get(),
+                ModItems.SILVER_SAPPHIRE_TIARA.get(),
+                ModItems.RUBY_CROWN.get(),
+                ModItems.SILVER_RUBY_CROWN.get(),
+                ModItems.RGB_CROWN.get(),
+                ModItems.SILVER_RGB_CROWN.get()
         );
         tag(ItemTags.createOptional(new ResourceLocation(CuriosCompat.MODID, "curio"))).add(
                 ModItems.SPECTACLES.get(),

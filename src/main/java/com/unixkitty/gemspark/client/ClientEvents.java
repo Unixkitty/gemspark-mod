@@ -38,6 +38,22 @@ public final class ClientEvents
 
         RenderTypeLookup.setRenderLayer(ModBlocks.BRAZIER.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.cutout());
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.EMERALD_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.DIAMOND_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.TANZANITE_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.TOPAZ_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.SAPPHIRE_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PINK_SAPPHIRE_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.RUBY_GLASS.get(), RenderType.cutout());
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.EMERALD_GLOWING_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.DIAMOND_GLOWING_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.TANZANITE_GLOWING_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.TOPAZ_GLOWING_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.SAPPHIRE_GLOWING_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PINK_SAPPHIRE_GLOWING_GLASS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.RUBY_GLOWING_GLASS.get(), RenderType.cutout());
     }
 
     @SubscribeEvent
