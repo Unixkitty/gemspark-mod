@@ -1,5 +1,6 @@
 package com.unixkitty.gemspark.block;
 
+import com.unixkitty.gemspark.Config;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -47,7 +48,7 @@ public class BlockBrazier extends Block implements IWaterLoggable
     @Override
     public void entityInside(BlockState state, World world, BlockPos pos, Entity entity)
     {
-        if (!entity.fireImmune() && state.getValue(LIT) && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity))
+        if (Config.hurtEntitiesByBraziers.get() && !entity.fireImmune() && state.getValue(LIT) && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity))
         {
             entity.hurt(DamageSource.IN_FIRE, (float) this.fireDamage);
         }
