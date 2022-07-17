@@ -1,5 +1,6 @@
 package com.unixkitty.gemspark.block;
 
+import com.unixkitty.gemspark.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -51,7 +52,7 @@ public class BlockBrazier extends Block implements SimpleWaterloggedBlock
     @Override
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity)
     {
-        if (!entity.fireImmune() && state.getValue(LIT) && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity))
+        if (Config.hurtEntitiesByBraziers.get() && !entity.fireImmune() && state.getValue(LIT) && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity))
         {
             entity.hurt(DamageSource.IN_FIRE, (float) this.fireDamage);
         }

@@ -11,6 +11,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
 
@@ -29,6 +30,8 @@ public class SmeltingRecipes extends RecipeProvider
         addBasicOreCooking(consumer, ModBlocks.SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get(), Gem.SAPPHIRE.toString());
         addBasicOreCooking(consumer, ModBlocks.PINK_SAPPHIRE_ORE.get(), ModItems.PINK_SAPPHIRE.get(), Gem.PINK_SAPPHIRE.toString());
         addBasicOreCooking(consumer, ModBlocks.RUBY_ORE.get(), ModItems.RUBY.get(), Gem.RUBY.toString());
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Blocks.SMOOTH_STONE), ModBlocks.SMOKED_STONE.get(), 0.1F, 200).unlockedBy("has_item", has(Blocks.SMOOTH_STONE)).save(consumer);
     }
 
     protected void addBasicOreCooking(Consumer<FinishedRecipe> consumer, ItemLike input, ItemLike result, String name)

@@ -50,7 +50,17 @@ public class CuriosCompat
             CuriosRendererRegistry.register(ModItems.HEADPHONES.get(), CurioItemRenderer::new);
             CuriosRendererRegistry.register(ModItems.REDBACKRIBBON.get(), CurioItemRenderer::new);
             CuriosRendererRegistry.register(ModItems.SPITFIRECAP.get(), CurioItemRenderer::new);
-            CuriosRendererRegistry.register(ModItems.TIARA.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.FUNKY_ALIEN_GLASSES.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.TANZANITE_TIARA.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.SILVER_TANZANITE_TIARA.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.EMERALD_TIARA.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.SILVER_EMERALD_TIARA.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.SAPPHIRE_TIARA.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.SILVER_SAPPHIRE_TIARA.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.RUBY_CROWN.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.SILVER_RUBY_CROWN.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.RGB_CROWN.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.SILVER_RGB_CROWN.get(), CurioItemRenderer::new);
         }
     }
 

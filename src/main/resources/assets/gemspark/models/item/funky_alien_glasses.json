@@ -1,0 +1,73 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "gemspark:item/funky_alien_glasses",
+		"particle": "gemspark:item/funky_alien_glasses"
+	},
+	"elements": [
+		{
+			"name": "inner_front",
+			"from": [4, 2, 4],
+			"to": [12, 5.5, 4],
+			"faces": {
+				"north": {"uv": [6, 0, 10, 14], "texture": "#0"},
+				"south": {"uv": [10, 0.25, 6, 14], "texture": "#0"}
+			}
+		},
+		{
+			"name": "inner_east",
+			"from": [12, 2, 4],
+			"to": [12, 5, 9],
+			"faces": {
+				"east": {"uv": [3.5, 2, 6.25, 14], "texture": "#0"},
+				"west": {"uv": [6.25, 2, 3.5, 14], "texture": "#0"}
+			}
+		},
+		{
+			"name": "inner_west",
+			"from": [4, 2, 4],
+			"to": [4, 5, 9],
+			"faces": {
+				"east": {"uv": [3.5, 2, 6.25, 14], "texture": "#0"},
+				"west": {"uv": [6.25, 2, 3.5, 14], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-50, -38, -60],
+			"translation": [0, 8.75, -0.5],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-50, -38, -60],
+			"translation": [0, 8.75, -0.5],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 3, 0],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 3, 0],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"ground": {
+			"translation": [0, 6, 0],
+			"scale": [1.33, 1.33, 1.33]
+		},
+		"gui": {
+			"rotation": [38, 170, 0],
+			"translation": [0, 6.25, 0],
+			"scale": [1.75, 1.75, 1.75]
+		},
+		"head": {
+			"translation": [0, 7, 0],
+			"scale": [1.85, 1.85, 1.85]
+		},
+		"fixed": {
+			"translation": [0, 5.5, 3],
+			"scale": [1.5, 1.5, 1.5]
+		}
+	}
+}

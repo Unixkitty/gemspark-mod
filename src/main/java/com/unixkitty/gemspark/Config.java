@@ -14,9 +14,9 @@ public class Config
     private static final int WORLD_HEIGHT = 256;
     private static final int WORLD_HEIGHT_NETHER = 128;
     /* BEGIN ENTRIES */
-    public static final String CATEGORY_REGISTRATION = "registration";
+    public static final String CATEGORY_GENERAL = "general";
 
-    public static ForgeConfigSpec.BooleanValue registerColoredLamps;
+    public static ForgeConfigSpec.BooleanValue hurtEntitiesByBraziers;
 
     public static final String CATEGORY_WORLDGEN = "world_generation";
 
@@ -57,17 +57,15 @@ public class Config
     /* END ENTRIES */
 
     /* Non-configurable */
-    public static final int GEMLANTERNSFROMCRAFT = 2;
-    public static final int GEMDROPSFROMLANTERNS = 2;
-    public static final int GEMDROPSFROMORE = 1;
+    public static final int GEMSPARK_BLOCKS_FROM_CRAFT = 8;
 
     static
     {
         ForgeConfigSpec.Builder commonConfig = new ForgeConfigSpec.Builder();
 
         {
-            commonConfig.comment("Registration settings").push(CATEGORY_REGISTRATION);
-            registerColoredLamps = commonConfig.comment("Register colored lamps").define("registerColoredLamps", true);
+            commonConfig.comment("General options").push(CATEGORY_GENERAL);
+            hurtEntitiesByBraziers = commonConfig.comment("Should entities be hurt when touching braziers added by the mod").define("hurtEntitiesByBraziers", false);
             commonConfig.pop();
         }
 

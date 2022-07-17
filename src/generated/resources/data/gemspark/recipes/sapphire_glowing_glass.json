@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ggg",
+    "gGg",
+    "ggg"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:dusts/glowstone"
+    },
+    "g": {
+      "item": "gemspark:sapphire_glass"
+    }
+  },
+  "result": {
+    "item": "gemspark:sapphire_glowing_glass"
+  }
+}

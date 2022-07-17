@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:glass/colorless"
+    },
+    {
+      "tag": "forge:gems/emerald"
+    },
+    {
+      "item": "minecraft:glowstone"
+    }
+  ],
+  "result": {
+    "item": "gemspark:emerald_gemspark_block",
+    "count": 8
+  }
+}

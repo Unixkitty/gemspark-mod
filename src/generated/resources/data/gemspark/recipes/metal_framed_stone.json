@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "nsn",
+    "sns",
+    "nsn"
+  ],
+  "key": {
+    "n": {
+      "tag": "forge:nuggets/iron"
+    },
+    "s": {
+      "item": "gemspark:smoked_stone"
+    }
+  },
+  "result": {
+    "item": "gemspark:metal_framed_stone",
+    "count": 4
+  }
+}

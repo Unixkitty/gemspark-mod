@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "gemspark:emerald_gemspark_block"
+  },
+  "result": "gemspark:emerald_lantern",
+  "count": 1
+}

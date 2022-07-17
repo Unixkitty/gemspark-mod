@@ -1,0 +1,10 @@
+{
+    "ctm": {
+        "ctm_version": 1,
+        "type": "ctm",
+        "layer": "CUTOUT",
+        "textures": [
+            "gemspark:block/diamond_glass_ctm"
+        ]
+    }
+}

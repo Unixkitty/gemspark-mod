@@ -1,6 +1,5 @@
 package com.unixkitty.gemspark.init;
 
-import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.*;
 import net.minecraft.core.BlockPos;
@@ -8,14 +7,14 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RedstoneLampBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.ToIntFunction;
 
@@ -30,6 +29,14 @@ public final class ModBlocks
     public static final RegistryObject<Block> PINK_SAPPHIRE_BLOCK = setup(ModBlockType.GEM_BLOCK, "pink_sapphire_block");
     public static final RegistryObject<Block> RUBY_BLOCK = setup(ModBlockType.GEM_BLOCK, "ruby_block");
 
+    public static final RegistryObject<Block> EMERALD_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "emerald_gemspark_block");
+    public static final RegistryObject<Block> DIAMOND_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "diamond_gemspark_block");
+    public static final RegistryObject<Block> TANZANITE_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "tanzanite_gemspark_block");
+    public static final RegistryObject<Block> TOPAZ_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "topaz_gemspark_block");
+    public static final RegistryObject<Block> SAPPHIRE_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "sapphire_gemspark_block");
+    public static final RegistryObject<Block> PINK_SAPPHIRE_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "pink_sapphire_gemspark_block");
+    public static final RegistryObject<Block> RUBY_GEMSPARK_BLOCK = setup(ModBlockType.GEMSPARK, "ruby_gemspark_block");
+
     public static final RegistryObject<Block> EMERALD_LANTERN = setup(ModBlockType.LANTERN, "emerald_lantern");
     public static final RegistryObject<Block> DIAMOND_LANTERN = setup(ModBlockType.LANTERN, "diamond_lantern");
     public static final RegistryObject<Block> TANZANITE_LANTERN = setup(ModBlockType.LANTERN, "tanzanite_lantern");
@@ -37,6 +44,22 @@ public final class ModBlocks
     public static final RegistryObject<Block> SAPPHIRE_LANTERN = setup(ModBlockType.LANTERN, "sapphire_lantern");
     public static final RegistryObject<Block> PINK_SAPPHIRE_LANTERN = setup(ModBlockType.LANTERN, "pink_sapphire_lantern");
     public static final RegistryObject<Block> RUBY_LANTERN = setup(ModBlockType.LANTERN, "ruby_lantern");
+
+    public static final RegistryObject<Block> EMERALD_GLASS = setup(ModBlockType.GLASS, "emerald_glass");
+    public static final RegistryObject<Block> DIAMOND_GLASS = setup(ModBlockType.GLASS, "diamond_glass");
+    public static final RegistryObject<Block> TANZANITE_GLASS = setup(ModBlockType.GLASS, "tanzanite_glass");
+    public static final RegistryObject<Block> TOPAZ_GLASS = setup(ModBlockType.GLASS, "topaz_glass");
+    public static final RegistryObject<Block> SAPPHIRE_GLASS = setup(ModBlockType.GLASS, "sapphire_glass");
+    public static final RegistryObject<Block> PINK_SAPPHIRE_GLASS = setup(ModBlockType.GLASS, "pink_sapphire_glass");
+    public static final RegistryObject<Block> RUBY_GLASS = setup(ModBlockType.GLASS, "ruby_glass");
+
+    public static final RegistryObject<Block> EMERALD_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "emerald_glowing_glass");
+    public static final RegistryObject<Block> DIAMOND_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "diamond_glowing_glass");
+    public static final RegistryObject<Block> TANZANITE_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "tanzanite_glowing_glass");
+    public static final RegistryObject<Block> TOPAZ_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "topaz_glowing_glass");
+    public static final RegistryObject<Block> SAPPHIRE_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "sapphire_glowing_glass");
+    public static final RegistryObject<Block> PINK_SAPPHIRE_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "pink_sapphire_glowing_glass");
+    public static final RegistryObject<Block> RUBY_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "ruby_glowing_glass");
 
     public static final RegistryObject<Block> TANZANITE_ORE = setup(ModBlockType.ORE, "tanzanite_ore");
     public static final RegistryObject<Block> TOPAZ_ORE = setup(ModBlockType.ORE, "topaz_ore");
@@ -102,13 +125,28 @@ public final class ModBlocks
 
     public static final RegistryObject<Block> STONE_FLOOR_TILE = BLOCKS.register("stone_floor_tile", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
     public static final RegistryObject<Block> STONE_TILES = BLOCKS.register("stone_tiles", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> SMOKED_STONE = BLOCKS.register("smoked_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> SMOKED_STONE_CTM = BLOCKS.register("smoked_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> METAL_FRAMED_STONE = BLOCKS.register("metal_framed_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> METAL_FRAMED_STONE_CTM = BLOCKS.register("metal_framed_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> ACCENTUATED_STONE = BLOCKS.register("accentuated_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> ACCENTUATED_STONE_CTM = BLOCKS.register("accentuated_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+
+    public static final RegistryObject<Block> LIGHT_RAINBOW_BRICKS = BLOCKS.register("light_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> DARK_RAINBOW_BRICKS = BLOCKS.register("dark_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
         return switch (blockType)
                 {
-                    case GEM_BLOCK -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
+                    case GEM_BLOCK ->
+                            BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
                     case LANTERN -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
+                    case GLASS -> BLOCKS.register(name, () -> new GlassBlock(gemGlassProperties(name)));
+                    case GLOWING_GLASS ->
+                            BLOCKS.register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
+                    case GEMSPARK ->
+                            BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9)));
                     case ORE -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_ORE))
                     {
                         @Override
@@ -117,9 +155,11 @@ public final class ModBlocks
                             return silktouch == 0 ? Mth.nextInt(RANDOM, 3, 7) : 0;
                         }
                     });
-                    case PEDESTAL -> BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
-                    case REDSTONE_LAMP -> !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
-                    case INVERTED_REDSTONE_LAMP -> !Config.registerColoredLamps.get() ? null : BLOCKS.register(name, InvertedRedstoneLampBlock::new);
+                    case PEDESTAL ->
+                            BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
+                    case REDSTONE_LAMP ->
+                            BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
+                    case INVERTED_REDSTONE_LAMP -> BLOCKS.register(name, BlockColoredRedstoneLamp::new);
                     default -> null;
                 };
     }
@@ -129,18 +169,40 @@ public final class ModBlocks
         return BLOCKS.register(name, () -> new BlockLampPostCap(properties.isValidSpawn(ModBlocks::neverAllowSpawn)));
     }
 
+    private static Block.Properties gemGlassProperties(String name)
+    {
+        return Block.Properties.of(Material.METAL, MaterialColor.NONE)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.GLASS)
+                .noOcclusion()
+                .isValidSpawn(ModBlocks::neverAllowSpawn)
+                .isRedstoneConductor(ModBlocks::never)
+                .isSuffocating(ModBlocks::never)
+                .isViewBlocking(ModBlocks::never)
+                .strength((name.contains("diamond") || name.contains("ruby")) ? 3.0F : 1.5F, name.contains("diamond") ? 1200F : name.contains("ruby") ? 800F : 600F);
+    }
+
     private enum ModBlockType
     {
         GEM_BLOCK,
         LANTERN,
+        GLASS,
+        GLOWING_GLASS,
+        GEMSPARK,
         ORE,
         PEDESTAL,
         REDSTONE_LAMP,
-        INVERTED_REDSTONE_LAMP,
-        LAMP_POST
+        INVERTED_REDSTONE_LAMP
     }
 
+    //Mojank pls
     private static Boolean neverAllowSpawn(BlockState state, BlockGetter reader, BlockPos pos, EntityType<?> entity)
+    {
+        return false;
+    }
+
+    //Mojank pls
+    private static boolean never(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return false;
     }

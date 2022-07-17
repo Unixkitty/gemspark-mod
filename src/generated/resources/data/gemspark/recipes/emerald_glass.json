@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ggg",
+    "gGg",
+    "ggg"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:gems/emerald"
+    },
+    "g": {
+      "tag": "forge:glass/colorless"
+    }
+  },
+  "result": {
+    "item": "gemspark:emerald_glass"
+  }
+}

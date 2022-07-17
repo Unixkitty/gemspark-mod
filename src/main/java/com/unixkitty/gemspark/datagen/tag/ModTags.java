@@ -9,7 +9,6 @@ import net.minecraftforge.common.Tags;
 
 public class ModTags
 {
-    public static final String GEMS_PREFIX = Tags.Items.GEMS.location().getPath();
     public static final String STORAGE_BLOCKS_PREFIX = Tags.Blocks.STORAGE_BLOCKS.location().getPath();
     public static final String ORES_PREFIX = Tags.Blocks.ORES.location().getPath();
 

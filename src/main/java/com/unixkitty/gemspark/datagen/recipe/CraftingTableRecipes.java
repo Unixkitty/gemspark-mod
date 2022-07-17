@@ -56,13 +56,21 @@ public class CraftingTableRecipes extends RecipeProvider
         registerCompression(consumer, Gem.PINK_SAPPHIRE.getItemTag());
         registerCompression(consumer, Gem.RUBY.getItemTag());
 
-        registerLantern(consumer, Gem.TANZANITE.getItemTag());
-        registerLantern(consumer, Gem.TOPAZ.getItemTag());
-        registerLantern(consumer, Gem.SAPPHIRE.getItemTag());
-        registerLantern(consumer, Gem.PINK_SAPPHIRE.getItemTag());
-        registerLantern(consumer, Gem.RUBY.getItemTag());
-        registerLantern(consumer, Tags.Items.GEMS_EMERALD);
-        registerLantern(consumer, Tags.Items.GEMS_DIAMOND);
+        registerGemsparkBlock(consumer, Gem.TANZANITE.getItemTag());
+        registerGemsparkBlock(consumer, Gem.TOPAZ.getItemTag());
+        registerGemsparkBlock(consumer, Gem.SAPPHIRE.getItemTag());
+        registerGemsparkBlock(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerGemsparkBlock(consumer, Gem.RUBY.getItemTag());
+        registerGemsparkBlock(consumer, Tags.Items.GEMS_EMERALD);
+        registerGemsparkBlock(consumer, Tags.Items.GEMS_DIAMOND);
+
+        registerGlass(consumer, Gem.TANZANITE.getItemTag());
+        registerGlass(consumer, Gem.TOPAZ.getItemTag());
+        registerGlass(consumer, Gem.SAPPHIRE.getItemTag());
+        registerGlass(consumer, Gem.PINK_SAPPHIRE.getItemTag());
+        registerGlass(consumer, Gem.RUBY.getItemTag());
+        registerGlass(consumer, Tags.Items.GEMS_EMERALD);
+        registerGlass(consumer, Tags.Items.GEMS_DIAMOND);
 
         registerUniqueRecipes(consumer);
 
@@ -78,6 +86,31 @@ public class CraftingTableRecipes extends RecipeProvider
         registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_DARK_OAK.get(), Blocks.DARK_OAK_FENCE);
         registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_WARPED.get(), Blocks.WARPED_FENCE);
         registerLampPostCap(consumer, ModBlocks.LAMP_POST_CAP_CRIMSON.get(), Blocks.CRIMSON_FENCE);
+    }
+
+    private void registerGlass(Consumer<FinishedRecipe> consumer, TagKey<Item> gemIngredient)
+    {
+        ItemLike output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "glass");
+
+        ShapedRecipeBuilder.shaped(output, 8)
+                .define('G', gemIngredient)
+                .define('g', Tags.Items.GLASS_COLORLESS)
+                .pattern("ggg")
+                .pattern("gGg")
+                .pattern("ggg")
+                .unlockedBy("has_item", has(gemIngredient))
+                .save(consumer);
+
+        ItemLike output2 = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "glowing_glass");
+
+        ShapedRecipeBuilder.shaped(output2, 8)
+                .define('G', Tags.Items.DUSTS_GLOWSTONE)
+                .define('g', output)
+                .pattern("ggg")
+                .pattern("gGg")
+                .pattern("ggg")
+                .unlockedBy("has_item", has(output))
+                .save(consumer);
     }
 
     private void registerColoredLamp(Consumer<FinishedRecipe> consumer, boolean inverted)
@@ -104,6 +137,28 @@ public class CraftingTableRecipes extends RecipeProvider
 
     private void registerUniqueRecipes(Consumer<FinishedRecipe> consumer)
     {
+        //Soul Brazier
+        ShapedRecipeBuilder.shaped(ModBlocks.SOUL_BRAZIER.get())
+                .define('b', Blocks.IRON_BARS)
+                .define('s', ItemTags.SOUL_FIRE_BASE_BLOCKS)
+                .define('i', Tags.Items.INGOTS_IRON)
+                .pattern("bsb")
+                .pattern(" i ")
+                .pattern("i i")
+                .unlockedBy("has_item", has(Tags.Items.INGOTS_IRON))
+                .save(consumer);
+
+        //Brazier
+        ShapedRecipeBuilder.shaped(ModBlocks.BRAZIER.get())
+                .define('b', Blocks.IRON_BARS)
+                .define('c', ItemTags.COALS)
+                .define('i', Tags.Items.INGOTS_IRON)
+                .pattern("bcb")
+                .pattern(" i ")
+                .pattern("i i")
+                .unlockedBy("has_item", has(Tags.Items.INGOTS_IRON))
+                .save(consumer);
+
         //Stone Tiles
         ShapedRecipeBuilder.shaped(ModBlocks.STONE_TILES.get(), 4)
                 .define('S', Blocks.SMOOTH_STONE)
@@ -148,37 +203,36 @@ public class CraftingTableRecipes extends RecipeProvider
                 .unlockedBy("has_item", has(Blocks.DIRT))
                 .save(consumer);
 
-        //Soul Brazier
-        ShapedRecipeBuilder.shaped(ModBlocks.SOUL_BRAZIER.get())
-                .define('b', Blocks.IRON_BARS)
-                .define('s', ItemTags.SOUL_FIRE_BASE_BLOCKS)
-                .define('i', Tags.Items.INGOTS_IRON)
-                .pattern("bsb")
-                .pattern(" i ")
-                .pattern("i i")
-                .unlockedBy("has_item", has(Tags.Items.INGOTS_IRON))
+        //Metal Framed Stone
+        ShapedRecipeBuilder.shaped(ModBlocks.METAL_FRAMED_STONE.get(), 4)
+                .define('n', Tags.Items.NUGGETS_IRON)
+                .define('s', ModBlocks.SMOKED_STONE.get())
+                .pattern("nsn")
+                .pattern("sns")
+                .pattern("nsn")
+                .unlockedBy("has_item", has(ModBlocks.METAL_FRAMED_STONE.get()))
                 .save(consumer);
 
-        //Brazier
-        ShapedRecipeBuilder.shaped(ModBlocks.BRAZIER.get())
-                .define('b', Blocks.IRON_BARS)
-                .define('c', ItemTags.COALS)
-                .define('i', Tags.Items.INGOTS_IRON)
-                .pattern("bcb")
-                .pattern(" i ")
-                .pattern("i i")
-                .unlockedBy("has_item", has(Tags.Items.INGOTS_IRON))
+        //Light Rainbow Bricks
+        ShapelessRecipeBuilder.shapeless(ModBlocks.LIGHT_RAINBOW_BRICKS.get(), 16)
+                .requires(Blocks.BRICKS)
+                .requires(ModItems.COSMETIC_CLAY.get())
+                .requires(Tags.Items.DYES_WHITE)
+                .requires(Gem.RUBY.getItemTag())
+                .requires(Gem.EMERALD.getItemTag())
+                .requires(Gem.SAPPHIRE.getItemTag())
+                .unlockedBy("has_bricks", has(Blocks.BRICKS))
                 .save(consumer);
 
-        //Tiara
-        ShapedRecipeBuilder.shaped(ModItems.TIARA.get())
-                .define('t', Gem.TANZANITE.getItemTag())
-                .define('c', ModItems.COSMETIC_CLAY.get())
-                .define('g', Tags.Items.NUGGETS_GOLD)
-                .pattern("ggg")
-                .pattern("gcg")
-                .pattern("ttt")
-                .unlockedBy("has_item", has(ModItems.TANZANITE.get()))
+        //Dark Rainbow Bricks
+        ShapelessRecipeBuilder.shapeless(ModBlocks.DARK_RAINBOW_BRICKS.get(), 16)
+                .requires(Blocks.BRICKS)
+                .requires(ModItems.COSMETIC_CLAY.get())
+                .requires(Tags.Items.DYES_BLACK)
+                .requires(Gem.RUBY.getItemTag())
+                .requires(Gem.EMERALD.getItemTag())
+                .requires(Gem.SAPPHIRE.getItemTag())
+                .unlockedBy("has_bricks", has(Blocks.BRICKS))
                 .save(consumer);
 
         //Spitfire Cap
@@ -274,6 +328,120 @@ public class CraftingTableRecipes extends RecipeProvider
                 .unlockedBy("has_item", has(Gem.RUBY.getItemTag()))
                 .save(consumer);
 
+        //Tanzanite Tiara
+        ShapedRecipeBuilder.shaped(ModItems.TANZANITE_TIARA.get())
+                .define('t', Gem.TANZANITE.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.NUGGETS_GOLD)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(ModItems.TANZANITE.get()))
+                .save(consumer);
+
+        //Silver Tanzanite Tiara
+        ShapedRecipeBuilder.shaped(ModItems.SILVER_TANZANITE_TIARA.get())
+                .define('t', Gem.TANZANITE.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.NUGGETS_IRON)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(ModItems.TANZANITE.get()))
+                .save(consumer);
+
+        //Emerald Tiara
+        ShapedRecipeBuilder.shaped(ModItems.EMERALD_TIARA.get())
+                .define('t', Gem.EMERALD.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.NUGGETS_GOLD)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(Items.EMERALD))
+                .save(consumer);
+
+        //Silver Emerald Tiara
+        ShapedRecipeBuilder.shaped(ModItems.SILVER_EMERALD_TIARA.get())
+                .define('t', Gem.EMERALD.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.NUGGETS_IRON)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(Items.EMERALD))
+                .save(consumer);
+
+        //Sapphire Tiara
+        ShapedRecipeBuilder.shaped(ModItems.SAPPHIRE_TIARA.get())
+                .define('t', Gem.SAPPHIRE.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.NUGGETS_GOLD)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(ModItems.SAPPHIRE.get()))
+                .save(consumer);
+
+        //Silver Sapphire Tiara
+        ShapedRecipeBuilder.shaped(ModItems.SILVER_SAPPHIRE_TIARA.get())
+                .define('t', Gem.SAPPHIRE.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.NUGGETS_IRON)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(ModItems.SAPPHIRE.get()))
+                .save(consumer);
+
+        //Ruby Crown
+        ShapedRecipeBuilder.shaped(ModItems.RUBY_CROWN.get())
+                .define('t', Gem.RUBY.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.INGOTS_GOLD)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(ModItems.RUBY.get()))
+                .save(consumer);
+
+        //Silver Ruby Crown
+        ShapedRecipeBuilder.shaped(ModItems.SILVER_RUBY_CROWN.get())
+                .define('t', Gem.RUBY.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.INGOTS_IRON)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("ttt")
+                .unlockedBy("has_item", has(ModItems.RUBY.get()))
+                .save(consumer);
+
+        //RGB Crown
+        ShapedRecipeBuilder.shaped(ModItems.RGB_CROWN.get())
+                .define('R', Gem.RUBY.getItemTag())
+                .define('G', Gem.EMERALD.getItemTag())
+                .define('B', Gem.SAPPHIRE.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.INGOTS_GOLD)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("GRB")
+                .unlockedBy("has_item", has(ModItems.COSMETIC_CLAY.get()))
+                .save(consumer);
+
+        //Silver RGB Crown
+        ShapedRecipeBuilder.shaped(ModItems.SILVER_RGB_CROWN.get())
+                .define('R', Gem.RUBY.getItemTag())
+                .define('G', Gem.EMERALD.getItemTag())
+                .define('B', Gem.SAPPHIRE.getItemTag())
+                .define('c', ModItems.COSMETIC_CLAY.get())
+                .define('g', Tags.Items.INGOTS_IRON)
+                .pattern("ggg")
+                .pattern("gcg")
+                .pattern("GRB")
+                .unlockedBy("has_item", has(ModItems.COSMETIC_CLAY.get()))
+                .save(consumer);
+
         //Wood Golem
         ShapedRecipeBuilder.shaped(ModBlocks.WOOD_GOLEM_RELIC.get())
                 .define('s', Items.STICK)
@@ -333,20 +501,27 @@ public class CraftingTableRecipes extends RecipeProvider
                 .pattern("R L")
                 .unlockedBy("has_item", has(Tags.Items.GLASS_PANES_BLUE))
                 .save(consumer);
+
+        //Funky alien glasses
+        ShapedRecipeBuilder.shaped(ModItems.FUNKY_ALIEN_GLASSES.get())
+                .define('p', Ingredient.of(Items.PAPER))
+                .define('g', Tags.Items.DYES_LIME)
+                .define('G', Tags.Items.GLASS_PANES_BLUE)
+                .pattern("gpg")
+                .pattern("G G")
+                .unlockedBy("has_item", has(Tags.Items.GLASS_PANES_BLUE))
+                .save(consumer);
     }
 
-    private void registerLantern(Consumer<FinishedRecipe> consumer, TagKey<Item> gemIngredient)
+    private void registerGemsparkBlock(Consumer<FinishedRecipe> consumer, TagKey<Item> gemIngredient)
     {
-        ItemLike output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "lantern");
+        ItemLike output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "gemspark_block");
 
-        ShapedRecipeBuilder.shaped(output, Config.GEMLANTERNSFROMCRAFT)
-                .define('g', gemIngredient)
-                .define('d', Tags.Items.DUSTS_GLOWSTONE)
-                .define('G', Tags.Items.GLASS_COLORLESS)
-                .pattern("gdg")
-                .pattern("dGd")
-                .pattern("gdg")
-                .unlockedBy("has_item", has(gemIngredient))
+        ShapelessRecipeBuilder.shapeless(output, Config.GEMSPARK_BLOCKS_FROM_CRAFT)
+                .requires(Tags.Items.GLASS_COLORLESS)
+                .requires(gemIngredient)
+                .requires(Blocks.GLOWSTONE)
+                .unlockedBy("has_gem", has(gemIngredient))
                 .save(consumer);
     }
 

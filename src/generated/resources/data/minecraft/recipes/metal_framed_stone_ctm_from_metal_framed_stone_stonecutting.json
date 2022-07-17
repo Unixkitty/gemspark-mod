@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "gemspark:metal_framed_stone"
+  },
+  "result": "gemspark:metal_framed_stone_ctm",
+  "count": 1
+}

@@ -1,6 +1,5 @@
 package com.unixkitty.gemspark.datagen.loot;
 
-import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.item.GemItems;
 import net.minecraft.data.loot.BlockLoot;
@@ -31,7 +30,7 @@ public class ModBlockLootTables extends BlockLoot
             if (block.getRegistryName().getPath().matches(".*_lantern"))
             {
                 this.add(block, block1 ->
-                        createSilkTouchDispatchTable(block1, applyExplosionDecay(block1, LootItem.lootTableItem(GemItems.gemItemOrAlternative(block1)).apply(SetItemCountFunction.setCount(ConstantValue.exactly(Config.GEMDROPSFROMLANTERNS)))))
+                        createSilkTouchDispatchTable(block1, applyExplosionDecay(block1, LootItem.lootTableItem(GemItems.gemItemOrAlternative(block1)).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))))
                 );
             }
             else if (block.getRegistryName().getPath().matches(".*_ore"))

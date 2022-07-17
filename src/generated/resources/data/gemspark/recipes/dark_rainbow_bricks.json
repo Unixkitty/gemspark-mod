@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bricks"
+    },
+    {
+      "item": "gemspark:cosmetic_clay"
+    },
+    {
+      "tag": "forge:dyes/black"
+    },
+    {
+      "tag": "forge:gems/ruby"
+    },
+    {
+      "tag": "forge:gems/emerald"
+    },
+    {
+      "tag": "forge:gems/sapphire"
+    }
+  ],
+  "result": {
+    "item": "gemspark:dark_rainbow_bricks",
+    "count": 16
+  }
+}

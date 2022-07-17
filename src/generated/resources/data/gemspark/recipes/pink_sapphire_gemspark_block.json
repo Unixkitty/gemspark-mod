@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:glass/colorless"
+    },
+    {
+      "tag": "forge:gems/pink_sapphire"
+    },
+    {
+      "item": "minecraft:glowstone"
+    }
+  ],
+  "result": {
+    "item": "gemspark:pink_sapphire_gemspark_block",
+    "count": 8
+  }
+}

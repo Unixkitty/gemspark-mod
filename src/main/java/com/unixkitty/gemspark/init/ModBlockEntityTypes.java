@@ -3,9 +3,9 @@ package com.unixkitty.gemspark.init;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.blockentity.BlockEntityPedestal;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Objects;
 

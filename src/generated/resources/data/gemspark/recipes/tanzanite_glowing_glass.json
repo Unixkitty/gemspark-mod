@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ggg",
+    "gGg",
+    "ggg"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:dusts/glowstone"
+    },
+    "g": {
+      "item": "gemspark:tanzanite_glass"
+    }
+  },
+  "result": {
+    "item": "gemspark:tanzanite_glowing_glass"
+  }
+}

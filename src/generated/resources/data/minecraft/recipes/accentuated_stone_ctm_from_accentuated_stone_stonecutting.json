@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "gemspark:accentuated_stone"
+  },
+  "result": "gemspark:accentuated_stone_ctm",
+  "count": 1
+}

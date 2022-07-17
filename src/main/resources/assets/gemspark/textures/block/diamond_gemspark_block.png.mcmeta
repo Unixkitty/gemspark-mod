@@ -1,0 +1,13 @@
+{
+    "ctm": {
+        "ctm_version": 1,
+        "type": "ctm",
+        "layer": "SOLID",
+        "textures": [
+            "gemspark:block/diamond_gemspark_block_ctm"
+        ],
+        "extra": {
+            "light": 11
+        }
+    }
+}

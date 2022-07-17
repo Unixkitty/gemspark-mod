@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nullable;
 
-//TODO clean up these methods if possible
 public final class HelperUtil
 {
     public static ResourceLocation prefixResource(String domain, String path)

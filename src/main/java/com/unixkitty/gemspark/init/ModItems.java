@@ -8,9 +8,9 @@ import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public final class ModItems
 {
@@ -91,7 +91,19 @@ public final class ModItems
     public static final RegistryObject<Item> HEADPHONES = registerCosmeticHat("headphones");
     public static final RegistryObject<Item> REDBACKRIBBON = registerCosmeticHat("redbackribbon");
     public static final RegistryObject<Item> SPITFIRECAP = registerCosmeticHat("spitfirecap");
-    public static final RegistryObject<Item> TIARA = registerCosmeticHat("tiara");
+    public static final RegistryObject<Item> FUNKY_ALIEN_GLASSES = registerCosmeticHat("funky_alien_glasses");
+
+    public static final RegistryObject<Item> TANZANITE_TIARA = registerCosmeticHat("tanzanite_tiara");
+    public static final RegistryObject<Item> SILVER_TANZANITE_TIARA = registerCosmeticHat("silver_tanzanite_tiara");
+    public static final RegistryObject<Item> EMERALD_TIARA = registerCosmeticHat("emerald_tiara");
+    public static final RegistryObject<Item> SILVER_EMERALD_TIARA = registerCosmeticHat("silver_emerald_tiara");
+    public static final RegistryObject<Item> SAPPHIRE_TIARA = registerCosmeticHat("sapphire_tiara");
+    public static final RegistryObject<Item> SILVER_SAPPHIRE_TIARA = registerCosmeticHat("silver_sapphire_tiara");
+
+    public static final RegistryObject<Item> RUBY_CROWN = registerCosmeticHat("ruby_crown");
+    public static final RegistryObject<Item> SILVER_RUBY_CROWN = registerCosmeticHat("silver_ruby_crown");
+    public static final RegistryObject<Item> RGB_CROWN = registerCosmeticHat("rgb_crown");
+    public static final RegistryObject<Item> SILVER_RGB_CROWN = registerCosmeticHat("silver_rgb_crown");
 
     public static String getArmorTextureString(String material, EquipmentSlot slot, String type)
     {
