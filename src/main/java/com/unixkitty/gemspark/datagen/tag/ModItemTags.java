@@ -8,6 +8,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -49,7 +51,7 @@ public class ModItemTags extends ItemTagsProvider
         tag(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
         tag(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
 
-        tag(ItemTags.createOptional(new ResourceLocation(CuriosCompat.MODID, "head"))).add(
+        tag(accessory("head")).add(
                 ModItems.WITCH_HAT.get(),
                 ModItems.BUNNYBAND.get(),
                 ModItems.FALSE_HALO.get(),
@@ -59,12 +61,18 @@ public class ModItemTags extends ItemTagsProvider
                 ModItems.SPITFIRECAP.get(),
                 ModItems.TIARA.get()
         );
-        tag(ItemTags.createOptional(new ResourceLocation(CuriosCompat.MODID, "curio"))).add(
+
+        tag(accessory("curio")).add(
                 ModItems.SPECTACLES.get(),
                 ModItems.GLASSES_TECHNICOLOR.get(),
                 ModItems.GLASSES_3D.get(),
                 ModItems.GLASSES_RED.get()
         );
+    }
+
+    private static TagKey<Item> accessory(String name)
+    {
+        return ItemTags.create(new ResourceLocation(CuriosCompat.MODID, name));
     }
 
     @Override

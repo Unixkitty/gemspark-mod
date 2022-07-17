@@ -85,7 +85,7 @@ public class BlockBrazier extends Block implements SimpleWaterloggedBlock
     {
         if (state.getValue(WATERLOGGED))
         {
-            world.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
         return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
@@ -122,7 +122,7 @@ public class BlockBrazier extends Block implements SimpleWaterloggedBlock
             }
 
             world.setBlock(pos, state.setValue(WATERLOGGED, true).setValue(LIT, false), 3);
-            world.getLiquidTicks().scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
+            world.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(world));
             return true;
         }
         else

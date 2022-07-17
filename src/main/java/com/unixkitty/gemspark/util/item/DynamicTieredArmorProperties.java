@@ -1,7 +1,7 @@
 package com.unixkitty.gemspark.util.item;
 
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
@@ -23,7 +23,7 @@ public class DynamicTieredArmorProperties extends DynamicTierProperties implemen
 
     private final SoundEvent equipSound;
 
-    public DynamicTieredArmorProperties(String name, int tierIndex, int tiersTotal, int enchantability, float floorBump, ArmorMaterial floorTier, ArmorMaterial ceilingTier, SoundEvent equipSound, Tag<Item> repairItem)
+    public DynamicTieredArmorProperties(String name, int tierIndex, int tiersTotal, int enchantability, float floorBump, ArmorMaterial floorTier, ArmorMaterial ceilingTier, SoundEvent equipSound, TagKey<Item> repairItem)
     {
         super(repairItem);
 

@@ -125,7 +125,7 @@ public class BlockEntityPedestal extends ModBlockEntity implements MenuProvider,
     //Thanks Vazkii
     public void syncForRender()
     {
-        ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
+        var packet = this.getUpdatePacket();
         BlockPos pos = this.getBlockPos();
 
         Level world = this.getLevel();

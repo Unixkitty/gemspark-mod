@@ -5,7 +5,7 @@ import com.unixkitty.gemspark.util.TagHelper;
 import com.unixkitty.gemspark.util.item.DynamicTieredArmorProperties;
 import com.unixkitty.gemspark.util.item.DynamicTieredToolProperties;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -28,7 +28,7 @@ public enum Gem
     private final String name;
     private final Rarity rarity;
 
-    private final Tag.Named<Item> itemTag;
+    private final TagKey<Item> itemTag;
 
     private final Tier toolProperties;
     private final ArmorMaterial armorProperties;
@@ -38,7 +38,7 @@ public enum Gem
         this.name = name;
         this.rarity = rarity;
 
-        this.itemTag = TagHelper.forgeItemTag(Tags.Items.GEMS.getName().getPath(), name);
+        this.itemTag = TagHelper.forgeItemTag(Tags.Items.GEMS.location().getPath(), name);
 
         this.toolProperties = new DynamicTieredToolProperties(
                 tierIndex, TIERS,
@@ -70,7 +70,7 @@ public enum Gem
         return rarity;
     }
 
-    public Tag.Named<Item> getItemTag()
+    public TagKey<Item> getItemTag()
     {
         return this.itemTag;
     }

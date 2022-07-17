@@ -1,6 +1,6 @@
 package com.unixkitty.gemspark.util.item;
 
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -9,7 +9,7 @@ public abstract class DynamicTierProperties
 {
     protected final LazyLoadedValue<Ingredient> repairItem;
 
-    public DynamicTierProperties(Tag<Item> repairItem)
+    public DynamicTierProperties(TagKey<Item> repairItem)
     {
         this.repairItem = new LazyLoadedValue<>(() -> Ingredient.of(repairItem));
     }

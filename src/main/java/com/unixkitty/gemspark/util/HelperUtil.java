@@ -1,7 +1,7 @@
 package com.unixkitty.gemspark.util;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -23,27 +23,28 @@ public final class HelperUtil
         return resourceLocation != null && (exact ? resourceLocation.getPath().matches(resource) : resourceLocation.getPath().startsWith(resource));
     }
 
-    public static ItemLike itemFromTag(String resourceDomain, Tag.Named<Item> ingredient)
+    public static ItemLike itemFromTag(String resourceDomain, TagKey<Item> ingredient)
     {
+
         return ForgeRegistries.ITEMS.getValue(prefixResource(resourceDomain, materialString(ingredient)));
     }
 
-    public static Item itemFromMaterialTag(Tag.Named<Item> material, String resourceDomain, String type)
+    public static Item itemFromMaterialTag(TagKey<Item> material, String resourceDomain, String type)
     {
         return ForgeRegistries.ITEMS.getValue(HelperUtil.materialResource(material, resourceDomain, type));
     }
 
-    public static Item armorItemFromMaterialResource(Tag.Named<Item> material, EquipmentSlot slot, String resourceDomain)
+    public static Item armorItemFromMaterialResource(TagKey<Item> material, EquipmentSlot slot, String resourceDomain)
     {
         return ForgeRegistries.ITEMS.getValue(armorResource(material, slot, resourceDomain));
     }
 
-    public static ResourceLocation materialResource(Tag.Named<Item> material, String resourceDomain, String type)
+    public static ResourceLocation materialResource(TagKey<Item> material, String resourceDomain, String type)
     {
         return prefixResource(resourceDomain, materialString(material) + "_" + type);
     }
 
-    public static ResourceLocation armorResource(Tag.Named<Item> material, EquipmentSlot slot, String resourceDomain)
+    public static ResourceLocation armorResource(TagKey<Item> material, EquipmentSlot slot, String resourceDomain)
     {
         return prefixResource(resourceDomain, armorMaterialString(material, slot));
     }
@@ -53,14 +54,14 @@ public final class HelperUtil
         return material + "_" + armorSlotString(slot);
     }
 
-    public static String armorMaterialString(Tag.Named<Item> material, EquipmentSlot slot)
+    public static String armorMaterialString(TagKey<Item> material, EquipmentSlot slot)
     {
         return materialString(material) + "_" + armorSlotString(slot);
     }
 
-    public static String materialString(Tag.Named<Item> ingredient)
+    public static String materialString(TagKey<Item> ingredient)
     {
-        String material = ingredient.getName().getPath();
+        String material = ingredient.location().getPath();
 
         if (material.contains("/"))
         {

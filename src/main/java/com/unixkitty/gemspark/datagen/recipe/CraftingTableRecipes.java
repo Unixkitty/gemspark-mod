@@ -7,6 +7,7 @@ import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import com.unixkitty.gemspark.item.GemItems;
 import com.unixkitty.gemspark.util.HelperUtil;
+import com.unixkitty.gemspark.util.TagHelper;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -14,7 +15,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -91,7 +92,7 @@ public class CraftingTableRecipes extends RecipeProvider
 
             ShapedRecipeBuilder.shaped(output)
                     .define('g', Tags.Items.DUSTS_GLOWSTONE)
-                    .define('P', ItemTags.bind("forge" + ":" + "glass_panes/" + color))
+                    .define('P', TagHelper.forgeItemTag(Tags.Items.GLASS_PANES.location().getPath(), color.toString()))
                     .define('R', dustOrTorchIngredient)
                     .pattern("PgP")
                     .pattern("PgP")
@@ -334,7 +335,7 @@ public class CraftingTableRecipes extends RecipeProvider
                 .save(consumer);
     }
 
-    private void registerLantern(Consumer<FinishedRecipe> consumer, Tag.Named<Item> gemIngredient)
+    private void registerLantern(Consumer<FinishedRecipe> consumer, TagKey<Item> gemIngredient)
     {
         ItemLike output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "lantern");
 
@@ -361,7 +362,7 @@ public class CraftingTableRecipes extends RecipeProvider
                 .save(consumer);
     }
 
-    protected void registerCompression(Consumer<FinishedRecipe> consumer, Tag.Named<Item> ingredient)
+    protected void registerCompression(Consumer<FinishedRecipe> consumer, TagKey<Item> ingredient)
     {
         ItemLike output = HelperUtil.itemFromMaterialTag(ingredient, Gemspark.MODID, "block");
 
@@ -381,7 +382,7 @@ public class CraftingTableRecipes extends RecipeProvider
                 .save(consumer);
     }
 
-    protected void registerToolSetRecipes(Consumer<FinishedRecipe> consumer, Tag.Named<Item> ingredient)
+    protected void registerToolSetRecipes(Consumer<FinishedRecipe> consumer, TagKey<Item> ingredient)
     {
         CriterionTriggerInstance criterion = has(ingredient);
 
@@ -433,7 +434,7 @@ public class CraftingTableRecipes extends RecipeProvider
                 .save(consumer);
     }
 
-    protected void registerSimpleArmorSet(Consumer<FinishedRecipe> consumer, Tag.Named<Item> ingredient)
+    protected void registerSimpleArmorSet(Consumer<FinishedRecipe> consumer, TagKey<Item> ingredient)
     {
         CriterionTriggerInstance criterion = has(ingredient);
 

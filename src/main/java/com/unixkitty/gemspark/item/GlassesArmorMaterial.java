@@ -1,7 +1,7 @@
 package com.unixkitty.gemspark.item;
 
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
@@ -19,7 +19,7 @@ public enum GlassesArmorMaterial implements ArmorMaterial
 
     private final LazyLoadedValue<Ingredient> repairItem;
 
-    GlassesArmorMaterial(Tag<Item> repairItem)
+    GlassesArmorMaterial(TagKey<Item> repairItem)
     {
         this.repairItem = new LazyLoadedValue<>(() -> Ingredient.of(repairItem));
     }

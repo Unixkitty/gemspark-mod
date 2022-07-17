@@ -1,6 +1,6 @@
 package com.unixkitty.gemspark.util.item;
 
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -14,7 +14,7 @@ public class DynamicTieredToolProperties extends DynamicTierProperties implement
     private final float efficiency;
     private final float attackDamage;
 
-    public DynamicTieredToolProperties(int tierIndex, int tiersTotal, int harvestLevel, int enchantability, float floorBump, Tier floorTier, Tier ceilingTier, Tag<Item> repairItem)
+    public DynamicTieredToolProperties(int tierIndex, int tiersTotal, int harvestLevel, int enchantability, float floorBump, Tier floorTier, Tier ceilingTier, TagKey<Item> repairItem)
     {
         super(repairItem);
 

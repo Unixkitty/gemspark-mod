@@ -3,13 +3,15 @@ package com.unixkitty.gemspark.blockentity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public abstract class ModBlockEntity extends BlockEntity
 {
@@ -18,39 +20,28 @@ public abstract class ModBlockEntity extends BlockEntity
         super(tileEntityTypeIn, blockPos, blockState);
     }
 
-    /**
-     * Read saved data from disk into the tile.
-     */
+    @Override
+    protected void saveAdditional(CompoundTag pTag)
+    {
+        super.saveAdditional(pTag);
+        writePacketNBT(pTag);
+    }
+
+    @Nonnull
+    public CompoundTag getUpdateTag()
+    {
+        CompoundTag tag = new CompoundTag();
+
+        writePacketNBT(tag);
+
+        return tag;
+    }
+
     @Override
     public void load(CompoundTag compound)
     {
         super.load(compound);
         readPacketNBT(compound);
-    }
-
-    /**
-     * Write data from the tile into a compound tag for saving to disk.
-     */
-    @Nonnull
-    @Override
-    public CompoundTag save(final CompoundTag compound)
-    {
-        CompoundTag result = super.save(compound);
-        writePacketNBT(result);
-        return result;
-    }
-
-    /**
-     * Get an NBT compound to sync to the client with SPacketChunkData, used for initial loading of the
-     * chunk or when many blocks change at once.
-     * This compound comes back to you client-side in {@link #handleUpdateTag}
-     * The default implementation ({@link BlockEntity#handleUpdateTag}) calls #writeInternal)
-     * which doesn't save any of our extra data, so we override it to call {@link #write} instead
-     */
-    @Nonnull
-    public CompoundTag getUpdateTag()
-    {
-        return this.save(new CompoundTag());
     }
 
     public abstract void readPacketNBT(CompoundTag compound);
@@ -59,11 +50,9 @@ public abstract class ModBlockEntity extends BlockEntity
 
     @Nullable
     @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket()
+    public Packet<ClientGamePacketListener> getUpdatePacket()
     {
-        CompoundTag compound = new CompoundTag();
-        writePacketNBT(compound);
-        return new ClientboundBlockEntityDataPacket(worldPosition, -999, compound);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

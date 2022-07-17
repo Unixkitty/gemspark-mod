@@ -3,7 +3,7 @@ package com.unixkitty.gemspark.util;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -14,23 +14,23 @@ public final class TagHelper
         return new ResourceLocation(modId, type + "/" + name);
     }
 
-    public static Tag.Named<Item> itemTag(String modId, String name)
+    public static TagKey<Item> itemTag(String modId, String name)
     {
-        return ItemTags.bind(HelperUtil.prefixResource(modId, name).toString());
+        return ItemTags.create(HelperUtil.prefixResource(modId, name));
     }
 
-    public static Tag.Named<Block> blockTag(String modId, String name)
+    public static TagKey<Block> blockTag(String modId, String name)
     {
-        return BlockTags.bind(HelperUtil.prefixResource(modId, name).toString());
+        return BlockTags.create(HelperUtil.prefixResource(modId, name));
     }
 
-    public static Tag.Named<Block> forgeBlockTag(String type, String name)
+    public static TagKey<Block> forgeBlockTag(String type, String name)
     {
-        return BlockTags.bind(modResource("forge", type, name).toString());
+        return BlockTags.create(modResource("forge", type, name));
     }
 
-    public static Tag.Named<Item> forgeItemTag(String type, String name)
+    public static TagKey<Item> forgeItemTag(String type, String name)
     {
-        return ItemTags.bind(modResource("forge", type, name).toString());
+        return ItemTags.create(modResource("forge", type, name));
     }
 }

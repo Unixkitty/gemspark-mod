@@ -42,7 +42,7 @@ public class InvertedRedstoneLampBlock extends RedstoneLampBlock
         {
             if ((!state.getValue(LIT) && worldIn.hasNeighborSignal(pos)) || (state.getValue(LIT) && !worldIn.hasNeighborSignal(pos)))
             {
-                worldIn.getBlockTicks().scheduleTick(pos, this, 4);
+                worldIn.scheduleTick(pos, this, 4);
             }
             else
             {
