@@ -159,23 +159,6 @@ public class CraftingTableRecipes extends RecipeProvider
                 .unlockedBy("has_item", has(Tags.Items.INGOTS_IRON))
                 .save(consumer);
 
-        //Stone Tiles
-        ShapedRecipeBuilder.shaped(ModBlocks.STONE_TILES.get(), 4)
-                .define('S', Blocks.SMOOTH_STONE)
-                .pattern("SS")
-                .pattern("SS")
-                .unlockedBy("has_item", has(Blocks.SMOOTH_STONE))
-                .save(consumer);
-
-        //Stone Floor Tile
-        ShapedRecipeBuilder.shaped(ModBlocks.STONE_FLOOR_TILE.get())
-                .define('S', Blocks.SMOOTH_STONE)
-                .define('s', Blocks.SMOOTH_STONE_SLAB)
-                .pattern("sS")
-                .pattern("Ss")
-                .unlockedBy("has_item", has(Blocks.SMOOTH_STONE))
-                .save(consumer);
-
         //Rocky Grassy Dirt
         ShapedRecipeBuilder.shaped(ModBlocks.ROCKY_GRASSY_DIRT.get(), 4)
                 .define('c', Tags.Items.COBBLESTONE)

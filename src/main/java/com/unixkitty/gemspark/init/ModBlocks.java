@@ -67,6 +67,11 @@ public final class ModBlocks
     public static final RegistryObject<Block> PINK_SAPPHIRE_ORE = setup(ModBlockType.ORE, "pink_sapphire_ore");
     public static final RegistryObject<Block> RUBY_ORE = setup(ModBlockType.ORE, "ruby_ore");
 
+    public static final RegistryObject<Block> DEEPSLATE_TANZANITE_ORE = setup(ModBlockType.DEEPSLATE_ORE, "deepslate_tanzanite_ore");
+    public static final RegistryObject<Block> DEEPSLATE_TOPAZ_ORE = setup(ModBlockType.DEEPSLATE_ORE, "deepslate_topaz_ore");
+    public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = setup(ModBlockType.DEEPSLATE_ORE, "deepslate_sapphire_ore");
+    public static final RegistryObject<Block> DEEPSLATE_RUBY_ORE = setup(ModBlockType.DEEPSLATE_ORE, "deepslate_ruby_ore");
+
     public static final RegistryObject<Block> QUARTZ_PEDESTAL = setup(ModBlockType.PEDESTAL, "quartz_pedestal");
     public static final RegistryObject<Block> BLACKSTONE_PEDESTAL = setup(ModBlockType.PEDESTAL, "blackstone_pedestal");
 
@@ -147,21 +152,28 @@ public final class ModBlocks
                             BLOCKS.register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
                     case GEMSPARK ->
                             BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9)));
-                    case ORE -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_ORE))
-                    {
-                        @Override
-                        public int getExpDrop(BlockState state, LevelReader world, BlockPos pos, int fortune, int silktouch)
-                        {
-                            return silktouch == 0 ? Mth.nextInt(RANDOM, 3, 7) : 0;
-                        }
-                    });
+                    case ORE -> BLOCKS.register(name, () -> new GemOre(Block.Properties.copy(Blocks.DIAMOND_ORE)));
+                    case DEEPSLATE_ORE -> BLOCKS.register(name, () -> new GemOre(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)));
                     case PEDESTAL ->
                             BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
                     case REDSTONE_LAMP ->
                             BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
                     case INVERTED_REDSTONE_LAMP -> BLOCKS.register(name, BlockColoredRedstoneLamp::new);
-                    default -> null;
                 };
+    }
+
+    private static class GemOre extends Block
+    {
+        public GemOre(Properties pProperties)
+        {
+            super(pProperties);
+        }
+
+        @Override
+        public int getExpDrop(BlockState state, LevelReader world, BlockPos pos, int fortune, int silktouch)
+        {
+            return silktouch == 0 ? Mth.nextInt(RANDOM, 3, 7) : 0;
+        }
     }
 
     private static RegistryObject<Block> setupLampPost(String name, Block.Properties properties)
@@ -190,6 +202,7 @@ public final class ModBlocks
         GLOWING_GLASS,
         GEMSPARK,
         ORE,
+        DEEPSLATE_ORE,
         PEDESTAL,
         REDSTONE_LAMP,
         INVERTED_REDSTONE_LAMP

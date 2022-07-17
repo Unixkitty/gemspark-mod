@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "gemspark:topaz_ore"
+    "gemspark:topaz_ore",
+    "gemspark:deepslate_topaz_ore"
   ]
 }

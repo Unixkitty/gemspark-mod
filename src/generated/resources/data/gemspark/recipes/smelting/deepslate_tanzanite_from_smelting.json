@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "gemspark:deepslate_tanzanite_ore"
+  },
+  "result": "gemspark:tanzanite",
+  "experience": 1.0,
+  "cookingtime": 200
+}

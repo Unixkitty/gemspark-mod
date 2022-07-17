@@ -36,8 +36,25 @@ public final class ClientEvents
         event.enqueueWork(() ->
         {
             MenuScreens.register(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new);
+
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.BRAZIER.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.SOUL_BRAZIER.get(), RenderType.cutout());
+
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.EMERALD_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DIAMOND_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.TANZANITE_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.TOPAZ_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.SAPPHIRE_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PINK_SAPPHIRE_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.RUBY_GLASS.get(), RenderType.cutout());
+
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.EMERALD_GLOWING_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DIAMOND_GLOWING_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.TANZANITE_GLOWING_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.TOPAZ_GLOWING_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.SAPPHIRE_GLOWING_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PINK_SAPPHIRE_GLOWING_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.RUBY_GLOWING_GLASS.get(), RenderType.cutout());
 
         });
 

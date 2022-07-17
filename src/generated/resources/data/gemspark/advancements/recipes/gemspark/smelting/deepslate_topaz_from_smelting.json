@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "gemspark:stone_tiles"
+      "gemspark:smelting/deepslate_topaz_from_smelting"
     ]
   },
   "criteria": {
-    "has_item": {
+    "has_deepslate_topaz_ore": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:smooth_stone"
+              "gemspark:deepslate_topaz_ore"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "gemspark:stone_tiles"
+        "recipe": "gemspark:smelting/deepslate_topaz_from_smelting"
       }
     }
   },
   "requirements": [
     [
-      "has_item",
+      "has_deepslate_topaz_ore",
       "has_the_recipe"
     ]
   ]

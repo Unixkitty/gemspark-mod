@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "gemspark:tanzanite_ore",
+    "gemspark:topaz_ore",
+    "gemspark:sapphire_ore",
+    "gemspark:ruby_ore"
+  ]
+}

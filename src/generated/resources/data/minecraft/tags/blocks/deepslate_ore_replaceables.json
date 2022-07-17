@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "gemspark:deepslate_tanzanite_ore",
+    "gemspark:deepslate_topaz_ore",
+    "gemspark:deepslate_sapphire_ore",
+    "gemspark:deepslate_ruby_ore"
+  ]
+}

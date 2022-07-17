@@ -99,6 +99,11 @@
   "block.gemspark.pink_sapphire_ore": "Pink Sapphire Ore",
   "block.gemspark.ruby_ore": "Ruby Ore",
 
+  "block.gemspark.deepslate_tanzanite_ore": "Deepslate Tanzanite Ore",
+  "block.gemspark.deepslate_topaz_ore": "Deepslate Topaz Ore",
+  "block.gemspark.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
+  "block.gemspark.deepslate_ruby_ore": "Deepslate Ruby Ore",
+
   "block.gemspark.tanzanite_block": "Tanzanite Block",
   "block.gemspark.topaz_block": "Topaz Block",
   "block.gemspark.sapphire_block": "Sapphire Block",
