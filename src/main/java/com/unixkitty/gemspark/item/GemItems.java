@@ -4,6 +4,7 @@ import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import com.unixkitty.gemspark.util.HelperUtil;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
@@ -55,7 +56,7 @@ public class GemItems
     public static RegistryObject<Item> registerHoeItem(Gem gem)
     {
         return ModItems.ITEMS.register(gem + "_hoe", () ->
-                new HoeItem(gem.getToolProperties(), /*The heck is this parameter?*/-3, 0.0f, itemProperties(gem))
+                new HoeItem(gem.getToolProperties(), -3, 0.0f, itemProperties(gem))
         );
     }
 
@@ -68,9 +69,11 @@ public class GemItems
 
     public static ItemLike gemItemOrAlternative(Block block)
     {
+//        ResourceLocation block.getRegistryName() = block.getRegistryName();
+
         for (Gem gem : Gem.values())
         {
-            if (HelperUtil.isResource(block.getRegistryName(), gem.toString(), false))
+            if (HelperUtil.isResource(block.getRegistryName().getPath().startsWith("deepslate") ? new ResourceLocation(block.getRegistryName().getNamespace(), block.getRegistryName().getPath().replaceFirst("deepslate_", "")) : block.getRegistryName(), gem.toString(), false))
             {
                 return switch (gem)
                         {

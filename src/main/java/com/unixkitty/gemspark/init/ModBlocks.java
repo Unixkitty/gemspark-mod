@@ -151,7 +151,7 @@ public final class ModBlocks
                     case GLOWING_GLASS ->
                             BLOCKS.register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
                     case GEMSPARK ->
-                            BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9)));
+                            BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9).requiresCorrectToolForDrops()));
                     case ORE -> BLOCKS.register(name, () -> new GemOre(Block.Properties.copy(Blocks.DIAMOND_ORE)));
                     case DEEPSLATE_ORE -> BLOCKS.register(name, () -> new GemOre(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)));
                     case PEDESTAL ->

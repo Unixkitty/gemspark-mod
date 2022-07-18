@@ -80,26 +80,27 @@ public final class ModItems
 
     public static final RegistryObject<Item> COSMETIC_CLAY = ITEMS.register("cosmetic_clay", () -> new Item(basicProperties()));
 
+    //curio
     public static final RegistryObject<Item> SPECTACLES = registerCosmeticHat("spectacles");
     public static final RegistryObject<Item> GLASSES_TECHNICOLOR = registerCosmeticHat("glasses_technicolor");
     public static final RegistryObject<Item> GLASSES_3D = registerCosmeticHat("glasses_3d");
     public static final RegistryObject<Item> GLASSES_RED = registerCosmeticHat("glasses_red");
+    public static final RegistryObject<Item> FUNKY_ALIEN_GLASSES = registerCosmeticHat("funky_alien_glasses");
+    public static final RegistryObject<Item> REDBACKRIBBON = registerCosmeticHat("redbackribbon");
+
+    //head
+    public static final RegistryObject<Item> SPITFIRECAP = registerCosmeticHat("spitfirecap");
     public static final RegistryObject<Item> WITCH_HAT = registerCosmeticHat("witch_hat");
     public static final RegistryObject<Item> BUNNYBAND = registerCosmeticHat("bunnyband");
     public static final RegistryObject<Item> FALSE_HALO = registerCosmeticHat("false_halo");
     public static final RegistryObject<Item> FARMER_HAT = registerCosmeticHat("farmer_hat");
     public static final RegistryObject<Item> HEADPHONES = registerCosmeticHat("headphones");
-    public static final RegistryObject<Item> REDBACKRIBBON = registerCosmeticHat("redbackribbon");
-    public static final RegistryObject<Item> SPITFIRECAP = registerCosmeticHat("spitfirecap");
-    public static final RegistryObject<Item> FUNKY_ALIEN_GLASSES = registerCosmeticHat("funky_alien_glasses");
-
     public static final RegistryObject<Item> TANZANITE_TIARA = registerCosmeticHat("tanzanite_tiara");
     public static final RegistryObject<Item> SILVER_TANZANITE_TIARA = registerCosmeticHat("silver_tanzanite_tiara");
     public static final RegistryObject<Item> EMERALD_TIARA = registerCosmeticHat("emerald_tiara");
     public static final RegistryObject<Item> SILVER_EMERALD_TIARA = registerCosmeticHat("silver_emerald_tiara");
     public static final RegistryObject<Item> SAPPHIRE_TIARA = registerCosmeticHat("sapphire_tiara");
     public static final RegistryObject<Item> SILVER_SAPPHIRE_TIARA = registerCosmeticHat("silver_sapphire_tiara");
-
     public static final RegistryObject<Item> RUBY_CROWN = registerCosmeticHat("ruby_crown");
     public static final RegistryObject<Item> SILVER_RUBY_CROWN = registerCosmeticHat("silver_ruby_crown");
     public static final RegistryObject<Item> RGB_CROWN = registerCosmeticHat("rgb_crown");
@@ -124,17 +125,4 @@ public final class ModItems
     {
         return ITEMS.register(name, () -> new CosmeticHatItem(basicProperties().stacksTo(1)));
     }
-
-/*    private static RegistryObject<Item> registerArmorItem(String name, ArmorMaterial armorMaterial, EquipmentSlot slot)
-    {
-        return ITEMS.register(name, () -> new ArmorItem(armorMaterial, slot, basicProperties())
-        {
-            @Nullable
-            @Override
-            public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type)
-            {
-                return getArmorTextureString(name, slot, type);
-            }
-        });
-    }*/
 }

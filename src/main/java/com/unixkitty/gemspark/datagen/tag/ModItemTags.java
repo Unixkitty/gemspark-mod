@@ -52,13 +52,12 @@ public class ModItemTags extends ItemTagsProvider
         tag(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
 
         tag(accessory("head")).add(
+                ModItems.SPITFIRECAP.get(),
                 ModItems.WITCH_HAT.get(),
                 ModItems.BUNNYBAND.get(),
                 ModItems.FALSE_HALO.get(),
                 ModItems.FARMER_HAT.get(),
                 ModItems.HEADPHONES.get(),
-                ModItems.REDBACKRIBBON.get(),
-                ModItems.SPITFIRECAP.get(),
                 ModItems.TANZANITE_TIARA.get(),
                 ModItems.SILVER_TANZANITE_TIARA.get(),
                 ModItems.EMERALD_TIARA.get(),
@@ -75,7 +74,9 @@ public class ModItemTags extends ItemTagsProvider
                 ModItems.SPECTACLES.get(),
                 ModItems.GLASSES_TECHNICOLOR.get(),
                 ModItems.GLASSES_3D.get(),
-                ModItems.GLASSES_RED.get()
+                ModItems.GLASSES_RED.get(),
+                ModItems.FUNKY_ALIEN_GLASSES.get(),
+                ModItems.REDBACKRIBBON.get()
         );
     }
 
