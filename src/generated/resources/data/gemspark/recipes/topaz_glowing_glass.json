@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ggg",
-    "gGg",
-    "ggg"
-  ],
   "key": {
     "G": {
       "tag": "forge:dusts/glowstone"
@@ -13,8 +8,13 @@
       "item": "gemspark:topaz_glass"
     }
   },
+  "pattern": [
+    "ggg",
+    "gGg",
+    "ggg"
+  ],
   "result": {
-    "item": "gemspark:topaz_glowing_glass",
-    "count": 8
+    "count": 8,
+    "item": "gemspark:topaz_glowing_glass"
   }
 }

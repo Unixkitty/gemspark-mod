@@ -1,6 +1,5 @@
 package com.unixkitty.gemspark;
 
-import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.init.*;
 import com.unixkitty.gemspark.worldgen.OreGeneration;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,19 +23,19 @@ public class Gemspark
 
     public Gemspark()
     {
-        CuriosCompat.init();
+//        CuriosCompat.init();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        MinecraftForge.EVENT_BUS.register(ModRegistry.class);
-
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::onBiomeLoading);
+        OreGeneration.CONFIGURED_FEATURES.register(modEventBus);
+        OreGeneration.PLACED_FEATURES.register(modEventBus);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, ModEvents::onBlockRightClicked);
     }
 

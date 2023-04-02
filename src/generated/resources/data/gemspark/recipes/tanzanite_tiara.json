@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ggg",
-    "gcg",
-    "ttt"
-  ],
   "key": {
-    "t": {
-      "tag": "forge:gems/tanzanite"
-    },
     "c": {
       "item": "gemspark:cosmetic_clay"
     },
     "g": {
       "tag": "forge:nuggets/gold"
+    },
+    "t": {
+      "tag": "forge:gems/tanzanite"
     }
   },
+  "pattern": [
+    "ggg",
+    "gcg",
+    "ttt"
+  ],
   "result": {
     "item": "gemspark:tanzanite_tiara"
   }

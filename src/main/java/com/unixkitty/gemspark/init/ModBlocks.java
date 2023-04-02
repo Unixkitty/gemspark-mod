@@ -2,11 +2,12 @@ package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.*;
+import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -16,6 +17,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 @SuppressWarnings("unused")
@@ -119,66 +121,59 @@ public final class ModBlocks
     public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setupLampPost("lamp_post_cap_warped", Block.Properties.copy(Blocks.WARPED_FENCE));
     public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setupLampPost("lamp_post_cap_crimson", Block.Properties.copy(Blocks.CRIMSON_FENCE));
 
-    public static final RegistryObject<Block> WOOD_GOLEM_RELIC = BLOCKS.register("wood_golem_relic", () -> new BlockWoodGolem(Block.Properties.copy(Blocks.SPRUCE_PLANKS).isValidSpawn(ModBlocks::neverAllowSpawn)));
+    public static final RegistryObject<Block> WOOD_GOLEM_RELIC = register("wood_golem_relic", () -> new BlockWoodGolem(Block.Properties.copy(Blocks.SPRUCE_PLANKS).isValidSpawn(ModBlocks::neverAllowSpawn)));
 
-    public static final RegistryObject<Block> BRAZIER = BLOCKS.register("brazier", () -> new BlockBrazier(1, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(15)).noOcclusion()));
-    public static final RegistryObject<Block> SOUL_BRAZIER = BLOCKS.register("soul_brazier", () -> new BlockBrazier(2, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(10)).noOcclusion()));
+    public static final RegistryObject<Block> BRAZIER = register("brazier", () -> new BlockBrazier(1, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(15)).noOcclusion()));
+    public static final RegistryObject<Block> SOUL_BRAZIER = register("soul_brazier", () -> new BlockBrazier(2, Block.Properties.copy(Blocks.IRON_BARS).lightLevel(getLightValueLit(10)).noOcclusion()));
 
-    public static final RegistryObject<Block> ROCKY_DIRT = BLOCKS.register("rocky_dirt", () -> new Block(Block.Properties.copy(Blocks.DIRT)));
-    public static final RegistryObject<Block> ROCKY_GRASSY_DIRT = BLOCKS.register("rocky_grassy_dirt", () -> new Block(Block.Properties.copy(Blocks.COARSE_DIRT)));
-    public static final RegistryObject<Block> DARK_ROCKY_DIRT = BLOCKS.register("dark_rocky_dirt", () -> new Block(Block.Properties.copy(Blocks.GRAVEL)));
+    public static final RegistryObject<Block> ROCKY_DIRT = register("rocky_dirt", () -> new Block(Block.Properties.copy(Blocks.DIRT)));
+    public static final RegistryObject<Block> ROCKY_GRASSY_DIRT = register("rocky_grassy_dirt", () -> new Block(Block.Properties.copy(Blocks.COARSE_DIRT)));
+    public static final RegistryObject<Block> DARK_ROCKY_DIRT = register("dark_rocky_dirt", () -> new Block(Block.Properties.copy(Blocks.GRAVEL)));
 
-    public static final RegistryObject<Block> STONE_FLOOR_TILE = BLOCKS.register("stone_floor_tile", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> STONE_TILES = BLOCKS.register("stone_tiles", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> SMOKED_STONE = BLOCKS.register("smoked_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> SMOKED_STONE_CTM = BLOCKS.register("smoked_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> METAL_FRAMED_STONE = BLOCKS.register("metal_framed_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> METAL_FRAMED_STONE_CTM = BLOCKS.register("metal_framed_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> ACCENTUATED_STONE = BLOCKS.register("accentuated_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
-    public static final RegistryObject<Block> ACCENTUATED_STONE_CTM = BLOCKS.register("accentuated_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> STONE_FLOOR_TILE = register("stone_floor_tile", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> STONE_TILES = register("stone_tiles", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> SMOKED_STONE = register("smoked_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> SMOKED_STONE_CTM = register("smoked_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> METAL_FRAMED_STONE = register("metal_framed_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> METAL_FRAMED_STONE_CTM = register("metal_framed_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> ACCENTUATED_STONE = register("accentuated_stone", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
+    public static final RegistryObject<Block> ACCENTUATED_STONE_CTM = register("accentuated_stone_ctm", () -> new Block(Block.Properties.copy(Blocks.SMOOTH_STONE)));
 
-    public static final RegistryObject<Block> LIGHT_RAINBOW_BRICKS = BLOCKS.register("light_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
-    public static final RegistryObject<Block> DARK_RAINBOW_BRICKS = BLOCKS.register("dark_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> LIGHT_RAINBOW_BRICKS = register("light_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
+    public static final RegistryObject<Block> DARK_RAINBOW_BRICKS = register("dark_rainbow_bricks", () -> new Block(Block.Properties.copy(Blocks.BRICKS)));
 
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
         return switch (blockType)
                 {
                     case GEM_BLOCK ->
-                            BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
-                    case LANTERN -> BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
-                    case GLASS -> BLOCKS.register(name, () -> new GlassBlock(gemGlassProperties(name)));
+                            register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
+                    case LANTERN -> register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
+                    case GLASS -> register(name, () -> new GlassBlock(gemGlassProperties(name)));
                     case GLOWING_GLASS ->
-                            BLOCKS.register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
+                            register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
                     case GEMSPARK ->
-                            BLOCKS.register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9).requiresCorrectToolForDrops()));
-                    case ORE -> BLOCKS.register(name, () -> new GemOre(Block.Properties.copy(Blocks.DIAMOND_ORE)));
-                    case DEEPSLATE_ORE -> BLOCKS.register(name, () -> new GemOre(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)));
+                            register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9).requiresCorrectToolForDrops()));
+                    case ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DIAMOND_ORE)));
+                    case DEEPSLATE_ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)));
                     case PEDESTAL ->
-                            BLOCKS.register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
+                            register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
                     case REDSTONE_LAMP ->
-                            BLOCKS.register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
-                    case INVERTED_REDSTONE_LAMP -> BLOCKS.register(name, BlockColoredRedstoneLamp::new);
+                            register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
+                    case INVERTED_REDSTONE_LAMP -> register(name, BlockColoredRedstoneLamp::new);
                 };
     }
 
-    private static class GemOre extends Block
+    private static RegistryObject<Block> register(String name, Supplier<? extends Block> supplier)
     {
-        public GemOre(Properties pProperties)
-        {
-            super(pProperties);
-        }
-
-        @Override
-        public int getExpDrop(BlockState state, LevelReader world, BlockPos pos, int fortune, int silktouch)
-        {
-            return silktouch == 0 ? Mth.nextInt(RANDOM, 3, 7) : 0;
-        }
+        RegistryObject<Block> block = BLOCKS.register(name, supplier);
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.PRIMARY)));
+        return block;
     }
 
     private static RegistryObject<Block> setupLampPost(String name, Block.Properties properties)
     {
-        return BLOCKS.register(name, () -> new BlockLampPostCap(properties.isValidSpawn(ModBlocks::neverAllowSpawn)));
+        return register(name, () -> new BlockLampPostCap(properties.isValidSpawn(ModBlocks::neverAllowSpawn)));
     }
 
     private static Block.Properties gemGlassProperties(String name)

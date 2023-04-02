@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModContainerTypes
 {
-    public static final DeferredRegister<MenuType<?>> CONTAINER_TYPES = DeferredRegister.create(ForgeRegistries.CONTAINERS, Gemspark.MODID);
+    public static final DeferredRegister<MenuType<?>> CONTAINER_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Gemspark.MODID);
 
     public static final RegistryObject<MenuType<ContainerPedestal>> PEDESTAL = CONTAINER_TYPES.register("quartz_pedestal", () ->
             IForgeMenuType.create(((windowId, inv, data) ->

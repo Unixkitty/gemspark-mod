@@ -23,17 +23,17 @@ public class ModBlockLootTables extends BlockLoot
     {
         for (Block block : ForgeRegistries.BLOCKS)
         {
-            if (!Gemspark.MODID.equals(Objects.requireNonNull(block.getRegistryName()).getNamespace()))
+            if (!Gemspark.MODID.equals(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getNamespace()))
             {
                 continue;
             }
-            if (block.getRegistryName().getPath().matches(".*_lantern"))
+            if (ForgeRegistries.BLOCKS.getKey(block).getPath().matches(".*_lantern"))
             {
                 this.add(block, block1 ->
                         createSilkTouchDispatchTable(block1, applyExplosionDecay(block1, LootItem.lootTableItem(GemItems.gemItemOrAlternative(block1)).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))))
                 );
             }
-            else if (block.getRegistryName().getPath().matches(".*_ore"))
+            else if (ForgeRegistries.BLOCKS.getKey(block).getPath().matches(".*_ore"))
             {
                 this.add(block, block1 -> createOreDrop(block1, GemItems.gemItemOrAlternative(block1).asItem()));
             }

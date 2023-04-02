@@ -1,19 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ggg",
-    "gcg",
-    "GRB"
-  ],
   "key": {
-    "R": {
-      "tag": "forge:gems/ruby"
+    "B": {
+      "tag": "forge:gems/sapphire"
     },
     "G": {
       "tag": "forge:gems/emerald"
     },
-    "B": {
-      "tag": "forge:gems/sapphire"
+    "R": {
+      "tag": "forge:gems/ruby"
     },
     "c": {
       "item": "gemspark:cosmetic_clay"
@@ -22,6 +17,11 @@
       "tag": "forge:ingots/iron"
     }
   },
+  "pattern": [
+    "ggg",
+    "gcg",
+    "GRB"
+  ],
   "result": {
     "item": "gemspark:silver_rgb_crown"
   }

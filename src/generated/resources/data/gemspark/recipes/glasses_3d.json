@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ppp",
-    "R L"
-  ],
   "key": {
-    "p": {
-      "item": "minecraft:paper"
+    "L": {
+      "tag": "forge:glass_panes/red"
     },
     "R": {
       "tag": "forge:glass_panes/blue"
     },
-    "L": {
-      "tag": "forge:glass_panes/red"
+    "p": {
+      "item": "minecraft:paper"
     }
   },
+  "pattern": [
+    "ppp",
+    "R L"
+  ],
   "result": {
     "item": "gemspark:glasses_3d"
   }

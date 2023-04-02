@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
+  "count": 1,
   "ingredient": {
     "item": "gemspark:topaz_gemspark_block"
   },
-  "result": "gemspark:topaz_lantern",
-  "count": 1
+  "result": "gemspark:topaz_lantern"
 }

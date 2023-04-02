@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": {
+      "item": "minecraft:acacia_fence"
+    },
+    "i": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
   "pattern": [
     "ii ",
     "iF ",
     "  i"
   ],
-  "key": {
-    "i": {
-      "tag": "forge:nuggets/iron"
-    },
-    "F": {
-      "item": "minecraft:acacia_fence"
-    }
-  },
   "result": {
     "item": "gemspark:lamp_post_cap_acacia"
   }

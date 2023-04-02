@@ -1,17 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " st",
-    "bc ",
-    "pp "
-  ],
   "key": {
-    "s": {
-      "tag": "forge:string"
-    },
-    "t": {
-      "tag": "forge:gems/tanzanite"
-    },
     "b": {
       "item": "minecraft:black_wool"
     },
@@ -20,8 +9,19 @@
     },
     "p": {
       "item": "minecraft:purple_wool"
+    },
+    "s": {
+      "tag": "forge:string"
+    },
+    "t": {
+      "tag": "forge:gems/tanzanite"
     }
   },
+  "pattern": [
+    " st",
+    "bc ",
+    "pp "
+  ],
   "result": {
     "item": "gemspark:witch_hat"
   }

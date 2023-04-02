@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:iron_bars"
+    },
+    "i": {
+      "tag": "forge:ingots/iron"
+    },
+    "s": {
+      "tag": "minecraft:soul_fire_base_blocks"
+    }
+  },
   "pattern": [
     "bsb",
     " i ",
     "i i"
   ],
-  "key": {
-    "b": {
-      "item": "minecraft:iron_bars"
-    },
-    "s": {
-      "tag": "minecraft:soul_fire_base_blocks"
-    },
-    "i": {
-      "tag": "forge:ingots/iron"
-    }
-  },
   "result": {
     "item": "gemspark:soul_brazier"
   }

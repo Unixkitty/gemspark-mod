@@ -12,7 +12,7 @@
     }
   ],
   "result": {
-    "item": "gemspark:emerald_gemspark_block",
-    "count": 8
+    "count": 8,
+    "item": "gemspark:emerald_gemspark_block"
   }
 }

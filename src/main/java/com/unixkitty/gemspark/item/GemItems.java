@@ -69,11 +69,11 @@ public class GemItems
 
     public static ItemLike gemItemOrAlternative(Block block)
     {
-//        ResourceLocation block.getRegistryName() = block.getRegistryName();
+//        ResourceLocation ForgeRegistries.BLOCKS.getKey(block) = ForgeRegistries.BLOCKS.getKey(block);
 
         for (Gem gem : Gem.values())
         {
-            if (HelperUtil.isResource(block.getRegistryName().getPath().startsWith("deepslate") ? new ResourceLocation(block.getRegistryName().getNamespace(), block.getRegistryName().getPath().replaceFirst("deepslate_", "")) : block.getRegistryName(), gem.toString(), false))
+            if (HelperUtil.isResource(ForgeRegistries.BLOCKS.getKey(block).getPath().startsWith("deepslate") ? new ResourceLocation(ForgeRegistries.BLOCKS.getKey(block).getNamespace(), ForgeRegistries.BLOCKS.getKey(block).getPath().replaceFirst("deepslate_", "")) : ForgeRegistries.BLOCKS.getKey(block), gem.toString(), false))
             {
                 return switch (gem)
                         {

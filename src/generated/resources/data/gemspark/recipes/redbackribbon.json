@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": {
+      "item": "gemspark:cosmetic_clay"
+    },
+    "w": {
+      "item": "minecraft:pink_wool"
+    }
+  },
   "pattern": [
     "w w",
     "wcw"
   ],
-  "key": {
-    "w": {
-      "item": "minecraft:pink_wool"
-    },
-    "c": {
-      "item": "gemspark:cosmetic_clay"
-    }
-  },
   "result": {
     "item": "gemspark:redbackribbon"
   }

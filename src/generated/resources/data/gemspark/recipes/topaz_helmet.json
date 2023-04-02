@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "SSS",
-    "S S"
-  ],
   "key": {
     "S": {
       "tag": "forge:gems/topaz"
     }
   },
+  "pattern": [
+    "SSS",
+    "S S"
+  ],
   "result": {
     "item": "gemspark:topaz_helmet"
   }

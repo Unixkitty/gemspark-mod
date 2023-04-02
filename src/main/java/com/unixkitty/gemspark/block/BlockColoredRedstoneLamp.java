@@ -3,6 +3,7 @@ package com.unixkitty.gemspark.block;
 import com.unixkitty.gemspark.Gemspark;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class BlockColoredRedstoneLamp extends RedstoneLampBlock
 {
@@ -65,7 +65,7 @@ public class BlockColoredRedstoneLamp extends RedstoneLampBlock
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand)
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand)
     {
         if (state.getValue(LIT) && worldIn.hasNeighborSignal(pos))
         {

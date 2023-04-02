@@ -2,8 +2,9 @@ package com.unixkitty.gemspark.item;
 
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.OutgoingPlayerChatMessage;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
@@ -24,15 +25,14 @@ public class DebugItem extends Item
     {
         if (!context.getLevel().isClientSide && context.getPlayer() instanceof ServerPlayer && context.getPlayer().canUseGameMasterBlocks())
         {
-            context.getPlayer().sendMessage(new TextComponent("Block: " + context.getLevel().getBlockState(context.getClickedPos())), context.getPlayer().getUUID());
-
+            ((ServerPlayer) context.getPlayer()).sendChatMessage((OutgoingPlayerChatMessage) Component.literal("Block: " + context.getLevel().getBlockState(context.getClickedPos())), false, ChatType.bind(ChatType.CHAT, context.getPlayer()));
             BlockEntity tileEntity = context.getLevel().getBlockEntity(context.getClickedPos());
 
             if (tileEntity != null)
             {
                 CompoundTag compound = tileEntity.saveWithFullMetadata();
 
-                context.getPlayer().sendMessage(new TranslatableComponent("commands.data.block.query", tileEntity.getBlockPos().getX(), tileEntity.getBlockPos().getY(), tileEntity.getBlockPos().getZ(), compound.getAsString()), context.getPlayer().getUUID());
+                ((ServerPlayer) context.getPlayer()).sendChatMessage((OutgoingPlayerChatMessage) Component.translatable("commands.data.block.query", tileEntity.getBlockPos().getX(), tileEntity.getBlockPos().getY(), tileEntity.getBlockPos().getZ(), compound.getAsString()), false, ChatType.bind(ChatType.CHAT, context.getPlayer()));
             }
         }
 

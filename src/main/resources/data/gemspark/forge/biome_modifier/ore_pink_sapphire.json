@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": "gemspark:ore_pink_sapphire",
+  "step": "underground_ores"
+}

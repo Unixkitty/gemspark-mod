@@ -2,7 +2,6 @@ package com.unixkitty.gemspark.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -59,6 +58,6 @@ public class CosmeticHatItem extends Item
     {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslatableComponent("text.gemspark.cosmetic.info").withStyle(ChatFormatting.DARK_GRAY)));
+        tooltip.add((Component.translatable("text.gemspark.cosmetic.info").withStyle(ChatFormatting.DARK_GRAY)));
     }
 }

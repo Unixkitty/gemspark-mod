@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "w w",
-    " c ",
-    " r "
-  ],
   "key": {
-    "w": {
-      "item": "minecraft:white_wool"
-    },
     "c": {
       "item": "gemspark:cosmetic_clay"
     },
     "r": {
       "item": "minecraft:rabbit_hide"
+    },
+    "w": {
+      "item": "minecraft:white_wool"
     }
   },
+  "pattern": [
+    "w w",
+    " c ",
+    " r "
+  ],
   "result": {
     "item": "gemspark:bunnyband"
   }

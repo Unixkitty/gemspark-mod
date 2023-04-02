@@ -4,7 +4,6 @@ import com.unixkitty.gemspark.blockentity.BlockEntityPedestal;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -78,8 +77,8 @@ public class BlockPedestal extends BaseEntityBlock
     {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
 
-        tooltip.add((new TranslatableComponent("text.pedestal.info").withStyle(ChatFormatting.DARK_GRAY)));
-        tooltip.add((new TranslatableComponent("text.pedestal.info2").withStyle(ChatFormatting.DARK_GRAY)));
+        tooltip.add((Component.translatable("text.pedestal.info").withStyle(ChatFormatting.DARK_GRAY)));
+        tooltip.add((Component.translatable("text.pedestal.info2").withStyle(ChatFormatting.DARK_GRAY)));
     }
 
     @Override
@@ -102,7 +101,7 @@ public class BlockPedestal extends BaseEntityBlock
                     {
                         if (itemHandler.getStackInSlot(0).isEmpty())
                         {
-                            NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
+                            NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
                         }
                         else
                         {
@@ -139,7 +138,7 @@ public class BlockPedestal extends BaseEntityBlock
                 }
                 else
                 {
-                    NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
+                    NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
                 }
             }
         }

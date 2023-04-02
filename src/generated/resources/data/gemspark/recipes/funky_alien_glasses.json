@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "gpg",
-    "G G"
-  ],
   "key": {
-    "p": {
-      "item": "minecraft:paper"
+    "G": {
+      "tag": "forge:glass_panes/blue"
     },
     "g": {
       "tag": "forge:dyes/lime"
     },
-    "G": {
-      "tag": "forge:glass_panes/blue"
+    "p": {
+      "item": "minecraft:paper"
     }
   },
+  "pattern": [
+    "gpg",
+    "G G"
+  ],
   "result": {
     "item": "gemspark:funky_alien_glasses"
   }

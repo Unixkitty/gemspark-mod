@@ -1,15 +1,10 @@
 package com.unixkitty.gemspark.datagen.tag;
 
 import com.unixkitty.gemspark.Gemspark;
-import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -37,6 +32,32 @@ public class ModItemTags extends ItemTagsProvider
         copy(ModTags.Blocks.PINK_SAPPHIRE_BLOCK, ModTags.Items.PINK_SAPPHIRE_BLOCK);
         copy(ModTags.Blocks.RUBY_BLOCK, ModTags.Items.RUBY_BLOCK);
 
+/*        tag(Tags.Items.STORAGE_BLOCKS).addTags(
+                ModTags.Items.TANZANITE_BLOCK,
+                ModTags.Items.TOPAZ_BLOCK,
+                ModTags.Items.SAPPHIRE_BLOCK,
+                ModTags.Items.PINK_SAPPHIRE_BLOCK,
+                ModTags.Items.RUBY_BLOCK
+        );
+        tag(ModTags.Items.TANZANITE_BLOCK).add(ModBlocks.TANZANITE_BLOCK.get().asItem());
+        tag(ModTags.Items.TOPAZ_BLOCK).add(ModBlocks.TOPAZ_BLOCK.get().asItem());
+        tag(ModTags.Items.SAPPHIRE_BLOCK).add(ModBlocks.SAPPHIRE_BLOCK.get().asItem());
+        tag(ModTags.Items.PINK_SAPPHIRE_BLOCK).add(ModBlocks.PINK_SAPPHIRE_BLOCK.get().asItem());
+        tag(ModTags.Items.RUBY_BLOCK).add(ModBlocks.RUBY_BLOCK.get().asItem());
+
+        tag(Tags.Items.ORES).addTags(
+                ModTags.Items.TANZANITE_ORE,
+                ModTags.Items.TOPAZ_ORE,
+                ModTags.Items.SAPPHIRE_ORE,
+                ModTags.Items.PINK_SAPPHIRE_ORE,
+                ModTags.Items.RUBY_ORE
+        );
+        tag(ModTags.Items.TANZANITE_ORE).add(ModBlocks.TANZANITE_ORE.get().asItem(), ModBlocks.DEEPSLATE_TANZANITE_ORE.get().asItem());
+        tag(ModTags.Items.TOPAZ_ORE).add(ModBlocks.TOPAZ_ORE.get().asItem(), ModBlocks.DEEPSLATE_TOPAZ_ORE.get().asItem());
+        tag(ModTags.Items.SAPPHIRE_ORE).add(ModBlocks.SAPPHIRE_ORE.get().asItem(), ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get().asItem());
+        tag(ModTags.Items.PINK_SAPPHIRE_ORE).add(ModBlocks.PINK_SAPPHIRE_ORE.get().asItem());
+        tag(ModTags.Items.RUBY_ORE).add(ModBlocks.RUBY_ORE.get().asItem(), ModBlocks.DEEPSLATE_RUBY_ORE.get().asItem());*/
+        
         /* Block tags copying end */
         tag(Tags.Items.GEMS).addTags(
                 Gem.TANZANITE.getItemTag(),
@@ -51,7 +72,7 @@ public class ModItemTags extends ItemTagsProvider
         tag(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
         tag(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
 
-        tag(accessory("head")).add(
+/*        tag(accessory("head")).add(
                 ModItems.SPITFIRECAP.get(),
                 ModItems.WITCH_HAT.get(),
                 ModItems.BUNNYBAND.get(),
@@ -68,22 +89,22 @@ public class ModItemTags extends ItemTagsProvider
                 ModItems.SILVER_RUBY_CROWN.get(),
                 ModItems.RGB_CROWN.get(),
                 ModItems.SILVER_RGB_CROWN.get()
-        );
+        );*/
 
-        tag(accessory("curio")).add(
+/*        tag(accessory("curio")).add(
                 ModItems.SPECTACLES.get(),
                 ModItems.GLASSES_TECHNICOLOR.get(),
                 ModItems.GLASSES_3D.get(),
                 ModItems.GLASSES_RED.get(),
                 ModItems.FUNKY_ALIEN_GLASSES.get(),
                 ModItems.REDBACKRIBBON.get()
-        );
+        );*/
     }
 
-    private static TagKey<Item> accessory(String name)
+/*    private static TagKey<Item> accessory(String name)
     {
         return ItemTags.create(new ResourceLocation(CuriosCompat.MODID, name));
-    }
+    }*/
 
     @Override
     public String getName()

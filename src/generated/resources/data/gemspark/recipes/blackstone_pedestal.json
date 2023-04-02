@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "p": {
+      "item": "minecraft:polished_blackstone"
+    },
+    "s": {
+      "item": "minecraft:blackstone_slab"
+    }
+  },
   "pattern": [
     "s",
     "p"
   ],
-  "key": {
-    "s": {
-      "item": "minecraft:blackstone_slab"
-    },
-    "p": {
-      "item": "minecraft:polished_blackstone"
-    }
-  },
   "result": {
     "item": "gemspark:blackstone_pedestal"
   }

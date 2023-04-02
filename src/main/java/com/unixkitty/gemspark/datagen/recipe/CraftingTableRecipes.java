@@ -138,7 +138,7 @@ public class CraftingTableRecipes extends RecipeProvider
     private void registerUniqueRecipes(Consumer<FinishedRecipe> consumer)
     {
         //Soul Brazier
-        ShapedRecipeBuilder.shaped(ModBlocks.SOUL_BRAZIER.get())
+        ShapedRecipeBuilder.shaped(ModBlocks.SOUL_BRAZIER.get().asItem())
                 .define('b', Blocks.IRON_BARS)
                 .define('s', ItemTags.SOUL_FIRE_BASE_BLOCKS)
                 .define('i', Tags.Items.INGOTS_IRON)

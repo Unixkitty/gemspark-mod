@@ -1,26 +1,26 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "rgb",
-    "R L"
-  ],
   "key": {
-    "r": {
-      "tag": "forge:gems/ruby"
-    },
-    "g": {
-      "tag": "forge:gems/emerald"
-    },
-    "b": {
-      "tag": "forge:gems/sapphire"
+    "L": {
+      "tag": "forge:glass_panes/yellow"
     },
     "R": {
       "tag": "forge:glass_panes/cyan"
     },
-    "L": {
-      "tag": "forge:glass_panes/yellow"
+    "b": {
+      "tag": "forge:gems/sapphire"
+    },
+    "g": {
+      "tag": "forge:gems/emerald"
+    },
+    "r": {
+      "tag": "forge:gems/ruby"
     }
   },
+  "pattern": [
+    "rgb",
+    "R L"
+  ],
   "result": {
     "item": "gemspark:glasses_technicolor"
   }

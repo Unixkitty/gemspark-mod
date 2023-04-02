@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public final class ModBlockEntityTypes
 {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Gemspark.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Gemspark.MODID);
 
     public static final RegistryObject<BlockEntityType<BlockEntityPedestal>> PEDESTAL = BLOCK_ENTITY_TYPES.register(
             "quartz_pedestal",
