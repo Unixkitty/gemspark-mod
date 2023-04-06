@@ -2,20 +2,14 @@ buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url = 'https://maven.parchmentmc.org' }
-//        maven {
-//            url = 'https://repo.spongepowered.org/repository/maven-public/'
-//            content { includeGroup "org.spongepowered" }
-//        }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-//        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
         classpath group: 'org.parchmentmc', name: 'librarian', version: '1.+'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-//apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'maven-publish'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
@@ -30,10 +24,10 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-//    maven {
-//        name = "Curios"
-//        url = "https://maven.theillusivec4.top/"
-//    }
+    maven {
+        name = "Curios"
+        url = "https://maven.theillusivec4.top/"
+    }
     maven {
         url "https://cursemaven.com"
         content {
@@ -165,8 +159,8 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mod_minecraft_version}-forge:${jei_version}")
 
-//    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mod_minecraft_version}-${curios_version}")
-//    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${mod_minecraft_version}-${curios_version}:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${mod_minecraft_version}-${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${mod_minecraft_version}-${curios_version}:api")
 
     runtimeOnly fg.deobf("curse.maven:world-stripper-250603:3921630")
 

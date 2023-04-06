@@ -1,10 +1,15 @@
 package com.unixkitty.gemspark.datagen.tag;
 
 import com.unixkitty.gemspark.Gemspark;
+import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.Gem;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -72,7 +77,7 @@ public class ModItemTags extends ItemTagsProvider
         tag(Gem.PINK_SAPPHIRE.getItemTag()).add(ModItems.PINK_SAPPHIRE.get());
         tag(Gem.RUBY.getItemTag()).add(ModItems.RUBY.get());
 
-/*        tag(accessory("head")).add(
+        tag(accessory("head")).add(
                 ModItems.SPITFIRECAP.get(),
                 ModItems.WITCH_HAT.get(),
                 ModItems.BUNNYBAND.get(),
@@ -89,22 +94,22 @@ public class ModItemTags extends ItemTagsProvider
                 ModItems.SILVER_RUBY_CROWN.get(),
                 ModItems.RGB_CROWN.get(),
                 ModItems.SILVER_RGB_CROWN.get()
-        );*/
+        );
 
-/*        tag(accessory("curio")).add(
+        tag(accessory("curio")).add(
                 ModItems.SPECTACLES.get(),
                 ModItems.GLASSES_TECHNICOLOR.get(),
                 ModItems.GLASSES_3D.get(),
                 ModItems.GLASSES_RED.get(),
                 ModItems.FUNKY_ALIEN_GLASSES.get(),
                 ModItems.REDBACKRIBBON.get()
-        );*/
+        );
     }
 
-/*    private static TagKey<Item> accessory(String name)
+    private static TagKey<Item> accessory(String name)
     {
         return ItemTags.create(new ResourceLocation(CuriosCompat.MODID, name));
-    }*/
+    }
 
     @Override
     public String getName()

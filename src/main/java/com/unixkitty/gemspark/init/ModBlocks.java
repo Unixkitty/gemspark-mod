@@ -4,6 +4,7 @@ import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.*;
 import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -154,8 +155,8 @@ public final class ModBlocks
                             register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
                     case GEMSPARK ->
                             register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9).requiresCorrectToolForDrops()));
-                    case ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DIAMOND_ORE)));
-                    case DEEPSLATE_ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)));
+                    case ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DIAMOND_ORE), UniformInt.of(3, 7)));
+                    case DEEPSLATE_ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE), UniformInt.of(3, 7)));
                     case PEDESTAL ->
                             register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
                     case REDSTONE_LAMP ->
