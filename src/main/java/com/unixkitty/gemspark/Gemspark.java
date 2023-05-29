@@ -2,7 +2,6 @@ package com.unixkitty.gemspark;
 
 import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.init.*;
-import com.unixkitty.gemspark.worldgen.OreGeneration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,8 +34,6 @@ public class Gemspark
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
 
-        OreGeneration.CONFIGURED_FEATURES.register(modEventBus);
-        OreGeneration.PLACED_FEATURES.register(modEventBus);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, ModEvents::onBlockRightClicked);
     }
 

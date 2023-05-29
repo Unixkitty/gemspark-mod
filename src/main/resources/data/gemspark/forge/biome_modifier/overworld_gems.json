@@ -1,0 +1,15 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "gemspark:ore_ruby",
+    "gemspark:ore_sapphire",
+    "gemspark:ore_tanzanite",
+    "gemspark:ore_topaz",
+    "gemspark:deepslate_ore_ruby",
+    "gemspark:deepslate_ore_sapphire",
+    "gemspark:deepslate_ore_tanzanite",
+    "gemspark:deepslate_ore_topaz"
+  ],
+  "step": "underground_ores"
+}

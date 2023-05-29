@@ -166,8 +166,6 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${mod_minecraft_version}-${curios_version}:api")
 
     runtimeOnly fg.deobf("curse.maven:world-stripper-250603:3921630")
-
-    //implementation project(":gemspork")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

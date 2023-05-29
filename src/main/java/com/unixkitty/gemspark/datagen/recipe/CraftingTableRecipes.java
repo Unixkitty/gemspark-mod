@@ -1,6 +1,5 @@
 package com.unixkitty.gemspark.datagen.recipe;
 
-import com.unixkitty.gemspark.Config;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModBlocks;
 import com.unixkitty.gemspark.init.ModItems;
@@ -500,7 +499,7 @@ public class CraftingTableRecipes extends RecipeProvider
     {
         ItemLike output = HelperUtil.itemFromMaterialTag(gemIngredient, Gemspark.MODID, "gemspark_block");
 
-        ShapelessRecipeBuilder.shapeless(output, Config.GEMSPARK_BLOCKS_FROM_CRAFT)
+        ShapelessRecipeBuilder.shapeless(output, 8)
                 .requires(Tags.Items.GLASS_COLORLESS)
                 .requires(gemIngredient)
                 .requires(Blocks.GLOWSTONE)
