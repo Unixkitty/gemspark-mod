@@ -105,6 +105,7 @@ public final class ModItems
     public static final RegistryObject<Item> SILVER_RUBY_CROWN = registerCosmeticHat("silver_ruby_crown");
     public static final RegistryObject<Item> RGB_CROWN = registerCosmeticHat("rgb_crown");
     public static final RegistryObject<Item> SILVER_RGB_CROWN = registerCosmeticHat("silver_rgb_crown");
+    public static final RegistryObject<Item> GOAT_HORNS = registerCosmeticHat("goat_horns");
 
     public static String getArmorTextureString(String material, EquipmentSlot slot, String type)
     {

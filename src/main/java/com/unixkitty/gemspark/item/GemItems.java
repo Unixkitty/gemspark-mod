@@ -76,11 +76,11 @@ public class GemItems
             if (HelperUtil.isResource(ForgeRegistries.BLOCKS.getKey(block).getPath().startsWith("deepslate") ? new ResourceLocation(ForgeRegistries.BLOCKS.getKey(block).getNamespace(), ForgeRegistries.BLOCKS.getKey(block).getPath().replaceFirst("deepslate_", "")) : ForgeRegistries.BLOCKS.getKey(block), gem.toString(), false))
             {
                 return switch (gem)
-                        {
-                            case DIAMOND -> Items.DIAMOND;
-                            case EMERALD -> Items.EMERALD;
-                            default -> HelperUtil.itemFromTag(Gemspark.MODID, gem.getItemTag());
-                        };
+                {
+                    case DIAMOND -> Items.DIAMOND;
+                    case EMERALD -> Items.EMERALD;
+                    default -> HelperUtil.itemFromTag(Gemspark.MODID, gem.getItemTag());
+                };
             }
         }
 

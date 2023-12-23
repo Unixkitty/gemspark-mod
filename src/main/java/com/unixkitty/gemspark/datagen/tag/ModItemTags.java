@@ -37,32 +37,6 @@ public class ModItemTags extends ItemTagsProvider
         copy(ModTags.Blocks.PINK_SAPPHIRE_BLOCK, ModTags.Items.PINK_SAPPHIRE_BLOCK);
         copy(ModTags.Blocks.RUBY_BLOCK, ModTags.Items.RUBY_BLOCK);
 
-/*        tag(Tags.Items.STORAGE_BLOCKS).addTags(
-                ModTags.Items.TANZANITE_BLOCK,
-                ModTags.Items.TOPAZ_BLOCK,
-                ModTags.Items.SAPPHIRE_BLOCK,
-                ModTags.Items.PINK_SAPPHIRE_BLOCK,
-                ModTags.Items.RUBY_BLOCK
-        );
-        tag(ModTags.Items.TANZANITE_BLOCK).add(ModBlocks.TANZANITE_BLOCK.get().asItem());
-        tag(ModTags.Items.TOPAZ_BLOCK).add(ModBlocks.TOPAZ_BLOCK.get().asItem());
-        tag(ModTags.Items.SAPPHIRE_BLOCK).add(ModBlocks.SAPPHIRE_BLOCK.get().asItem());
-        tag(ModTags.Items.PINK_SAPPHIRE_BLOCK).add(ModBlocks.PINK_SAPPHIRE_BLOCK.get().asItem());
-        tag(ModTags.Items.RUBY_BLOCK).add(ModBlocks.RUBY_BLOCK.get().asItem());
-
-        tag(Tags.Items.ORES).addTags(
-                ModTags.Items.TANZANITE_ORE,
-                ModTags.Items.TOPAZ_ORE,
-                ModTags.Items.SAPPHIRE_ORE,
-                ModTags.Items.PINK_SAPPHIRE_ORE,
-                ModTags.Items.RUBY_ORE
-        );
-        tag(ModTags.Items.TANZANITE_ORE).add(ModBlocks.TANZANITE_ORE.get().asItem(), ModBlocks.DEEPSLATE_TANZANITE_ORE.get().asItem());
-        tag(ModTags.Items.TOPAZ_ORE).add(ModBlocks.TOPAZ_ORE.get().asItem(), ModBlocks.DEEPSLATE_TOPAZ_ORE.get().asItem());
-        tag(ModTags.Items.SAPPHIRE_ORE).add(ModBlocks.SAPPHIRE_ORE.get().asItem(), ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get().asItem());
-        tag(ModTags.Items.PINK_SAPPHIRE_ORE).add(ModBlocks.PINK_SAPPHIRE_ORE.get().asItem());
-        tag(ModTags.Items.RUBY_ORE).add(ModBlocks.RUBY_ORE.get().asItem(), ModBlocks.DEEPSLATE_RUBY_ORE.get().asItem());*/
-        
         /* Block tags copying end */
         tag(Tags.Items.GEMS).addTags(
                 Gem.TANZANITE.getItemTag(),
@@ -93,7 +67,8 @@ public class ModItemTags extends ItemTagsProvider
                 ModItems.RUBY_CROWN.get(),
                 ModItems.SILVER_RUBY_CROWN.get(),
                 ModItems.RGB_CROWN.get(),
-                ModItems.SILVER_RGB_CROWN.get()
+                ModItems.SILVER_RGB_CROWN.get(),
+                ModItems.GOAT_HORNS.get()
         );
 
         tag(accessory("curio")).add(

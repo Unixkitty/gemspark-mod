@@ -73,13 +73,13 @@ public final class HelperUtil
     public static String armorSlotString(EquipmentSlot slot)
     {
         return switch (slot)
-                {
-                    case FEET -> "boots";
-                    case HEAD -> "helmet";
-                    case LEGS -> "leggings";
-                    case CHEST -> "chestplate";
-                    default -> "";
-                };
+        {
+            case FEET -> "boots";
+            case HEAD -> "helmet";
+            case LEGS -> "leggings";
+            case CHEST -> "chestplate";
+            default -> "";
+        };
     }
 }
 

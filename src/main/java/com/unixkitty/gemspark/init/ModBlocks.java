@@ -146,23 +146,24 @@ public final class ModBlocks
     private static RegistryObject<Block> setup(ModBlockType blockType, String name)
     {
         return switch (blockType)
-                {
-                    case GEM_BLOCK ->
-                            register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
-                    case LANTERN -> register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
-                    case GLASS -> register(name, () -> new GlassBlock(gemGlassProperties(name)));
-                    case GLOWING_GLASS ->
-                            register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
-                    case GEMSPARK ->
-                            register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9).requiresCorrectToolForDrops()));
-                    case ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DIAMOND_ORE), UniformInt.of(3, 7)));
-                    case DEEPSLATE_ORE -> register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE), UniformInt.of(3, 7)));
-                    case PEDESTAL ->
-                            register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
-                    case REDSTONE_LAMP ->
-                            register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
-                    case INVERTED_REDSTONE_LAMP -> register(name, BlockColoredRedstoneLamp::new);
-                };
+        {
+            case GEM_BLOCK -> register(name, () -> new Block(Block.Properties.copy(Blocks.DIAMOND_BLOCK)));
+            case LANTERN -> register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE)));
+            case GLASS -> register(name, () -> new GlassBlock(gemGlassProperties(name)));
+            case GLOWING_GLASS ->
+                    register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
+            case GEMSPARK ->
+                    register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9).requiresCorrectToolForDrops()));
+            case ORE ->
+                    register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DIAMOND_ORE), UniformInt.of(3, 7)));
+            case DEEPSLATE_ORE ->
+                    register(name, () -> new DropExperienceBlock(Block.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE), UniformInt.of(3, 7)));
+            case PEDESTAL ->
+                    register(name, () -> new BlockPedestal(Block.Properties.copy(Blocks.QUARTZ_BLOCK).noOcclusion().isValidSpawn(ModBlocks::neverAllowSpawn)));
+            case REDSTONE_LAMP ->
+                    register(name, () -> new RedstoneLampBlock(Block.Properties.copy(Blocks.REDSTONE_LAMP)));
+            case INVERTED_REDSTONE_LAMP -> register(name, BlockColoredRedstoneLamp::new);
+        };
     }
 
     private static RegistryObject<Block> register(String name, Supplier<? extends Block> supplier)

@@ -493,6 +493,17 @@ public class CraftingTableRecipes extends RecipeProvider
                 .pattern("G G")
                 .unlockedBy("has_item", has(Tags.Items.GLASS_PANES_BLUE))
                 .save(consumer);
+
+        //Goat horns
+        ShapedRecipeBuilder.shaped(ModItems.GOAT_HORNS.get())
+                .define('c', ItemTags.COALS)
+                .define('b', Tags.Items.BONES)
+                .define('C', ModItems.COSMETIC_CLAY.get())
+                .pattern("b b")
+                .pattern("c c")
+                .pattern("C C")
+                .unlockedBy("has_item", has(ModItems.COSMETIC_CLAY.get()))
+                .save(consumer);
     }
 
     private void registerGemsparkBlock(Consumer<FinishedRecipe> consumer, TagKey<Item> gemIngredient)

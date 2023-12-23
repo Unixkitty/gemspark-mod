@@ -108,12 +108,12 @@ public class BlockLampPostCap extends HorizontalDirectionalBlock
     private VoxelShape getShapeFromFace(final BlockState state)
     {
         return switch (state.getValue(FACING))
-                {
-                    case EAST -> SHAPE_EAST;
-                    case SOUTH -> SHAPE_SOUTH;
-                    case WEST -> SHAPE_WEST;
-                    default -> SHAPE_NORTH;
-                };
+        {
+            case EAST -> SHAPE_EAST;
+            case SOUTH -> SHAPE_SOUTH;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_NORTH;
+        };
     }
 
     private static VoxelShape makeShape(@Nonnull VoxelShape... shapes)

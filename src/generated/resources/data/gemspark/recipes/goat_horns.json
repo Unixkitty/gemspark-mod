@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "gemspark:cosmetic_clay"
+    },
+    "b": {
+      "tag": "forge:bones"
+    },
+    "c": {
+      "tag": "minecraft:coals"
+    }
+  },
+  "pattern": [
+    "b b",
+    "c c",
+    "C C"
+  ],
+  "result": {
+    "item": "gemspark:goat_horns"
+  }
+}

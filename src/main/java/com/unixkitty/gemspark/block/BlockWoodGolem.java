@@ -94,11 +94,11 @@ public class BlockWoodGolem extends HorizontalDirectionalBlock
         public Pose cycle()
         {
             return switch (this)
-                    {
-                        case STANDING -> SLUMPED;
-                        case SLUMPED -> SITTING_SLUMPED;
-                        case SITTING_SLUMPED -> STANDING;
-                    };
+            {
+                case STANDING -> SLUMPED;
+                case SLUMPED -> SITTING_SLUMPED;
+                case SITTING_SLUMPED -> STANDING;
+            };
         }
 
         @Override

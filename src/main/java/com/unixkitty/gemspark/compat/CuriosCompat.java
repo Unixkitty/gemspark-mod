@@ -5,8 +5,11 @@ import com.mojang.math.Vector3f;
 import com.unixkitty.gemspark.init.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.LivingEntity;
@@ -61,118 +64,46 @@ public class CuriosCompat
             CuriosRendererRegistry.register(ModItems.SILVER_RUBY_CROWN.get(), CurioItemRenderer::new);
             CuriosRendererRegistry.register(ModItems.RGB_CROWN.get(), CurioItemRenderer::new);
             CuriosRendererRegistry.register(ModItems.SILVER_RGB_CROWN.get(), CurioItemRenderer::new);
+            CuriosRendererRegistry.register(ModItems.GOAT_HORNS.get(), CurioItemRenderer::new);
         }
     }
 
     public static class CurioItemRenderer implements ICurioRenderer
     {
         @Override
-        public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)
+        public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack poseStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)
         {
             if (!stack.isEmpty())
             {
-                matrixStack.pushPose();
+                LivingEntity livingEntity = slotContext.entity();
 
-                //Follow the head
-                if (slotContext.entity().isVisuallySwimming() || slotContext.entity().isFallFlying())
+                EntityRenderer<? super LivingEntity> render = Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(livingEntity);
+
+                if (render instanceof LivingEntityRenderer)
                 {
-                    matrixStack.mulPose(Vector3f.ZP.rotationDegrees(slotContext.entity().yHeadRot));
-                    matrixStack.mulPose(Vector3f.YP.rotationDegrees(netHeadYaw));
-                    matrixStack.mulPose(Vector3f.XP.rotationDegrees(-45.0F));
-                }
-                else
-                {
-                    if (slotContext.entity().isCrouching())
+                    @SuppressWarnings("unchecked") LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>> livingRenderer = (LivingEntityRenderer<LivingEntity, EntityModel<LivingEntity>>) render;
+                    EntityModel<LivingEntity> model = livingRenderer.getModel();
+
+                    if (model instanceof HumanoidModel)
                     {
-                        matrixStack.translate(0.0F, 0.25F, 0.0F);
+                        poseStack.pushPose();
+
+                        //Follow the head
+                        ((HumanoidModel<LivingEntity>) model).head.translateAndRotate(poseStack);
+
+                        poseStack.translate(0.0F, -0.05F, -0.3F);
+
+                        poseStack.translate(0D, -0.2F, 0.3F);
+                        poseStack.scale(0.625F, 0.625F, 0.625F);
+                        poseStack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
+                        poseStack.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+
+                        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.HEAD, light, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, 0);
+
+                        poseStack.popPose();
                     }
-
-                    matrixStack.mulPose(Vector3f.YP.rotationDegrees(netHeadYaw));
-                    matrixStack.mulPose(Vector3f.XP.rotationDegrees(headPitch));
                 }
-
-                matrixStack.translate(0.0F, -0.05F, -0.3F);
-
-                matrixStack.translate(0D, -(0.2D), 0.3D);
-                matrixStack.scale(0.625F, 0.625F, 0.625F);
-                matrixStack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
-                matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F));
-
-                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack, renderTypeBuffer, 1);
-
-                matrixStack.popPose();
-
             }
         }
     }
-
-    /*public static ICapabilityProvider initCap(ItemStack stack)
-    {
-        if (!isModLoaded) return null;
-
-        return new SimpleCapProvider<>(CuriosCapability.ITEM, new ICurio()
-        {
-            @Override
-            public ItemStack getStack()
-            {
-                return stack;
-            }
-
-            @Override
-            public boolean canRender(String identifier, int index, LivingEntity livingEntity)
-            {
-                return true;
-            }
-
-            @Override
-            public void render(String identifier, int index, PoseStack matrixStack, MultiBufferSource renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)
-            {
-                EntityRenderer<?> renderer = Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(livingEntity);
-                if (!(renderer instanceof IEntityRenderer<?, ?>))
-                {
-                    return;
-                }
-                EntityModel<?> model = ((IEntityRenderer<?, ?>) renderer).getModel();
-                if (!(model instanceof BipedModel<?>))
-                {
-                    return;
-                }
-
-                if (!stack.isEmpty())
-                {
-                    matrixStack.pushPose();
-
-                    //Follow the head
-                    if (livingEntity.isVisuallySwimming() || livingEntity.isFallFlying())
-                    {
-                        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(livingEntity.yHeadRot));
-                        matrixStack.mulPose(Vector3f.YP.rotationDegrees(netHeadYaw));
-                        matrixStack.mulPose(Vector3f.XP.rotationDegrees(-45.0F));
-                    }
-                    else
-                    {
-                        if (livingEntity.isCrouching())
-                        {
-                            matrixStack.translate(0.0F, 0.25F, 0.0F);
-                        }
-
-                        matrixStack.mulPose(Vector3f.YP.rotationDegrees(netHeadYaw));
-                        matrixStack.mulPose(Vector3f.XP.rotationDegrees(headPitch));
-                    }
-
-                    matrixStack.translate(0.0F, -0.05F, -0.3F);
-
-                    matrixStack.translate(0D, -(0.2D), 0.3D);
-                    matrixStack.scale(0.625F, 0.625F, 0.625F);
-                    matrixStack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
-                    matrixStack.mulPose(Vector3f.YP.rotationDegrees(180.0F));
-
-                    Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack, renderTypeBuffer, 1);
-
-                    matrixStack.popPose();
-
-                }
-            }
-        });
-    }*/
 }
