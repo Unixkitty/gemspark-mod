@@ -2,7 +2,6 @@ package com.unixkitty.gemspark.init;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.*;
-import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
@@ -12,8 +11,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -169,7 +166,7 @@ public final class ModBlocks
     private static RegistryObject<Block> register(String name, Supplier<? extends Block> supplier)
     {
         RegistryObject<Block> block = BLOCKS.register(name, supplier);
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.PRIMARY)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         return block;
     }
 
@@ -180,8 +177,9 @@ public final class ModBlocks
 
     private static Block.Properties gemGlassProperties(String name)
     {
-        return Block.Properties.of(Material.METAL, MaterialColor.NONE)
+        return Block.Properties.of()
                 .requiresCorrectToolForDrops()
+                .sound(SoundType.METAL)
                 .sound(SoundType.GLASS)
                 .noOcclusion()
                 .isValidSpawn(ModBlocks::neverAllowSpawn)

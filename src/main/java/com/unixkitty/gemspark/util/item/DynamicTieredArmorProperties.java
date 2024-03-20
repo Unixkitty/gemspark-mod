@@ -2,10 +2,12 @@ package com.unixkitty.gemspark.util.item;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
+
+import javax.annotation.Nonnull;
 
 public class DynamicTieredArmorProperties extends DynamicTierProperties implements ArmorMaterial
 {
@@ -45,15 +47,15 @@ public class DynamicTieredArmorProperties extends DynamicTierProperties implemen
     /* Interface methods begin */
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot)
+    public int getDurabilityForType(@Nonnull ArmorItem.Type type)
     {
-        return (int) getTierStrength(this.tierIndex, this.tiersTotal, this.FLOOR_TIER.getDurabilityForSlot(slot), this.CEILING_TIER.getDurabilityForSlot(slot), this.floorBump);
+        return (int) getTierStrength(this.tierIndex, this.tiersTotal, this.FLOOR_TIER.getDurabilityForType(type), this.CEILING_TIER.getDurabilityForType(type), this.floorBump);
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot)
+    public int getDefenseForType(@Nonnull ArmorItem.Type type)
     {
-        return (int) getTierStrength(this.tierIndex, this.tiersTotal, this.FLOOR_TIER.getDefenseForSlot(slot), this.CEILING_TIER.getDefenseForSlot(slot), this.floorBump);
+        return (int) getTierStrength(this.tierIndex, this.tiersTotal, this.FLOOR_TIER.getDefenseForType(type), this.CEILING_TIER.getDefenseForType(type), this.floorBump);
     }
 
     @Override

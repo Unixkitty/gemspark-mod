@@ -1,14 +1,15 @@
 package com.unixkitty.gemspark.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.unixkitty.gemspark.blockentity.BlockEntityPedestal;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -17,14 +18,17 @@ import java.util.Objects;
 public class BlockEntityPedestalRender implements BlockEntityRenderer<BlockEntityPedestal>
 {
     private ItemEntity itemEntity;
+    private final Minecraft minecraft;
+    private final ItemRenderer itemRenderer;
 
     public BlockEntityPedestalRender(BlockEntityRendererProvider.Context context)
     {
-
+        this.itemRenderer = context.getItemRenderer();
+        this.minecraft = Minecraft.getInstance();
     }
 
     @Override
-    public void render(@Nonnull BlockEntityPedestal pedestal, float partialTicks, PoseStack matrix, MultiBufferSource buffer, int light, int overlay)
+    public void render(@Nonnull BlockEntityPedestal pedestal, float partialTicks, @Nonnull PoseStack poseStack, @Nonnull MultiBufferSource buffer, int light, int overlay)
     {
         if (pedestal.getLevel() == null) return;
 
@@ -32,36 +36,36 @@ public class BlockEntityPedestalRender implements BlockEntityRenderer<BlockEntit
         {
             ItemStack storedStack = pedestal.getItemHandler().getStackInSlot(0);
 
-            matrix.pushPose();
+            poseStack.pushPose();
 
-            if (itemEntity == null)
+            if (this.itemEntity == null)
             {
-                itemEntity = new ItemEntity(Objects.requireNonNull(pedestal.getLevel()), pedestal.getBlockPos().getX(), pedestal.getBlockPos().getY() + 1, pedestal.getBlockPos().getZ(), storedStack);
-                itemEntity.makeFakeItem();
+                this.itemEntity = new ItemEntity(Objects.requireNonNull(pedestal.getLevel()), pedestal.getBlockPos().getX(), pedestal.getBlockPos().getY() + 1, pedestal.getBlockPos().getZ(), storedStack);
+                this.itemEntity.makeFakeItem();
             }
 
-            itemEntity.setItem(storedStack);
+            this.itemEntity.setItem(storedStack);
 
             if (pedestal.shouldRotate)
             {
-                matrix.translate(0.5f, 1.25f, 0.5f);
+                poseStack.translate(0.5f, 1.25f, 0.5f);
 
                 long gametime = pedestal.getLevel().getGameTime();
 
-                matrix.translate(0, Math.sin((gametime - pedestal.lastChangeTime + partialTicks) / 8) / 16.0, 0);
-                matrix.mulPose(Vector3f.YP.rotationDegrees((gametime + partialTicks) * 4));
+                poseStack.translate(0, Math.sin((gametime - pedestal.lastChangeTime + partialTicks) / 8) / 16.0, 0);
+                poseStack.mulPose(Axis.YP.rotationDegrees((gametime + partialTicks) * 4));
             }
             else
             {
-                matrix.translate(0.5f, 1.125f, 0.5f);
-                matrix.mulPose(Vector3f.YP.rotationDegrees(pedestal.itemFacingDirection));
+                poseStack.translate(0.5f, 1.125f, 0.5f);
+                poseStack.mulPose(Axis.YP.rotationDegrees(pedestal.itemFacingDirection));
             }
 
-            Minecraft.getInstance().getItemRenderer().renderStatic(itemEntity.getItem(), ItemTransforms.TransformType.GROUND, light, overlay, matrix, buffer, 1);
+            this.itemRenderer.renderStatic(itemEntity.getItem(), ItemDisplayContext.GROUND, light, overlay, poseStack, buffer, minecraft.level, 1);
 
-            matrix.translate(-0.5f, -1.5f, -0.5f);
+            poseStack.translate(-0.5f, -1.5f, -0.5f);
 
-            matrix.popPose();
+            poseStack.popPose();
         }
     }
 }

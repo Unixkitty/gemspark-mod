@@ -17,23 +17,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = Gemspark.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents
 {
-    /**
-     * We need to register our renderers on the client because rendering code does not exist on the server
-     * and trying to use it on a dedicated server will crash the game.
-     * <p>
-     * This method will be called by Forge when it is time for the mod to do its client-side setup
-     * This method will always be called after the Registry events.
-     * This means that all Blocks, Items, TileEntityTypes, etc. will all have been registered already
-     */
     @SubscribeEvent
     public static void onFMLClientSetupEvent(final FMLClientSetupEvent event)
     {
-        // Register ContainerType Screens
-        // ScreenManager.registerFactory is not safe to call during parallel mod loading, so we queue it to run later
-        event.enqueueWork(() ->
-        {
-            MenuScreens.register(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new);
-        });
+        event.enqueueWork(() -> MenuScreens.register(ModContainerTypes.PEDESTAL.get(), PedestalScreen::new));
 
         CuriosCompat.registerRenderers();
     }

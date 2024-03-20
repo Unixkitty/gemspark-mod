@@ -17,9 +17,9 @@ public class ModArmorItem extends ArmorItem
 {
     private final String materialString;
 
-    public ModArmorItem(String materialString, ArmorMaterial material, EquipmentSlot slot, Properties properties)
+    public ModArmorItem(String materialString, ArmorMaterial material, ArmorItem.Type type, Properties properties)
     {
-        super(material, slot, properties);
+        super(material, type, properties);
 
         this.materialString = materialString;
     }
@@ -32,9 +32,9 @@ public class ModArmorItem extends ArmorItem
     }
 
     @Override
-    public void onArmorTick(ItemStack stack, Level world, Player player)
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex)
     {
-        if (!world.isClientSide && player.tickCount % 90 == 0 && this.getMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties())
+        if (!level.isClientSide && player.tickCount % 90 == 0 && this.getMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties())
         {
             boolean shouldApplyEffect = false;
 

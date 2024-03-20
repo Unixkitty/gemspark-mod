@@ -2,6 +2,7 @@ package com.unixkitty.gemspark;
 
 import com.unixkitty.gemspark.compat.CuriosCompat;
 import com.unixkitty.gemspark.init.*;
+import com.unixkitty.gemspark.item.ModCreativeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,6 +31,7 @@ public class Gemspark
 
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModCreativeTab.CREATIVE_TABS.register(modEventBus);
 
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);

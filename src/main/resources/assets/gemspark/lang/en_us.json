@@ -61,8 +61,7 @@
   "item.gemspark.pink_sapphire_boots": "Pink Sapphire Boots",
   "item.gemspark.ruby_boots": "Ruby Boots",
 
-  "item.gemspark.nbt_stick": "NBT stick",
-  "text.nbt_stick.info": "Right click on tile entities to get NBT printed to chat",
+  "item.gemspark.nbt_stick": "Debug Stick",
 
   "item.gemspark.spectacles": "Mini Glasses",
   "item.gemspark.glasses_technicolor": "Amazing Technicolor Glasses",

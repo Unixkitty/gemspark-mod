@@ -1,18 +1,18 @@
 package com.unixkitty.gemspark.compat;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.unixkitty.gemspark.init.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModList;
@@ -76,8 +76,9 @@ public class CuriosCompat
             if (!stack.isEmpty())
             {
                 LivingEntity livingEntity = slotContext.entity();
+                Minecraft minecraft = Minecraft.getInstance();
 
-                EntityRenderer<? super LivingEntity> render = Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(livingEntity);
+                EntityRenderer<? super LivingEntity> render = minecraft.getEntityRenderDispatcher().getRenderer(livingEntity);
 
                 if (render instanceof LivingEntityRenderer)
                 {
@@ -95,10 +96,10 @@ public class CuriosCompat
 
                         poseStack.translate(0D, -0.2F, 0.3F);
                         poseStack.scale(0.625F, 0.625F, 0.625F);
-                        poseStack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
-                        poseStack.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180.0F));
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 
-                        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.HEAD, light, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, 0);
+                        minecraft.getItemRenderer().renderStatic(stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, minecraft.level, 0);
 
                         poseStack.popPose();
                     }

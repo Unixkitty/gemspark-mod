@@ -2,10 +2,8 @@ package com.unixkitty.gemspark.item;
 
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModItems;
-import com.unixkitty.gemspark.itemgroup.ModItemGroups;
 import com.unixkitty.gemspark.util.HelperUtil;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -60,10 +58,10 @@ public class GemItems
         );
     }
 
-    public static RegistryObject<Item> registerArmorItem(Gem gem, EquipmentSlot slot)
+    public static RegistryObject<Item> registerArmorItem(Gem gem, ArmorItem.Type type)
     {
-        return ModItems.ITEMS.register(HelperUtil.armorMaterialString(gem.toString(), slot), () ->
-                new ModArmorItem(gem.toString(), gem.getArmorProperties(), slot, itemProperties(gem))
+        return ModItems.ITEMS.register(HelperUtil.armorMaterialString(gem.toString(), type.getSlot()), () ->
+                new ModArmorItem(gem.toString(), gem.getArmorProperties(), type, itemProperties(gem))
         );
     }
 
@@ -96,7 +94,6 @@ public class GemItems
 
     private static Item.Properties itemProperties(Gem gem)
     {
-        return new Item.Properties().rarity(gem.getRarity()).tab(ModItemGroups.PRIMARY);
+        return new Item.Properties().rarity(gem.getRarity());
     }
-
 }

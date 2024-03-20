@@ -11,7 +11,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
@@ -41,7 +41,7 @@ public class ContainerPedestal extends AbstractContainerMenu
 
         if (blockEntity != null)
         {
-            blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(IItemHandler ->
+            blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(IItemHandler ->
                     this.addSlot(new SlotItemHandler(IItemHandler, 0, PEDESTAL_SLOT_X, PEDESTAL_SLOT_Y))
             );
         }

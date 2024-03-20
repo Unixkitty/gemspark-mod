@@ -1,14 +1,15 @@
 package com.unixkitty.gemspark.client.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.container.ContainerPedestal;
 import com.unixkitty.gemspark.util.HelperUtil;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+
+import javax.annotation.Nonnull;
 
 public class PedestalScreen extends AbstractContainerScreen<ContainerPedestal>
 {
@@ -28,17 +29,16 @@ public class PedestalScreen extends AbstractContainerScreen<ContainerPedestal>
     }
 
     @Override
-    public void render(PoseStack matrixStack, final int mouseX, final int mouseY, final float partialTicks)
+    public void render(@Nonnull GuiGraphics guiGraphics, int pMouseX, int pMouseY, float pPartialTick)
     {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderTooltip(matrixStack, mouseX, mouseY);
+        this.renderBackground(guiGraphics);
+        super.render(guiGraphics, pMouseX, pMouseY, pPartialTick);
+        this.renderTooltip(guiGraphics, pMouseX, pMouseY);
     }
 
     @Override
-    protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY)
+    protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY)
     {
-        RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
-        this.blit(matrixStack, (width - imageWidth) / 2, (height - imageHeight) / 2, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(BACKGROUND_TEXTURE, (width - imageWidth) / 2, (height - imageHeight) / 2, 0, 0, imageWidth, imageHeight);
     }
 }
