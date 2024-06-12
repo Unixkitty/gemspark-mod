@@ -1,15 +1,11 @@
 package com.unixkitty.gemspark.item;
 
 import com.unixkitty.gemspark.init.ModItems;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
@@ -31,7 +27,7 @@ public class ModArmorItem extends ArmorItem
         return ModItems.getArmorTextureString(this.materialString, slot, type);
     }
 
-    @Override
+    /*@Override
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex)
     {
         if (!level.isClientSide && player.tickCount % 90 == 0 && this.getMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties())
@@ -56,5 +52,5 @@ public class ModArmorItem extends ArmorItem
                 player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, false, false));
             }
         }
-    }
+    }*/
 }

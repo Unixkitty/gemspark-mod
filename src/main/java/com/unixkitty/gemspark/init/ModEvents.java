@@ -1,21 +1,61 @@
 package com.unixkitty.gemspark.init;
 
+import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.block.BlockBrazier;
 import com.unixkitty.gemspark.block.BlockWoodGolem;
+import com.unixkitty.gemspark.item.Gem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static com.unixkitty.gemspark.block.BlockWoodGolem.POSE;
 
+@SuppressWarnings("unused")
+@Mod.EventBusSubscriber(modid = Gemspark.MODID)
 public class ModEvents
 {
+    @SubscribeEvent
+    public static void onLivingHurt(final LivingHurtEvent event)
+    {
+        if (!event.getEntity().level().isClientSide
+                && event.getEntity() instanceof ServerPlayer player
+                && event.getSource().is(DamageTypeTags.IS_FIRE))
+        {
+            boolean shouldApplyEffect = false;
+
+            for (ItemStack armorStack : player.getArmorSlots())
+            {
+                if ((armorStack.getItem() instanceof ArmorItem && ((ArmorItem) armorStack.getItem()).getMaterial() == Gem.PINK_SAPPHIRE.getArmorProperties()))
+                {
+                    shouldApplyEffect = true;
+                }
+                else
+                {
+                    shouldApplyEffect = false;
+                    break;
+                }
+            }
+
+            if (shouldApplyEffect)
+            {
+                event.setAmount(event.getAmount() * 0.5F);
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onBlockRightClicked(PlayerInteractEvent.RightClickBlock event)
     {
         if (!event.getLevel().isClientSide)

@@ -1,10 +1,11 @@
 package com.unixkitty.gemspark;
 
 import com.unixkitty.gemspark.compat.CuriosCompat;
-import com.unixkitty.gemspark.init.*;
+import com.unixkitty.gemspark.init.ModBlockEntityTypes;
+import com.unixkitty.gemspark.init.ModBlocks;
+import com.unixkitty.gemspark.init.ModContainerTypes;
+import com.unixkitty.gemspark.init.ModItems;
 import com.unixkitty.gemspark.item.ModCreativeTab;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -36,7 +37,8 @@ public class Gemspark
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, ModEvents::onBlockRightClicked);
+//        MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, ModEvents::onBlockRightClicked);
+//        modEventBus.addListener(ModEvents::onLivingHurt);
     }
 
     public static Logger log()
