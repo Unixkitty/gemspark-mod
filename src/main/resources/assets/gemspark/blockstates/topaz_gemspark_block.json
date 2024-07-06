@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/gemspark/topaz_0",
+    "vertical": "gemspark:block/ctm/gemspark/topaz_1",
+    "horizontal": "gemspark:block/ctm/gemspark/topaz_2",
+    "center": "gemspark:block/ctm/gemspark/topaz_3",
+    "particle": "gemspark:block/topaz_gemspark_block"
+  },
   "variants": {
     "": [
       {

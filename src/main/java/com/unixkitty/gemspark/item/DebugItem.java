@@ -32,11 +32,13 @@ public class DebugItem extends Item
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
     }
 
+    @Override
     public boolean isFoil(@Nonnull ItemStack pStack)
     {
         return true;
     }
 
+    @Override
     public boolean canAttackBlock(@Nonnull BlockState pState, Level pLevel, @Nonnull BlockPos pPos, @Nonnull Player pPlayer)
     {
         if (!pLevel.isClientSide)
@@ -55,7 +57,7 @@ public class DebugItem extends Item
         if (!level.isClientSide && player != null)
         {
             BlockPos blockpos = pContext.getClickedPos();
-            if (!this.handleInteraction(player, level.getBlockState(blockpos), level, blockpos, true, pContext.getItemInHand()))
+            if (!this.handleInteraction(player, level.getBlockState(blockpos), level, blockpos, !player.isCrouching(), pContext.getItemInHand()))
             {
                 return InteractionResult.FAIL;
             }

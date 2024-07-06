@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gemspark:block/pink_sapphire_gemspark_block"
+  }
+}

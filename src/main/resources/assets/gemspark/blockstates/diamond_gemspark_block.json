@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/gemspark/diamond_0",
+    "vertical": "gemspark:block/ctm/gemspark/diamond_1",
+    "horizontal": "gemspark:block/ctm/gemspark/diamond_2",
+    "center": "gemspark:block/ctm/gemspark/diamond_3",
+    "particle": "gemspark:block/diamond_gemspark_block"
+  },
   "variants": {
     "": [
       {

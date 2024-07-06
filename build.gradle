@@ -179,7 +179,7 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}+${minecraft_version}:api")
 
     runtimeOnly fg.deobf("curse.maven:world-stripper-250603:4578579")
-//    runtimeOnly fg.deobf("curse.maven:athena-841890:4764357") //ctm
+    runtimeOnly fg.deobf("curse.maven:athena-841890:5176879") //ctm
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -195,6 +195,8 @@ tasks.named('processResources', ProcessResources).configure {
             mod_authors         : mod_authors, mod_description: mod_description, mod_credits: mod_credits
     ]
     inputs.properties replaceProperties
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]

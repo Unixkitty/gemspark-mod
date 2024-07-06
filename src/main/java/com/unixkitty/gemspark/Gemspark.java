@@ -37,8 +37,7 @@ public class Gemspark
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
 
-//        MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, ModEvents::onBlockRightClicked);
-//        modEventBus.addListener(ModEvents::onLivingHurt);
+//        MinecraftForge.EVENT_BUS.addListener(DebugItem::onBlockLeftClick);
     }
 
     public static Logger log()

@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/gemspark/ruby_0",
+    "vertical": "gemspark:block/ctm/gemspark/ruby_1",
+    "horizontal": "gemspark:block/ctm/gemspark/ruby_2",
+    "center": "gemspark:block/ctm/gemspark/ruby_3",
+    "particle": "gemspark:block/ruby_gemspark_block"
+  },
   "variants": {
     "": [
       {

@@ -1,8 +1,16 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/stone/accentuated_stone_0",
+    "vertical": "gemspark:block/ctm/stone/accentuated_stone_1",
+    "horizontal": "gemspark:block/ctm/stone/accentuated_stone_2",
+    "center": "gemspark:block/ctm/stone/accentuated_stone_3",
+    "particle": "gemspark:block/accentuated_stone"
+  },
   "variants": {
     "": [
       {
-        "model": "gemspark:block/accentuated_stone_ctm"
+        "model": "gemspark:block/accentuated_stone"
       }
     ]
   }

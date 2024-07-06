@@ -1,8 +1,16 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/stone/metal_framed_stone_0",
+    "vertical": "gemspark:block/ctm/stone/metal_framed_stone_1",
+    "horizontal": "gemspark:block/ctm/stone/metal_framed_stone_2",
+    "center": "gemspark:block/ctm/stone/metal_framed_stone_3",
+    "particle": "gemspark:block/metal_framed_stone"
+  },
   "variants": {
     "": [
       {
-        "model": "gemspark:block/metal_framed_stone_ctm"
+        "model": "gemspark:block/metal_framed_stone"
       }
     ]
   }

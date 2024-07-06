@@ -16,7 +16,7 @@ public final class ModItems
 {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Gemspark.MODID);
 
-    public static final RegistryObject<Item> nbt_stick = registerDebugItem();
+    public static final RegistryObject<Item> DEBUG_STICK = registerDebugItem();
 
     public static final RegistryObject<Item> TANZANITE = GemItems.registerGemItem(Gem.TANZANITE);
     public static final RegistryObject<Item> TOPAZ = GemItems.registerGemItem(Gem.TOPAZ);
@@ -114,7 +114,7 @@ public final class ModItems
 
     private static RegistryObject<Item> registerDebugItem()
     {
-        return ITEMS.register("nbt_stick", DebugItem::new);
+        return ITEMS.register("debug_stick", DebugItem::new);
     }
 
     private static RegistryObject<Item> registerCosmeticHat(String name)

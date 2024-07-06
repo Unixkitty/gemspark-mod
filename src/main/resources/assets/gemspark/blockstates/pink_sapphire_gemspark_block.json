@@ -1,4 +1,12 @@
 {
+  "athena:loader": "athena:ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/gemspark/pink_sapphire_0",
+    "vertical": "gemspark:block/ctm/gemspark/pink_sapphire_1",
+    "horizontal": "gemspark:block/ctm/gemspark/pink_sapphire_2",
+    "center": "gemspark:block/ctm/gemspark/pink_sapphire_3",
+    "particle": "gemspark:block/pink_sapphire_gemspark_block"
+  },
   "variants": {
     "": [
       {
