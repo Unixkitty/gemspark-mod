@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "F": {
+      "item": "minecraft:mangrove_fence"
+    },
+    "i": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "ii ",
+    "iF ",
+    "  i"
+  ],
+  "result": {
+    "item": "gemspark:lamp_post_cap_mangrove"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,17 @@
+{
+  "athena:loader": "athena:pane_ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/glass/topaz_0",
+    "vertical": "gemspark:block/ctm/glass/topaz_1",
+    "horizontal": "gemspark:block/ctm/glass/topaz_2",
+    "center": "gemspark:block/ctm/glass/topaz_3",
+    "particle": "gemspark:block/topaz_glass"
+  },
+  "variants": {
+    "": [
+      {
+        "model": "gemspark:block/topaz_glass_pane"
+      }
+    ]
+  }
+}

@@ -11,6 +11,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.GlassBlock;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,11 +31,11 @@ public final class ClientEvents
 
             ModBlocks.BLOCKS.getEntries().forEach(blockRegistryObject ->
             {
-                if (blockRegistryObject.get() instanceof GlassBlock glassBlock)
+                if (blockRegistryObject.get() instanceof GlassBlock || blockRegistryObject.get() instanceof IronBarsBlock)
                 {
                     //Athena ignores json render type viariable
                     //noinspection deprecation
-                    ItemBlockRenderTypes.setRenderLayer(glassBlock, RenderType.cutout());
+                    ItemBlockRenderTypes.setRenderLayer(blockRegistryObject.get(), RenderType.cutout());
                 }
             });
         });

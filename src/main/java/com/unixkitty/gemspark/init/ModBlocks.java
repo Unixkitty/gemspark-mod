@@ -53,6 +53,14 @@ public final class ModBlocks
     public static final RegistryObject<Block> PINK_SAPPHIRE_GLASS = setup(ModBlockType.GLASS, "pink_sapphire_glass");
     public static final RegistryObject<Block> RUBY_GLASS = setup(ModBlockType.GLASS, "ruby_glass");
 
+    public static final RegistryObject<Block> EMERALD_GLASS_PANE = setup(ModBlockType.GLASS_PANE, "emerald_glass_pane");
+    public static final RegistryObject<Block> DIAMOND_GLASS_PANE = setup(ModBlockType.GLASS_PANE, "diamond_glass_pane");
+    public static final RegistryObject<Block> TANZANITE_GLASS_PANE = setup(ModBlockType.GLASS_PANE, "tanzanite_glass_pane");
+    public static final RegistryObject<Block> TOPAZ_GLASS_PANE = setup(ModBlockType.GLASS_PANE, "topaz_glass_pane");
+    public static final RegistryObject<Block> SAPPHIRE_GLASS_PANE = setup(ModBlockType.GLASS_PANE, "sapphire_glass_pane");
+    public static final RegistryObject<Block> PINK_SAPPHIRE_GLASS_PANE = setup(ModBlockType.GLASS_PANE, "pink_sapphire_glass_pane");
+    public static final RegistryObject<Block> RUBY_GLASS_PANE = setup(ModBlockType.GLASS_PANE, "ruby_glass_pane");
+
     public static final RegistryObject<Block> EMERALD_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "emerald_glowing_glass");
     public static final RegistryObject<Block> DIAMOND_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "diamond_glowing_glass");
     public static final RegistryObject<Block> TANZANITE_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "tanzanite_glowing_glass");
@@ -60,6 +68,14 @@ public final class ModBlocks
     public static final RegistryObject<Block> SAPPHIRE_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "sapphire_glowing_glass");
     public static final RegistryObject<Block> PINK_SAPPHIRE_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "pink_sapphire_glowing_glass");
     public static final RegistryObject<Block> RUBY_GLOWING_GLASS = setup(ModBlockType.GLOWING_GLASS, "ruby_glowing_glass");
+
+    public static final RegistryObject<Block> EMERALD_GLOWING_GLASS_PANE = setup(ModBlockType.GLOWING_GLASS_PANE, "emerald_glowing_glass_pane");
+    public static final RegistryObject<Block> DIAMOND_GLOWING_GLASS_PANE = setup(ModBlockType.GLOWING_GLASS_PANE, "diamond_glowing_glass_pane");
+    public static final RegistryObject<Block> TANZANITE_GLOWING_GLASS_PANE = setup(ModBlockType.GLOWING_GLASS_PANE, "tanzanite_glowing_glass_pane");
+    public static final RegistryObject<Block> TOPAZ_GLOWING_GLASS_PANE = setup(ModBlockType.GLOWING_GLASS_PANE, "topaz_glowing_glass_pane");
+    public static final RegistryObject<Block> SAPPHIRE_GLOWING_GLASS_PANE = setup(ModBlockType.GLOWING_GLASS_PANE, "sapphire_glowing_glass_pane");
+    public static final RegistryObject<Block> PINK_SAPPHIRE_GLOWING_GLASS_PANE = setup(ModBlockType.GLOWING_GLASS_PANE, "pink_sapphire_glowing_glass_pane");
+    public static final RegistryObject<Block> RUBY_GLOWING_GLASS_PANE = setup(ModBlockType.GLOWING_GLASS_PANE, "ruby_glowing_glass_pane");
 
     public static final RegistryObject<Block> TANZANITE_ORE = setup(ModBlockType.ORE, "tanzanite_ore");
     public static final RegistryObject<Block> TOPAZ_ORE = setup(ModBlockType.ORE, "topaz_ore");
@@ -118,6 +134,8 @@ public final class ModBlocks
     public static final RegistryObject<Block> LAMP_POST_CAP_DARK_OAK = setupLampPost("lamp_post_cap_dark_oak", Block.Properties.copy(Blocks.DARK_OAK_FENCE));
     public static final RegistryObject<Block> LAMP_POST_CAP_WARPED = setupLampPost("lamp_post_cap_warped", Block.Properties.copy(Blocks.WARPED_FENCE));
     public static final RegistryObject<Block> LAMP_POST_CAP_CRIMSON = setupLampPost("lamp_post_cap_crimson", Block.Properties.copy(Blocks.CRIMSON_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_CHERRY = setupLampPost("lamp_post_cap_cherry", Block.Properties.copy(Blocks.CHERRY_FENCE));
+    public static final RegistryObject<Block> LAMP_POST_CAP_MANGROVE = setupLampPost("lamp_post_cap_mangrove", Block.Properties.copy(Blocks.MANGROVE_FENCE));
 
     public static final RegistryObject<Block> WOOD_GOLEM_RELIC = register("wood_golem_relic", () -> new BlockWoodGolem(Block.Properties.copy(Blocks.SPRUCE_PLANKS).isValidSpawn(ModBlocks::neverAllowSpawn)));
 
@@ -149,6 +167,9 @@ public final class ModBlocks
             case GLASS -> register(name, () -> new GlassBlock(gemGlassProperties(name)));
             case GLOWING_GLASS ->
                     register(name, () -> new GlassBlock(gemGlassProperties(name).lightLevel(level -> 12)));
+            case GLASS_PANE -> register(name, () -> new IronBarsBlock(gemGlassProperties(name)));
+            case GLOWING_GLASS_PANE ->
+                    register(name, () -> new IronBarsBlock(gemGlassProperties(name).lightLevel(level -> 12)));
             case GEMSPARK ->
                     register(name, () -> new Block(Block.Properties.copy(Blocks.GLOWSTONE).lightLevel(value -> 9).requiresCorrectToolForDrops()));
             case ORE ->
@@ -195,6 +216,8 @@ public final class ModBlocks
         LANTERN,
         GLASS,
         GLOWING_GLASS,
+        GLASS_PANE,
+        GLOWING_GLASS_PANE,
         GEMSPARK,
         ORE,
         DEEPSLATE_ORE,

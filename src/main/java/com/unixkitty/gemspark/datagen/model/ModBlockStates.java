@@ -4,6 +4,7 @@ import com.unixkitty.gemspark.Gemspark;
 import com.unixkitty.gemspark.init.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -39,6 +40,15 @@ public class ModBlockStates extends BlockStateProvider
                     name = name.replace("_ctm", "");
 
                     this.simpleBlock(block, models().cubeAll(name, modLoc("block/" + name)));
+                }
+                else if (block instanceof IronBarsBlock ironBarsBlock)
+                {
+                    if (name.contains("glowing"))
+                    {
+                        name = name.replace("_glowing", "");
+                    }
+
+                    paneBlockWithRenderType(ironBarsBlock, modLoc("block/" + name.replace("_pane", "")), modLoc("block/" + name + "_top"), "cutout");
                 }
                 else
                 {

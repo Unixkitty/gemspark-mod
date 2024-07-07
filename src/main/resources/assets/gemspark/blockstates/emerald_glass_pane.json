@@ -1,0 +1,17 @@
+{
+  "athena:loader": "athena:pane_ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/glass/emerald_0",
+    "vertical": "gemspark:block/ctm/glass/emerald_1",
+    "horizontal": "gemspark:block/ctm/glass/emerald_2",
+    "center": "gemspark:block/ctm/glass/emerald_3",
+    "particle": "gemspark:block/emerald_glass"
+  },
+  "variants": {
+    "": [
+      {
+        "model": "gemspark:block/emerald_glass_pane"
+      }
+    ]
+  }
+}

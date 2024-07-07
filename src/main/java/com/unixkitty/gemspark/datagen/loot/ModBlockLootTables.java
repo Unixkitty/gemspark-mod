@@ -1,7 +1,9 @@
 package com.unixkitty.gemspark.datagen.loot;
 
+import com.unixkitty.gemspark.init.ModBlocks;
 import net.minecraft.data.loot.packs.VanillaBlockLoot;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.storage.loot.LootTable;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +17,13 @@ public class ModBlockLootTables extends VanillaBlockLoot
     @Override
     protected void generate()
     {
-
+        ModBlocks.BLOCKS.getEntries().forEach(blockRegistryObject ->
+        {
+            if (blockRegistryObject.get() instanceof IronBarsBlock block)
+            {
+                this.dropSelf(block);
+            }
+        });
     }
 
     @Override

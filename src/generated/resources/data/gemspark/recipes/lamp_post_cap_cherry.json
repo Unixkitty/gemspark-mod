@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "F": {
+      "item": "minecraft:cherry_fence"
+    },
+    "i": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "ii ",
+    "iF ",
+    "  i"
+  ],
+  "result": {
+    "item": "gemspark:lamp_post_cap_cherry"
+  },
+  "show_notification": true
+}

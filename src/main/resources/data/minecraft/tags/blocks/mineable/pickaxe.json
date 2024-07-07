@@ -80,6 +80,20 @@
     "gemspark:accentuated_stone",
     "gemspark:accentuated_stone_ctm",
     "gemspark:light_rainbow_bricks",
-    "gemspark:dark_rainbow_bricks"
+    "gemspark:dark_rainbow_bricks",
+    "gemspark:emerald_glass_pane",
+    "gemspark:diamond_glass_pane",
+    "gemspark:tanzanite_glass_pane",
+    "gemspark:topaz_glass_pane",
+    "gemspark:sapphire_glass_pane",
+    "gemspark:pink_sapphire_glass_pane",
+    "gemspark:ruby_glass_pane",
+    "gemspark:emerald_glowing_glass_pane",
+    "gemspark:diamond_glowing_glass_pane",
+    "gemspark:tanzanite_glowing_glass_pane",
+    "gemspark:topaz_glowing_glass_pane",
+    "gemspark:sapphire_glowing_glass_pane",
+    "gemspark:pink_sapphire_glowing_glass_pane",
+    "gemspark:ruby_glowing_glass_pane"
   ]
 }

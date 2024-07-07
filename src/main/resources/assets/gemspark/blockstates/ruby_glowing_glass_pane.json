@@ -1,0 +1,17 @@
+{
+  "athena:loader": "athena:pane_ctm",
+  "ctm_textures": {
+    "empty": "gemspark:block/ctm/glass/ruby_0",
+    "vertical": "gemspark:block/ctm/glass/ruby_1",
+    "horizontal": "gemspark:block/ctm/glass/ruby_2",
+    "center": "gemspark:block/ctm/glass/ruby_3",
+    "particle": "gemspark:block/ruby_glass"
+  },
+  "variants": {
+    "": [
+      {
+        "model": "gemspark:block/ruby_glass_pane"
+      }
+    ]
+  }
+}

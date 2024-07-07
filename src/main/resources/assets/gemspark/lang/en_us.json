@@ -134,6 +134,14 @@
   "block.gemspark.pink_sapphire_glass": "Pink Sapphire Glass",
   "block.gemspark.ruby_glass": "Ruby Glass",
 
+  "block.gemspark.emerald_glass_pane": "Emerald Glass Pane",
+  "block.gemspark.diamond_glass_pane": "Diamond Glass Pane",
+  "block.gemspark.tanzanite_glass_pane": "Tanzanite Glass Pane",
+  "block.gemspark.topaz_glass_pane": "Topaz Glass Pane",
+  "block.gemspark.sapphire_glass_pane": "Sapphire Glass Pane",
+  "block.gemspark.pink_sapphire_glass_pane": "Pink Sapphire Glass Pane",
+  "block.gemspark.ruby_glass_pane": "Ruby Glass Pane",
+
   "block.gemspark.emerald_glowing_glass": "Emerald Glowing Glass",
   "block.gemspark.diamond_glowing_glass": "Diamond Glowing Glass",
   "block.gemspark.tanzanite_glowing_glass": "Tanzanite Glowing Glass",
@@ -141,6 +149,14 @@
   "block.gemspark.sapphire_glowing_glass": "Sapphire Glowing Glass",
   "block.gemspark.pink_sapphire_glowing_glass": "Pink Sapphire Glowing Glass",
   "block.gemspark.ruby_glowing_glass": "Ruby Glowing Glass ",
+
+  "block.gemspark.emerald_glowing_glass_pane": "Emerald Glowing Glass Pane",
+  "block.gemspark.diamond_glowing_glass_pane": "Diamond Glowing Glass Pane",
+  "block.gemspark.tanzanite_glowing_glass_pane": "Tanzanite Glowing Glass Pane",
+  "block.gemspark.topaz_glowing_glass_pane": "Topaz Glowing Glass Pane",
+  "block.gemspark.sapphire_glowing_glass_pane": "Sapphire Glowing Glass Pane",
+  "block.gemspark.pink_sapphire_glowing_glass_pane": "Pink Sapphire Glowing Glass Pane",
+  "block.gemspark.ruby_glowing_glass_pane": "Ruby Glowing Glass Pane",
 
   "block.gemspark.quartz_pedestal": "Quartz Pedestal",
   "block.gemspark.blackstone_pedestal": "Blackstone Pedestal",
@@ -190,6 +206,8 @@
   "block.gemspark.lamp_post_cap_dark_oak": "Dark Oak Lamp Post Cap",
   "block.gemspark.lamp_post_cap_warped":"Warped Lamp Post Cap",
   "block.gemspark.lamp_post_cap_crimson": "Crimson Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_cherry": "Cherry Lamp Post Cap",
+  "block.gemspark.lamp_post_cap_mangrove": "Mangrove Lamp Post Cap",
 
   "block.gemspark.wood_golem_relic": "Inactive Wooden Golem",
 
