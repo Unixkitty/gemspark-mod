@@ -1,5 +1,6 @@
 package com.unixkitty.gemspark.datagen.loot;
 
+import com.unixkitty.gemspark.block.BlockLampPostCap;
 import com.unixkitty.gemspark.init.ModBlocks;
 import net.minecraft.data.loot.packs.VanillaBlockLoot;
 import net.minecraft.world.level.block.Block;
@@ -19,7 +20,9 @@ public class ModBlockLootTables extends VanillaBlockLoot
     {
         ModBlocks.BLOCKS.getEntries().forEach(blockRegistryObject ->
         {
-            if (blockRegistryObject.get() instanceof IronBarsBlock block)
+            Block block = blockRegistryObject.get();
+
+            if (block instanceof IronBarsBlock || block instanceof BlockLampPostCap)
             {
                 this.dropSelf(block);
             }

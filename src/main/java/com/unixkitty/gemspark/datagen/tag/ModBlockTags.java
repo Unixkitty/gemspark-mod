@@ -38,6 +38,11 @@ public class ModBlockTags extends BlockTagsProvider
             {
                 tag(Tags.Blocks.GLASS).add(block);
             }
+
+            if (blockRegistryObject.getId().getPath().contains("_glass"))
+            {
+                tag(BlockTags.IMPERMEABLE).add(block);
+            }
         });
     }
 

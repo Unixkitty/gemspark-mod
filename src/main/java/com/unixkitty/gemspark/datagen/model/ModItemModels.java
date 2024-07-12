@@ -8,7 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TieredItem;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -66,10 +65,6 @@ public class ModItemModels extends ItemModelProvider
                 {
                     withExistingParent(itemRegistryObject.getId().getPath(), modLoc("block/" + name));
                 }
-            }
-            else if (itemRegistryObject == ModItems.DEBUG_STICK)
-            {
-                withExistingParent(itemRegistryObject.getId().getPath(), mcLoc("item/" + Items.STICK.toString().toLowerCase()));
             }
             else if (item instanceof TieredItem)
             {
