@@ -1,0 +1,8 @@
+{
+  "parent": "gemspark:block/emissive_overlay",
+  "textures": {
+    "particle": "gemspark:block/diamond_gemspark_block",
+    "base": "gemspark:block/diamond_gemspark_block",
+    "emissive": "gemspark:block/diamond_gemspark_block"
+  }
+}

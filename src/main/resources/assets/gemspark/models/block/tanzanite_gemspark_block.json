@@ -1,0 +1,8 @@
+{
+  "parent": "gemspark:block/emissive_overlay",
+  "textures": {
+    "particle": "gemspark:block/tanzanite_gemspark_block",
+    "base": "gemspark:block/tanzanite_gemspark_block",
+    "emissive": "gemspark:block/tanzanite_gemspark_block"
+  }
+}

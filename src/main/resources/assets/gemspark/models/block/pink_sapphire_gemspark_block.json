@@ -1,0 +1,8 @@
+{
+  "parent": "gemspark:block/emissive_overlay",
+  "textures": {
+    "particle": "gemspark:block/pink_sapphire_gemspark_block",
+    "base": "gemspark:block/pink_sapphire_gemspark_block",
+    "emissive": "gemspark:block/pink_sapphire_gemspark_block"
+  }
+}

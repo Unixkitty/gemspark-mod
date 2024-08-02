@@ -1,0 +1,9 @@
+{
+  "parent": "gemspark:block/emissive_overlay",
+  "render_type": "cutout",
+  "textures": {
+    "particle": "gemspark:block/dark_rainbow_bricks",
+    "base": "gemspark:block/dark_rainbow_bricks",
+    "emissive": "gemspark:block/dark_rainbow_bricks_e"
+  }
+}
